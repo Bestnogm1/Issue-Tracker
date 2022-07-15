@@ -1,10 +1,8 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import { MovingComponent} from 'react-moving-text'
-
-function Quote() {
-const {quotes, setQuote  } = useState('')
-
-    let randomQuote = [
+function Quote(props) {
+  const [quotes, setQuote] = useState('')
+  let randomQuote = [
     {
         "quote": "Be yourself; everyone else is already taken.",
         "author": "Oscar Wilde",
@@ -296,32 +294,27 @@ const {quotes, setQuote  } = useState('')
             "Inspirational"
         ]
     }
-    ]
-    // const random = Math.floor(Math.random() *  randomQuote.length);
-    function qouteAsRandom(){
-        setQuote( (prev) => {
-            let random = Math.floor(Math.random() *  randomQuote.length);
-            prev = random
-            console.log(random);
-        })
-    }
-    qouteAsRandom()
-    console.log(quotes.quote);
+  ]
 
-    return (
-        <MovingComponent
-        type="slideInFromTop"
-        duration="1000ms"
-        delay="0s"
-        direction="normal"
-        timing="ease"
-        iteration="1"
-        fillMode="none">
-        {/* <h4>{randomQuote[random].quote}</h4>
-        <p>{randomQuote[random].author}</p> */}
-        <h1>{quote}</h1>
-        </MovingComponent>
-    );
+  useEffect(()=>{
+    let random = Math.floor(Math.random() * randomQuote.length)
+    setQuote(randomQuote[random])
+  },[])
+  return (
+    <div>
+    <MovingComponent
+  type="slideInFromTop"
+  duration="1000ms"
+  delay="0s"
+  direction="normal"
+  timing="ease"
+  iteration="1"
+  fillMode="none">
+      <h1> {quotes.quote}</h1>
+      <h1> {quotes.author}</h1>
+    </MovingComponent>
+    </div>
+  );
 }
 
 export default Quote;
