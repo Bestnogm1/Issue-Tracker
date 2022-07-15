@@ -1,8 +1,9 @@
-import React from 'react';
+import {useState} from 'react';
 import { MovingComponent} from 'react-moving-text'
 
 function Quote() {
-    
+const {quotes, setQuote  } = useState('')
+
     let randomQuote = [
     {
         "quote": "Be yourself; everyone else is already taken.",
@@ -296,7 +297,17 @@ function Quote() {
         ]
     }
     ]
-    const random = Math.floor(Math.random() * randomQuote.length);
+    // const random = Math.floor(Math.random() *  randomQuote.length);
+    function qouteAsRandom(){
+        setQuote( (prev) => {
+            let random = Math.floor(Math.random() *  randomQuote.length);
+            prev = random
+            console.log(random);
+        })
+    }
+    qouteAsRandom()
+    console.log(quotes.quote);
+
     return (
         <MovingComponent
         type="slideInFromTop"
@@ -306,8 +317,9 @@ function Quote() {
         timing="ease"
         iteration="1"
         fillMode="none">
-        <h4>{randomQuote[random].quote}</h4>
-        <p>{randomQuote[random].author}</p>
+        {/* <h4>{randomQuote[random].quote}</h4>
+        <p>{randomQuote[random].author}</p> */}
+        <h1>{quote}</h1>
         </MovingComponent>
     );
 }

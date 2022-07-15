@@ -39,7 +39,7 @@ return (
           <div className="col-xl-10">
               <div className="card border-0">
                   <div className="card-body p-0">
-                      <div class="row no-gutters">
+                      <div className="row no-gutters">
                           <div className="col-lg-6">
                               <div className="p-5">
                                   <div className="mb-5">
