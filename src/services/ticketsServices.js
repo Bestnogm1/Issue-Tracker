@@ -27,3 +27,21 @@ export async function deleteOneTickets(id) {
   })
   .then(res => res.json())
 }
+
+export async function updateTickets(ticketDetails) {
+  const lobby  = await fetch(`${BASE_URL}/${ticketDetails._id}`, {
+    method: "PUT",
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+    body: JSON.stringify(ticketDetails)
+  })   
+  return lobby.json()
+}
+
+export async function getAllTicketsId(id) {
+  const tickets = await fetch(`${BASE_URL}/${id}`)
+  const data = await tickets.json()
+  return data
+}
