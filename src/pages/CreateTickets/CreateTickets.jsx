@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CreateTcikets(props) {
+function CreateTickets(props) {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function CreateTcikets(props) {
   );
 }
 
-export default CreateTcikets;
+export default CreateTickets;

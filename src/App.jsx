@@ -8,11 +8,13 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as ticketsServices from './services/ticketsServices'
-
+import CreateTickets from './pages/CreateTickets/CreateTickets'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [tickets, setTickets] = useState([])
+
   const navigate = useNavigate()
-  const [tickets, setTcikets] = useState([])
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -21,6 +23,12 @@ const App = () => {
 
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
+  }
+
+  const handleGetAllTickets = () => {
+    ticketsServices.getAllTickets()
+    .then(ticket => setTickets(ticket))
+    
   }
 
   return (
@@ -43,6 +51,10 @@ const App = () => {
         <Route
           path="/changePassword"
           element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}
+        />
+        <Route 
+        path="/CreateTickets"
+        element={user ? <CreateTickets  />: <Navigate to="/login" />}
         />
       </Routes>
     </>
