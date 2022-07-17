@@ -9,33 +9,53 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as ticketsServices from './services/ticketsServices'
 import CreateTickets from './pages/CreateTickets/CreateTickets'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime.js'
+dayjs.extend(relativeTime)
+// import EditTickets from './pages/EditTickets/EditTickets'
+// dayjs().to(dayjs('1990-01-01')) 
 const App = () => {
+
   const [user, setUser] = useState(authService.getUser())
   const [tickets, setTickets] = useState([])
-
+  
   const navigate = useNavigate()
-
+  
   const handleLogout = () => {
     authService.logout()
     setUser(null)
     navigate('/')
   }
-
+  
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
-
-  const handleGetAllTickets = () => {
+  
+  useEffect(()=>{ 
     ticketsServices.getAllTickets()
-    .then(ticket => setTickets(ticket))
-    
+    .then(allTickets => setTickets(allTickets))
+  },[])
+  
+  const handleCreateTickets = (newTickets) => {
+    ticketsServices.createTickets(newTickets)
+    .then(createTickets =>{
+      setTickets([...tickets, createTickets])
+      navigate('/')
+    })
+    .catch(navigate('/'))
   }
+  
+  const handleDeleteTicket =id =>{
+    ticketsServices.deleteOneTickets(id)
+    .then(setTickets(tickets.filter(ticket => ticket._id !== id)))
+  }
+  //createdAt: "2022-07-17T16:45:36.602Z"
 
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+        <Route path="/" element={<Landing user={user} tickets={tickets} handleDeleteTicket={handleDeleteTicket} />} />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -54,8 +74,13 @@ const App = () => {
         />
         <Route 
         path="/CreateTickets"
-        element={user ? <CreateTickets  />: <Navigate to="/login" />}
+        element={user ? <CreateTickets  handleCreate={handleCreateTickets}/>: <Navigate to="/login" />}
         />
+        {/* <Route
+        path="/editTickets"
+        element={user ? <EditTickets/>: <Navigate to="/login" />}
+        /> */}
+
       </Routes>
     </>
   )

@@ -1,21 +1,26 @@
 import styles from './Landing.module.css'
 import { Link } from 'react-router-dom'
 import * as Bootstrap from 'react-bootstrap'
-const Landing = ({ user }) => {
+import DashBoard from  '../DashBoard/DashBoard'
+const Landing = ({ user,tickets,handleDeleteTicket }) => {
   return (
     <main className={styles.container}>
-      <> {user ? user.name 
+      <> {user ? 
+      <>
+      <h1>{user.name}</h1>
+        <DashBoard
+        tickets={tickets}
+          handleDeleteTicket={handleDeleteTicket}
+        />
+      </>
       : 
         <>
         <Bootstrap.Card> 
           <div>
             <div>
-              <h1>Welcome</h1>
-            </div>
-            <div>
               
               <Link to='/signup'><Bootstrap.Button>Signup</Bootstrap.Button> </Link>
-              <Link to='/login'><Bootstrap.Button>Signup</Bootstrap.Button> </Link>
+              <Link to='/login'><Bootstrap.Button>login</Bootstrap.Button> </Link>
             </div>
           </div>
         </Bootstrap.Card>

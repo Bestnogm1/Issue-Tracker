@@ -1,5 +1,5 @@
 import * as tokenService from './tokenService'
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}api/tickets`
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/tickets`
 
 export async function createTickets(ticketsDetail) {
   const details = await fetch(BASE_URL, {
