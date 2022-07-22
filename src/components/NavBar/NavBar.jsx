@@ -1,8 +1,10 @@
+import { style } from '@mui/system'
 import { Link } from 'react-router-dom'
-
+import styles from './Navbar.module.css'
 const NavBar = ({ user, handleLogout }) => {
   return (
     <>
+      <div className={styles.divNav}>
       {user ?
         <nav>
           <ul>
@@ -15,13 +17,14 @@ const NavBar = ({ user, handleLogout }) => {
           </ul>
         </nav>
       :
-        <nav>
+      <nav>
           <ul>
             <li><Link to="/login">Log In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
           </ul>
         </nav>
       }
+      </div>
     </>
   )
 }

@@ -14,26 +14,28 @@ function AllTickets({tickets,handleDeleteTicket}) {
       <>
   {tickets.map((ticket,k)=>(
       <Card style={{ width: '18rem' }} key={ticket._id}>
-        <Card.Body key={ticket._id}>
+        <Card.Body key={ticket._id}>         
+          { 
+            ticket.severity === "Low"? 
+              <Chakra.Badge colorScheme='yellow'>{ticket.severity}</Chakra.Badge>
+            :
+            ticket.severity === "Normal"? 
+              <Chakra.Badge colorScheme='blue'>{ticket.severity}</Chakra.Badge>
+            :
+            ticket.severity === "High"? 
+              <Chakra.Badge colorScheme='red'>{ticket.severity}</Chakra.Badge>
+            : 
+            ticket.severity === "Urgent"? 
+              <Chakra.Badge colorScheme='orange'>{ticket.severity}</Chakra.Badge>
+            :
+          null
+          }
           <Card.Title key={k}> {ticket.assingedTo}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
           <Card.Subtitle className="mb-2 text-muted" key={k}>{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
           <Card.Text key={k}>{ticket.details}
-          { ticket.severity === "Low"? 
-          <Chakra.Badge colorScheme='yellow'>{ticket.severity}</Chakra.Badge>
-          :
-           ticket.severity === "Normal"? 
-          <Chakra.Badge colorScheme='blue'>{ticket.severity}</Chakra.Badge>
-          :
-          ticket.severity === "High"? 
-          <Chakra.Badge colorScheme='red'>{ticket.severity}</Chakra.Badge>
-          : 
-            ticket.severity === "Urgent"? 
-          <Chakra.Badge colorScheme='orange'>{ticket.severity}</Chakra.Badge>
-          :
-          null
-          }
-          </Card.Text>
+
+          </Card.Text>o0
               <Chakra.Button colorScheme='red'
 							onClick={() => handleDeleteTicket(ticket._id)}>
 							Delete

@@ -14,6 +14,12 @@ return (
      {ticket?.severity === "Normal"?
       <Card style={{ width: '18rem' }} key={{ ticket }}>
         <Card.Body>
+                              {
+             ticket.severity === "Normal"? 
+              <Chakra.Badge colorScheme='blue'>{ticket.severity}</Chakra.Badge>
+            : 
+            null
+          }
           <Card.Title> {ticket.assingedTo}</Card.Title>
           
           <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>

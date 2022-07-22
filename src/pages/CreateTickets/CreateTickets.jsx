@@ -23,24 +23,23 @@ function CreateTickets({handleCreate}) {
       onSubmit={handleSubmit}
       ref={formElement}>
         <input 
-        required
-        type="text"
-        name="assingedTo" 
-        onChange={handleChange}
+          required
+          type="text"
+          name="assingedTo" 
+          onChange={handleChange}
         />
         <input 
-        required
-        type="text"
-        name="details"
-        onChange={handleChange}
+          required
+          type="text"
+          name="details"
+          onChange={handleChange}
         />
-        			<button
-						type="submit"
-						className="btn btn-primary btn-fluid"
-						disabled={!validForm}
-					>
-						Add Puppy
-					</button>
+        <button
+          type="submit"
+          className="btn btn-primary btn-fluid"
+          disabled={!validForm}>
+				  ADD A TICKET
+				</button>
     </form>
     </>
   );

@@ -13,8 +13,13 @@ function Low({tickets,handleDeleteTicket}) {
      {ticket?.severity === "Low"?
       <Card style={{ width: '18rem' }} key={{ ticket }}>
         <Card.Body>
+          {
+            ticket.severity === "Low"? 
+              <Chakra.Badge colorScheme='yellow'>{ticket.severity}</Chakra.Badge>
+            : 
+            null
+          }
           <Card.Title> {ticket.assingedTo}</Card.Title>
-          
           <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
           <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
           <Card.Text>{ticket.details}

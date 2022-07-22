@@ -14,6 +14,12 @@ function High({tickets,handleDeleteTicket}) {
     {ticket?.severity === "High"?
       <Card style={{ width: '18rem' }} key={{ ticket }}>
         <Card.Body>
+          {
+             ticket.severity === "High"? 
+              <Chakra.Badge colorScheme='red'>{ticket.severity}</Chakra.Badge>
+            : 
+            null
+          }
           <Card.Title> {ticket.assingedTo}</Card.Title>
           
           <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
