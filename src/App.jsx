@@ -9,10 +9,8 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as ticketsServices from './services/ticketsServices'
 import CreateTickets from './pages/CreateTickets/CreateTickets'
-import dayjs from 'dayjs'
 import TicketDetail from './pages/TicketDetail/TicketDetail'
-// import EditTickets from './pages/EditTickets/EditTickets'
-// dayjs().to(dayjs('1990-01-01')) 
+import styles from './App.module.css'
 const App = () => {
 
   const [user, setUser] = useState(authService.getUser())
@@ -52,7 +50,9 @@ const App = () => {
 
   return (
     <>
+      <div className={styles.navBar}>
       <NavBar user={user} handleLogout={handleLogout} />
+      </div>
       <Routes>
         <Route path="/" element={<Landing user={user} tickets={tickets} handleDeleteTicket={handleDeleteTicket} />} />
         <Route

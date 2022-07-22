@@ -9,11 +9,8 @@ import Low from '../../components/FilterSeverity/Low'
 import Normal from '../../components/FilterSeverity/Normal'
 import Urgent from '../../components/FilterSeverity/Urgent'
 dayjs.extend(relativeTime)
-
-  // console.log(dayjs().to(dayjs("2022-07-15T22:36:05.410Z")) )
 function DashBoard({tickets,handleDeleteTicket}) {
   console.log(tickets);
-  // let id = useId()
   return (
     <>
       <Chakra.Tabs>
