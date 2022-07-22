@@ -7,9 +7,10 @@ import style from "./AllTickets.module.css";
 function AllTickets({tickets,handleDeleteTicket}) {
   return (
     <div className={style.allTicketCard}>
+      <div className={style.innerTicketCard}>
       <>
         {tickets.map((ticket,k)=>(
-          <Card style={{ width: '18rem' }} key={ticket._id}>
+          <Card style={{ width: '12rem' }} key={ticket._id}>
             <Card.Body key={ticket._id}>         
               { 
                 ticket.severity === "Low" ? 
@@ -38,6 +39,7 @@ function AllTickets({tickets,handleDeleteTicket}) {
           </Card>
         ))}
       </>
+    </div>
     </div>
   );
 }

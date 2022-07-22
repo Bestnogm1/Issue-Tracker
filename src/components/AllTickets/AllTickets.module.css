@@ -1,5 +1,11 @@
 .allTicketCard {
-  background-color: blue;
-  width: 70rem;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 45rem;
+}
+.innerTicketCard {
   display: flex;
+      width: 75rem;
+      /* display: flex; */
+      flex-wrap: wrap;
 }
