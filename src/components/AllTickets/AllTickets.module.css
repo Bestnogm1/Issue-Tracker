@@ -5,7 +5,6 @@
 }
 .innerTicketCard {
   display: flex;
-      width: 75rem;
-      /* display: flex; */
-      flex-wrap: wrap;
+  width: 75rem;
+  flex-wrap: wrap;
 }

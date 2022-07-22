@@ -8,6 +8,7 @@ import High from '../../components/FilterSeverity/High'
 import Low from '../../components/FilterSeverity/Low'
 import Normal from '../../components/FilterSeverity/Normal'
 import Urgent from '../../components/FilterSeverity/Urgent'
+import style from "./DashBoard.module.css"
 dayjs.extend(relativeTime)
 function DashBoard({tickets,handleDeleteTicket}) {
   console.log(tickets);
@@ -15,11 +16,13 @@ function DashBoard({tickets,handleDeleteTicket}) {
     <>
       <Chakra.Tabs>
         <Chakra.TabList>
+          <div className={style.tabsModule}>
           <Chakra.Tab>All</Chakra.Tab>
           <Chakra.Tab>Low</Chakra.Tab>
           <Chakra.Tab>Normal</Chakra.Tab>
           <Chakra.Tab>High</Chakra.Tab>
           <Chakra.Tab>Urgent</Chakra.Tab>
+          </div>
         </Chakra.TabList>
         <Chakra.TabPanels>
           <Chakra.TabPanel>
