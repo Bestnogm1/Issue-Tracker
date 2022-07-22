@@ -2,6 +2,7 @@ import styles from './Landing.module.css'
 import { Link } from 'react-router-dom'
 import * as Bootstrap from 'react-bootstrap'
 import DashBoard from  '../DashBoard/DashBoard'
+import * as Chakra from '@chakra-ui/react'
 const Landing = ({ user,tickets,handleDeleteTicket }) => {
   return (
     <main className={styles.container}>
@@ -24,7 +25,6 @@ const Landing = ({ user,tickets,handleDeleteTicket }) => {
             </div>
           </div>
         </Bootstrap.Card>
-        
         </>
     }
     </>

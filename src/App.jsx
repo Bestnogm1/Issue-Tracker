@@ -10,8 +10,7 @@ import * as authService from './services/authService'
 import * as ticketsServices from './services/ticketsServices'
 import CreateTickets from './pages/CreateTickets/CreateTickets'
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime.js'
-dayjs.extend(relativeTime)
+import TicketDetail from './pages/TicketDetail/TicketDetail'
 // import EditTickets from './pages/EditTickets/EditTickets'
 // dayjs().to(dayjs('1990-01-01')) 
 const App = () => {
@@ -76,10 +75,10 @@ const App = () => {
         path="/CreateTickets"
         element={user ? <CreateTickets  handleCreate={handleCreateTickets}/>: <Navigate to="/login" />}
         />
-        {/* <Route
-        path="/editTickets"
-        element={user ? <EditTickets/>: <Navigate to="/login" />}
-        /> */}
+        <Route
+        path="/tickets/:ticket_id"
+        element={user ? <TicketDetail/>: <Navigate to="/login" />}
+        />
 
       </Routes>
     </>

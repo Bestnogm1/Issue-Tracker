@@ -1,33 +1,51 @@
-import React from 'react';
+// import {useId} from 'react';
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime.js'
 import Card from 'react-bootstrap/Card';
-
+import * as Chakra from '@chakra-ui/react'
+import AllTickets from '../../components/AllTickets/AllTickets'
+import High from '../../components/FilterSeverity/High'
+import Low from '../../components/FilterSeverity/Low'
+import Normal from '../../components/FilterSeverity/Normal'
+import Urgent from '../../components/FilterSeverity/Urgent'
 dayjs.extend(relativeTime)
 
   // console.log(dayjs().to(dayjs("2022-07-15T22:36:05.410Z")) )
 function DashBoard({tickets,handleDeleteTicket}) {
   console.log(tickets);
-
+  // let id = useId()
   return (
     <>
-    {tickets.map((ticket,k)=>(
-      <Card style={{ width: '18rem' }} key={{ ticket }}>
-        <Card.Body>
-          <Card.Title> {ticket.assingedTo}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-          <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
-          <Card.Text>{ticket.details}
-          </Card.Text>
-              <button
-							onClick={() => handleDeleteTicket(ticket._id)}>
-							Delete
-						</button>
-          <Card.Link href="#">Card </Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-      </Card>
-    ))}
+      <Chakra.Tabs>
+        <Chakra.TabList>
+          <Chakra.Tab>All</Chakra.Tab>
+          <Chakra.Tab>Low</Chakra.Tab>
+          <Chakra.Tab>Normal</Chakra.Tab>
+          <Chakra.Tab>High</Chakra.Tab>
+          <Chakra.Tab>Urgent</Chakra.Tab>
+        </Chakra.TabList>
+        <Chakra.TabPanels>
+          <Chakra.TabPanel>
+            <AllTickets tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+          <Chakra.TabPanel>
+            <p>Low!</p>
+            <Low tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+          <Chakra.TabPanel>
+            <p>Normal!</p>
+            <Normal tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+            <Chakra.TabPanel>
+            <p>High!</p>
+            <High tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+            <Chakra.TabPanel>
+            <p>Urgent!</p>
+            <Urgent tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+        </Chakra.TabPanels>
+      </Chakra.Tabs>
     </>
     );
 }
