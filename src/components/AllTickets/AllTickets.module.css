@@ -1,0 +1,5 @@
+.allTicketCard {
+  background-color: blue;
+  width: 70rem;
+  display: flex;
+}

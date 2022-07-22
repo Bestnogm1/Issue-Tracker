@@ -8,7 +8,7 @@ const Landing = ({ user,tickets,handleDeleteTicket }) => {
     <main className={styles.container}>
       <> {user ? 
       <>
-      <h1>{user.name}</h1>
+      {/* <h1>{user.name}</h1> */}
         <DashBoard
         tickets={tickets}
           handleDeleteTicket={handleDeleteTicket}
