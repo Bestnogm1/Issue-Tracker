@@ -5,8 +5,8 @@ import Card from 'react-bootstrap/Card';
 import style from "./AllTickets.module.css";
 function AllTickets({tickets,handleDeleteTicket,completed}) {
   const [completedYes, setComplete] = useState('')
-let test = <h1> this is working</h1>
 
+let test = <h1> this is working</h1>
   function completedagain() {
     return setComplete(test)
   }
@@ -42,16 +42,12 @@ let test = <h1> this is working</h1>
                         add true
                         </Chakra.Button>
                         :
-                          // <Chakra.Button colorScheme='red'
-                          // onClick={() => completed(ticket)} defaultChecked="off">
-                          // add true
-                          // </Chakra.Button>
                           <Chakra.Button colorScheme='red'
                             onClick={(()=>{
-                              completedagain()
+                                completedagain()
                                 setTimeout(() => {
                                   completed(ticket) 
-                              }, "1000")
+                                }, "1000")
                             })} defaultChecked="off">
                             add true
                           </Chakra.Button>
