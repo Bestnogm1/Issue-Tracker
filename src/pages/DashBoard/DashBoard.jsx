@@ -8,25 +8,30 @@ import High from '../../components/FilterSeverity/High'
 import Low from '../../components/FilterSeverity/Low'
 import Normal from '../../components/FilterSeverity/Normal'
 import Urgent from '../../components/FilterSeverity/Urgent'
+import CompletedTickets from '../../components/FilterSeverity/CompletedTickets'
 import style from "./DashBoard.module.css"
+import SearchCompt from "../../components/SearchComp/SearchCompt"
 dayjs.extend(relativeTime)
-function DashBoard({tickets,handleDeleteTicket}) {
+function DashBoard({tickets,handleDeleteTicket,completed}) {
   console.log(tickets);
   return (
     <>
-      <Chakra.Tabs>
-        <Chakra.TabList>
+
+      <Chakra.Tabs w='100%'>
+      {/* <SearchCompt/> */}
+        <Chakra.TabList w='100%'>
           <div className={style.tabsModule}>
-          <Chakra.Tab>All</Chakra.Tab>
-          <Chakra.Tab>Low</Chakra.Tab>
-          <Chakra.Tab>Normal</Chakra.Tab>
-          <Chakra.Tab>High</Chakra.Tab>
-          <Chakra.Tab>Urgent</Chakra.Tab>
+          <Chakra.Tab   > All</Chakra.Tab>
+          <Chakra.Tab > Low </Chakra.Tab>
+          <Chakra.Tab > Normal </Chakra.Tab>
+          <Chakra.Tab > High </Chakra.Tab>
+          <Chakra.Tab > Urgent </Chakra.Tab>
+          <Chakra.Tab > completed tickets </Chakra.Tab>
           </div>
         </Chakra.TabList>
         <Chakra.TabPanels>
           <Chakra.TabPanel>
-            <AllTickets tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+            <AllTickets tickets={tickets} handleDeleteTicket={handleDeleteTicket}  completed={completed}/>
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <p>Low!</p>
@@ -43,6 +48,10 @@ function DashBoard({tickets,handleDeleteTicket}) {
             <Chakra.TabPanel>
             <p>Urgent!</p>
             <Urgent tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
+          </Chakra.TabPanel>
+            <Chakra.TabPanel>
+            <p>completed tickets!</p>
+            <CompletedTickets tickets={tickets} handleDeleteTicket={handleDeleteTicket}/>
           </Chakra.TabPanel>
         </Chakra.TabPanels>
       </Chakra.Tabs>

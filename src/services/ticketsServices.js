@@ -20,7 +20,7 @@ export async function getAllTickets(){
 
 export async function deleteOneTickets(id) {
   return fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE",
+    method: "DELETE", 
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     }
@@ -38,6 +38,19 @@ export async function updateTickets(ticketDetails) {
     body: JSON.stringify(ticketDetails)
   })   
   return lobby.json()
+}
+
+export async function completedOrNot(ticket){
+  ticket.completed = true
+  let data = await fetch(`${BASE_URL}/${ticket._id}`, {
+    method: "PATCH", 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${tokenService.getToken()}`
+    },
+    body:  JSON.stringify(ticket)
+  })
+  return data.ToJSON()
 }
 
 export async function getAllTicketsId(id) {

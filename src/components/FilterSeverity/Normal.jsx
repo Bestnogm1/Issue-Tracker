@@ -14,8 +14,8 @@ function Normal({tickets,handleDeleteTicket}) {
         {tickets.map((ticket,k)=>(
           <>
             {ticket?.severity === "Normal"?
-              <Card style={{ width: '18rem' }} key={{ ticket }}>
-                <Card.Body>
+              <Card style={{ width: '18rem' }} key={ k }>
+                <Card.Body  key={ k }>
                   {
                     ticket.severity === "Normal"? 
                       <Chakra.Badge colorScheme='blue'>{ticket.severity}</Chakra.Badge>

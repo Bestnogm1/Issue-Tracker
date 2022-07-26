@@ -12,10 +12,8 @@ import CreateTickets from './pages/CreateTickets/CreateTickets'
 import TicketDetail from './pages/TicketDetail/TicketDetail'
 import styles from './App.module.css'
 const App = () => {
-
   const [user, setUser] = useState(authService.getUser())
   const [tickets, setTickets] = useState([])
-  
   const navigate = useNavigate()
   
   const handleLogout = () => {
@@ -36,17 +34,28 @@ const App = () => {
   const handleCreateTickets = (newTickets) => {
     ticketsServices.createTickets(newTickets)
     .then(createTickets =>{
-      setTickets([...tickets, createTickets])
+      setTickets([createTickets, ...tickets])
       navigate('/')
     })
     .catch(navigate('/'))
   }
   
-  const handleDeleteTicket =id =>{
+  const handleDeleteTicket =  id =>{
     ticketsServices.deleteOneTickets(id)
     .then(setTickets(tickets.filter(ticket => ticket._id !== id)))
   }
-  //createdAt: "2022-07-17T16:45:36.602Z"
+
+  const completed = _ticket => {
+    ticketsServices.completedOrNot(_ticket)
+    .then(setTickets(tickets.filter((ticket) => {
+      if(ticket._id === _ticket._id) return ticket.completed = true
+      return ticket
+    })))
+  }
+
+  const handleGetAllLobby = () => {
+    ticketsServices.getAllTickets().then(lobby => setTickets(lobby))
+  }
 
   return (
     <>
@@ -54,7 +63,7 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} />
       </div>
       <Routes>
-        <Route path="/" element={<Landing user={user} tickets={tickets} handleDeleteTicket={handleDeleteTicket} />} />
+        <Route path="/" element={<Landing user={user} tickets={tickets} handleDeleteTicket={handleDeleteTicket} handleGetAllLobby={handleGetAllLobby} handleCreateTickets={handleCreateTickets} completed={completed}/>} />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -73,7 +82,7 @@ const App = () => {
         />
         <Route 
         path="/CreateTickets"
-        element={user ? <CreateTickets  handleCreate={handleCreateTickets}/>: <Navigate to="/login" />}
+        element={user ? <CreateTickets handleGetAllLobby={handleGetAllLobby} handleCreate={handleCreateTickets}/>: <Navigate to="/login" />}
         />
         <Route
         path="/tickets/:ticket_id"

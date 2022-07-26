@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 
-function CreateTickets({handleCreate}) {
+function CreateTickets({handleCreate, handleGetAllLobby}) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState('')
@@ -19,7 +19,8 @@ function CreateTickets({handleCreate}) {
   }
   return (
     <>
-    <form 
+    <div>
+        <form 
       onSubmit={handleSubmit}
       ref={formElement}>
         <input 
@@ -34,6 +35,24 @@ function CreateTickets({handleCreate}) {
           name="details"
           onChange={handleChange}
         />
+          <select        
+          required
+          type="text"
+          name="severity" 
+          onChange={handleChange}>
+            <option value="Urgent">Urgent</option>
+            <option value="High">High</option>
+            <option value="Normal">Normal</option>
+            <option value="Low">Low</option>
+          </select>
+          <select        
+            required
+            type="text"
+            name="problems" 
+            onChange={handleChange}>
+              <option value="Software">Software</option>
+              <option value="Hardware">Hardware</option>
+          </select>
         <button
           type="submit"
           className="btn btn-primary btn-fluid"
@@ -41,6 +60,7 @@ function CreateTickets({handleCreate}) {
 				  ADD A TICKET
 				</button>
     </form>
+    </div>
     </>
   );
 }

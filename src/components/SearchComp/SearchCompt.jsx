@@ -1,9 +1,13 @@
-import React from 'react';
+// import React {useStrat5e} from 'react';
 
-function SearchCompt(props) {
+function SearchCompt({props}) {
+  
   return (
     <div>
       <input type="text" />
+      <div>
+        hello
+      </div>
     </div>
   );
 }

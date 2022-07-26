@@ -11,6 +11,7 @@ const Profiles = () => {
 
   return (
     <>
+    <input type="text" />
       <h1>Hello. This is a list of all the profiles.</h1>
       {profiles.length ? 
         <>

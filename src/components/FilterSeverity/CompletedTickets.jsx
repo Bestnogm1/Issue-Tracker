@@ -6,21 +6,30 @@ import Card from 'react-bootstrap/Card';
 import style from '../AllTickets/AllTickets.module.css';
 
 dayjs.extend(relativeTime)
-  function Low({tickets,handleDeleteTicket}) {
+function CompletedTickets({tickets,handleDeleteTicket}) {
   return (
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
         {tickets.map((ticket,k)=>(
           <>
-            {ticket?.severity === "Low"?
-                <Card style={{ width: '18rem' }} key={ k }>
+            {ticket?.completed === true?
+                <Card style={{ width: '12rem' }} key={ k }>
                   <Card.Body  key={ k }>
-                    {
-                    ticket.severity === "Low"? 
-                    <Chakra.Badge colorScheme='yellow'>{ticket.severity}</Chakra.Badge>
-                    : 
-                    null
-                    }
+                      { 
+                      ticket.severity === "Low" ? 
+                        <Chakra.Badge colorScheme='yellow'>{ticket.severity}</Chakra.Badge>
+                      :
+                      ticket.severity === "Normal" ? 
+                        <Chakra.Badge colorScheme='blue'>{ticket.severity}</Chakra.Badge>
+                      :
+                      ticket.severity === "High" ? 
+                        <Chakra.Badge colorScheme='red'>{ticket.severity}</Chakra.Badge>
+                      :   
+                      ticket.severity === "Urgent" ? 
+                        <Chakra.Badge colorScheme='orange'>{ticket.severity}</Chakra.Badge>
+                      :
+                      null
+                    } 
                     <Card.Title> {ticket.assingedTo}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
@@ -41,4 +50,4 @@ dayjs.extend(relativeTime)
   );
 }
 
-export default Low;
+export default CompletedTickets;

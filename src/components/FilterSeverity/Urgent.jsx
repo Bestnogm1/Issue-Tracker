@@ -14,8 +14,8 @@ function Urgent({tickets,handleDeleteTicket}) {
         {tickets.map((ticket,k)=>(
           <>
             {ticket?.severity === "Urgent"?
-              <Card style={{ width: '18rem' }} key={{ ticket }}>
-                <Card.Body>
+              <Card style={{ width: '18rem' }} key={ k }>
+                <Card.Body  key={ k }>
                   {
                     ticket.severity === "Urgent"? 
                         <Chakra.Badge colorScheme='orange'>{ticket.severity}</Chakra.Badge>
