@@ -7,12 +7,14 @@ import style from '../AllTickets/AllTickets.module.css';
 
 dayjs.extend(relativeTime)
 
-function Normal({tickets,handleDeleteTicket}) {
+function Normal({ tickets,handleDeleteTicket, completed }) {
   return (
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
         {tickets.map((ticket,k)=>(
           <>
+            { ticket.completed !== true ?
+            <>
             {ticket?.severity === "Normal"?
               <Card style={{ width: '18rem' }} key={ k }>
                 <Card.Body  key={ k }>
@@ -22,6 +24,12 @@ function Normal({tickets,handleDeleteTicket}) {
                     : 
                     null
                   }
+                    <Chakra.Button colorScheme='red'
+                            onClick={(()=>{
+                              completed(ticket) 
+                            })} defaultChecked="off">
+                            add true
+                          </Chakra.Button>
                   <Card.Title> {ticket.assingedTo}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                   <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
@@ -34,6 +42,10 @@ function Normal({tickets,handleDeleteTicket}) {
               </Card>
               : 
               null
+            }
+            </>
+            :
+            null
             }
           </>
         ))}

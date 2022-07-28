@@ -1,16 +1,31 @@
   import React ,{useState}from 'react';
+  import TicketDetail from '../../pages/TicketDetail/TicketDetail'
 import dayjs from 'dayjs'
 import * as Chakra from '@chakra-ui/react'
 import Card from 'react-bootstrap/Card';
 import style from "./AllTickets.module.css";
+import { Link } from 'react-router-dom';
+import { useDisclosure } from '@chakra-ui/react'
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
+} from '@chakra-ui/react'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react'
 function AllTickets({tickets,handleDeleteTicket,completed}) {
-  const [completedYes, setComplete] = useState('')
-
-let test = <h1> this is working</h1>
-  function completedagain() {
-    return setComplete(test)
-  }
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
   <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
@@ -35,32 +50,64 @@ let test = <h1> this is working</h1>
                       :
                       null
                     } 
-                    {
-                      ticket.completed === true ?
-                        <Chakra.Button colorScheme='green'
-                        onClick={() => completed(ticket)} defaultChecked="off">
-                        add true
-                        </Chakra.Button>
-                        :
-                          <Chakra.Button colorScheme='red'
-                            onClick={(()=>{
-                                completedagain()
-                                setTimeout(() => {
-                                  completed(ticket) 
-                                }, "1000")
-                            })} defaultChecked="off">
-                            add true
-                          </Chakra.Button>
-                      }
-                      <h1>{completedYes}</h1>
+                   
+
+                      <Chakra.Button colorScheme='green'
+                      w="5rem"
+                      h="2rem"
+                      fontSize='13px'
+                        onClick={(()=>{
+                          completed(ticket) 
+                        })} defaultChecked="off">
+                        Completed
+                      </Chakra.Button>
                     <Card.Title > {ticket.assingedTo}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted" >{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
-                    <Card.Text >{ticket.details}</Card.Text>
+                    
+                    <Popover>
+                      <PopoverTrigger>
+                        <Chakra.Button>Trigger</Chakra.Button>
+                      </PopoverTrigger>
+                      <PopoverContent>
+                        <PopoverArrow />
+                        <PopoverCloseButton />
+                        <PopoverHeader>Confirmation!</PopoverHeader>
+                        <PopoverBody> <Chakra.Button colorScheme='red'
+                        w="10rem"
+                          size='sm'
+                          onClick={() => handleDeleteTicket(ticket._id)}>
+                          Delete
+                        </Chakra.Button></PopoverBody>
+                      </PopoverContent>
+                    </Popover>
                     <Chakra.Button colorScheme='red'
-                    onClick={() => handleDeleteTicket(ticket._id)}>
-                    Delete
+                    w="10rem"
+                      size='sm'
+                      onClick={() => handleDeleteTicket(ticket._id)}>
+                      Delete
                     </Chakra.Button>
+                          <Chakra.Button onClick={onOpen}>Open Modal</Chakra.Button>
+                          <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                              <ModalHeader>Modal Title</ModalHeader>
+                              <ModalCloseButton />
+                              <ModalBody>
+                                <Card.Title > {ticket.assingedTo}</Card.Title>
+                                {/* <Card.Text >{ticket.details}</Card.Text> */}
+                                 <button>
+                                <Link to={`/ticket-detail/${ticket?._id}` } state = { ticket }> </Link>
+                                </button>
+                                
+                              </ModalBody>
+                              <ModalFooter>
+                                <Chakra.Button colorScheme='blue' mr={3} onClick={onClose}>
+                                  Close
+                                </Chakra.Button>
+                              </ModalFooter>
+                            </ModalContent>
+                          </Modal>
                   </Card.Body>
               </Card>
                 :

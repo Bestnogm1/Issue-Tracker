@@ -6,12 +6,14 @@ import Card from 'react-bootstrap/Card';
 import style from '../AllTickets/AllTickets.module.css';
 
 dayjs.extend(relativeTime)
-  function Low({tickets,handleDeleteTicket}) {
+  function Low({ tickets,handleDeleteTicket ,completed }) {
   return (
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
         {tickets.map((ticket,k)=>(
           <>
+            { ticket.completed !== true ?
+            <>
             {ticket?.severity === "Low"?
                 <Card style={{ width: '18rem' }} key={ k }>
                   <Card.Body  key={ k }>
@@ -21,6 +23,12 @@ dayjs.extend(relativeTime)
                     : 
                     null
                     }
+                          <Chakra.Button colorScheme='red'
+                            onClick={(()=>{
+                              completed(ticket) 
+                            })} defaultChecked="off">
+                            add true
+                          </Chakra.Button>
                     <Card.Title> {ticket.assingedTo}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
@@ -33,6 +41,10 @@ dayjs.extend(relativeTime)
                 </Card>
               : 
               null
+            }
+            </>
+            :
+            null
             }
           </>
         ))}

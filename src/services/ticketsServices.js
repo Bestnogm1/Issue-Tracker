@@ -41,7 +41,7 @@ export async function updateTickets(ticketDetails) {
 }
 
 export async function completedOrNot(ticket){
-  ticket.completed = true
+  ticket.completed = !ticket.completed
   let data = await fetch(`${BASE_URL}/${ticket._id}`, {
     method: "PATCH", 
     headers: {
@@ -50,7 +50,7 @@ export async function completedOrNot(ticket){
     },
     body:  JSON.stringify(ticket)
   })
-  return data.ToJSON()
+  return data.json()
 }
 
 export async function getAllTicketsId(id) {

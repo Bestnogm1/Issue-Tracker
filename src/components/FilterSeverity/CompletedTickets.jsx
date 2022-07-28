@@ -4,9 +4,20 @@ import relativeTime from 'dayjs/plugin/relativeTime.js'
 import * as Chakra from '@chakra-ui/react'
 import Card from 'react-bootstrap/Card';
 import style from '../AllTickets/AllTickets.module.css';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+} from '@chakra-ui/react'
 
 dayjs.extend(relativeTime)
-function CompletedTickets({tickets,handleDeleteTicket}) {
+function CompletedTickets({tickets, handleDeleteTicket, completed, handleGetAllLobby}) {
   return (
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
@@ -30,11 +41,22 @@ function CompletedTickets({tickets,handleDeleteTicket}) {
                       :
                       null
                     } 
+                      <Chakra.Button colorScheme='green'
+                      w="5rem"
+                      h="2rem"
+                      fontSize='13px'
+                        onClick={(()=>{
+                          completed(ticket) 
+                          handleGetAllLobby()
+                        })} defaultChecked="off">
+                        Completed
+                      </Chakra.Button>
                     <Card.Title> {ticket.assingedTo}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{dayjs().to(dayjs(ticket.createdAt)) }</Card.Subtitle>
                     <Card.Text>{ticket.details}</Card.Text>
                     <Chakra.Button colorScheme='red'
+                        size='sm'
                       onClick={() => handleDeleteTicket(ticket._id)}>
                         Delete
                     </Chakra.Button>
