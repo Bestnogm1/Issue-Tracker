@@ -4,18 +4,6 @@ import relativeTime from 'dayjs/plugin/relativeTime.js'
 import * as Chakra from '@chakra-ui/react'
 import Card from 'react-bootstrap/Card';
 import style from '../AllTickets/AllTickets.module.css';
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-} from '@chakra-ui/react'
-
 dayjs.extend(relativeTime)
 function CompletedTickets({tickets, handleDeleteTicket, completed, handleGetAllLobby}) {
   return (

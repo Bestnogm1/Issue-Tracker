@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import * as Bootstrap from 'react-bootstrap'
 import DashBoard from  '../DashBoard/DashBoard'
 import * as Chakra from '@chakra-ui/react'
-const Landing = ({ user,tickets,handleDeleteTicket,handleGetAllLobby, handleCreateTickets, completed}) => {
+const Landing = ({ user,allTickets,handleDeleteTicket,handleGetAllLobby, handleCreateTickets, completed}) => {
   return (
     <main className={styles.container}>
       <> {user ? 
       <>
       {/* <h1>{user.name}</h1> */}
         <DashBoard
-        tickets={tickets}
+        allTickets={allTickets}
           handleDeleteTicket={handleDeleteTicket}
           handleGetAllLobby={handleGetAllLobby}
           handleCreateTickets={handleCreateTickets}

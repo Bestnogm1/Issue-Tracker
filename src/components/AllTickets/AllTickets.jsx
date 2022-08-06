@@ -24,7 +24,9 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+
 function AllTickets({tickets,handleDeleteTicket,completed}) {
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
   <div className={style.allTicketCard}>
@@ -50,8 +52,6 @@ function AllTickets({tickets,handleDeleteTicket,completed}) {
                       :
                       null
                     } 
-                   
-
                       <Chakra.Button colorScheme='green'
                       w="5rem"
                       h="2rem"
@@ -96,8 +96,8 @@ function AllTickets({tickets,handleDeleteTicket,completed}) {
                               <ModalBody>
                                 <Card.Title > {ticket.assingedTo}</Card.Title>
                                 {/* <Card.Text >{ticket.details}</Card.Text> */}
-                                 <button>
-                                <Link to={`/ticket-detail/${ticket?._id}` } state = { ticket }> </Link>
+                                <button>
+                                  <Link to={`/ticket-detail/${ticket?._id}` } state = { ticket }> </Link>
                                 </button>
                                 
                               </ModalBody>
@@ -120,6 +120,7 @@ function AllTickets({tickets,handleDeleteTicket,completed}) {
       </>
     </div>
   </div>
+  
   );
 }
 

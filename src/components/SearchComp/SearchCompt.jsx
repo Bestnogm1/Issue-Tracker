@@ -1,14 +1,20 @@
 // import React {useStrat5e} from 'react';
-
-function SearchCompt({props}) {
+import { Input } from '@chakra-ui/react'
+function SearchCompt({setSearch, search}) {
   
   return (
-    <div>
-      <input type="text" />
-      <div>
-        hello
-      </div>
-    </div>
+    <>
+    <Input
+
+      w="10rem"
+      color='green'
+      placeholder='Search Assigned_To'
+      _placeholder={{ opacity: 0.4, color: 'inherit' }}
+      type="text" 
+      value={search} 
+      onChange={(e) => setSearch(e.target.value)}
+    />
+    </>
   );
 }
 

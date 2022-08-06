@@ -63,7 +63,13 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} />
       </div>
       <Routes>
-        <Route path="/" element={<Landing user={user} tickets={tickets} handleDeleteTicket={handleDeleteTicket} handleGetAllLobby={handleGetAllLobby} handleCreateTickets={handleCreateTickets} completed={completed}/>} />
+        <Route path="/"
+          element={<Landing user={user} allTickets={tickets} 
+          handleDeleteTicket={handleDeleteTicket} 
+          handleGetAllLobby={handleGetAllLobby} 
+          handleCreateTickets={handleCreateTickets} 
+          completed={completed}/>} 
+        />
         <Route
           path="/signup"
           element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
@@ -82,13 +88,19 @@ const App = () => {
         />
         <Route 
         path="/CreateTickets"
-        element={user ? <CreateTickets handleGetAllLobby={handleGetAllLobby} handleCreate={handleCreateTickets}/>: <Navigate to="/login" />}
+        element = { user ? <CreateTickets
+          handleGetAllLobby={handleGetAllLobby} 
+          handleCreate={handleCreateTickets}
+          user={user}/>
+          :
+          <Navigate to="/login" 
+          /> }
         />
+        {/* route to ticket/id but set up for later */}
         <Route
         path="/tickets/:ticket_id"
         element={user ? <TicketDetail/>: <Navigate to="/login" />}
         />
-
       </Routes>
     </>
   )
