@@ -1,0 +1,39 @@
+.mainComponent {
+  background-color: rgb(231, 231, 247);
+  display: flex;
+  justify-content: center;
+}
+
+.subject{
+  background-color: red;
+  width:20rem;
+  height:3rem;
+}
+
+.detail {
+  /* background-color: green; */
+  width: 60rem;
+  height: 20rem;
+  resize: vertical;
+}
+
+.detail{
+  /* background-color: blue; */
+  width: 45rem;
+  height: 10rem;
+  resize: vertical;
+  padding-bottom: 8rem;
+  flex-wrap: wrap
+} 
+
+  .subjectAndAddTicket{
+  display: flex;
+  /* background-color:green; */
+  gap: 31.7rem;
+}
+
+.subjectAndAddTicket {
+  display: flex;
+  background-color: green;
+  gap: 16.7rem;
+}

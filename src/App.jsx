@@ -58,10 +58,11 @@ const App = () => {
   }
 
   return (
-    <>
+    <> {user ?
       <div className={styles.navBar}>
-      <NavBar user={user} handleLogout={handleLogout} />
-      </div>
+          <NavBar user={user} handleLogout={handleLogout} /> 
+        </div>
+      : null}
       <Routes>
         <Route path="/"
           element={<Landing user={user} allTickets={tickets} 

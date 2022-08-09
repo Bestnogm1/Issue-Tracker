@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './SignupForm.module.css'
 import * as authService from '../../services/authService'
 import Quote from '../MotivationalQoute/Quote'
+import * as Chakra from '@chakra-ui/react'
+
 const SignupForm = props => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -41,7 +43,7 @@ const SignupForm = props => {
 
 return (
 <>
-    <div id="main-wrapper" className="container">
+    <div id="main-wrapper" className="container newContainer">
     <form
       autoComplete="off"
       onSubmit={handleSubmit}
@@ -106,7 +108,6 @@ return (
                                             />
                                           </div>
                                             <button disabled={isFormInvalid()} className="btn btn-outline-secondary">sign up</button>
-                                  
                               </div>
                           </div>
                           <div className="col-lg-6 d-none d-lg-inline-block">
@@ -121,7 +122,7 @@ return (
                       </div>
                   </div>
               </div>
-     <small><li>Alredy Have an Account <Link to="/login"> Sign in </Link></li></small>
+     <small><li>Alredy Have an Account <Link to="/login"> <Chakra.Text color='green'>Login</Chakra.Text></Link></li></small>
           </div>
       </div>
     </form>

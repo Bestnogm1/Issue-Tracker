@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import './LoginForm.module.css'
+import './LoginForm.css'
 import * as authService from '../../services/authService'
+import * as Chakra from '@chakra-ui/react'
 import Quote from '../MotivationalQoute/Quote'
-import { Button }  from 'react-bootstrap';
+
 const LoginForm = props => {
   const [formData, setFormData] = useState({
     email: '',
@@ -29,13 +30,13 @@ const LoginForm = props => {
 
 return (
 <>
-    <div id="main-wrapper" className="container">
+    <div id="main-wrapper" className="container newContainer">
     <form
       autoComplete="off"
       onSubmit={handleSubmit}
-    className="text-center border border-light p-5"
+    className="text-center border border-light p-10 newForm"
     >
-      <div className="row justify-content-center">
+      <div className="row justify-content-center  newJustify-content">
           <div className="col-xl-10">
               <div className="card border-0">
                   <div className="card-body p-0">
@@ -68,7 +69,7 @@ return (
                                           onChange={handleChange}
                                           />
                                       </div>
-                                      <Button type="submit" className="btn btn-theme">Login</Button>
+                                      <Chakra.Button type="submit" >Login</Chakra.Button>
                                   
                               </div>
                           </div>
@@ -83,7 +84,7 @@ return (
                       </div>
                   </div>
               </div>
-     <small><li>Don't have an account<Link to="/signup"> Sign up </Link></li></small>
+                <small><li>Don't have an account?<Link to="/signup"><Chakra.Text color='tomato'>Sign up</Chakra.Text></Link></li></small>
           </div>
       </div>
     </form>
