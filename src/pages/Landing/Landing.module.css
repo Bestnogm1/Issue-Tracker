@@ -4,21 +4,19 @@ body {
 }
 
 .container {
-
   display: flex;
   /* background-color:green; */
   justify-content: center;
-  padding-bottom: 33.5%;
 }
 
 .LandingBox {
   margin-top: 17%;
 }
-.LandingHeaders{
+.LandingHeaders {
   font-size: 6rem;
-  margin-bottom:6rem;
+  margin-bottom: 6rem;
 }
-.LandingSighUp{
+.LandingSighUp {
   display: flex;
   gap: 14rem;
 }

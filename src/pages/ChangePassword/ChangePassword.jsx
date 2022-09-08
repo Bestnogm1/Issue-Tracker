@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm'
-import styles from './ChangePassword.module.css'
+import { useState } from "react";
+import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
+import styles from "./ChangePassword.module.css";
 
-const ChangePassword = props => {
-  const [message, setMessage] = useState([''])
+const ChangePassword = (props) => {
+  const [message, setMessage] = useState([""]);
 
-  const updateMessage = msg => {
-    setMessage(msg)
-  }
+  const updateMessage = (msg) => {
+    setMessage(msg);
+  };
 
   return (
     <main className={styles.container}>
@@ -15,7 +15,7 @@ const ChangePassword = props => {
       <p>{message}</p>
       <ChangePasswordForm {...props} updateMessage={updateMessage} />
     </main>
-  )
-}
+  );
+};
 
-export default ChangePassword
+export default ChangePassword;

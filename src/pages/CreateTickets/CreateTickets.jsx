@@ -1,36 +1,40 @@
-import { useState, useRef, useEffect } from 'react';
-import Styles from "./CreateTickets.module.css"
-function CreateTickets({handleCreate, handleGetAllLobby}) {
-  const formElement = useRef()
-  const [validForm, setValidForm] = useState(false)
-  const [formData, setFormData] = useState('')
+import { useState, useRef, useEffect } from "react";
+import Styles from "./CreateTickets.module.css";
+function CreateTickets({ handleCreate, handleGetAllLobby }) {
+  const formElement = useRef();
+  const [validForm, setValidForm] = useState(false);
+  const [formData, setFormData] = useState("");
 
-    useEffect(()=> {
-    formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-    }, [formData])
+  useEffect(() => {
+    formElement.current.checkValidity()
+      ? setValidForm(true)
+      : setValidForm(false);
+  }, [formData]);
 
-  const handleChange = evt => {
-    setFormData({...formData, [evt.target.name]: evt.target.value})
-  }
+  const handleChange = (evt) => {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+  };
 
-  const handleSubmit = evt => {
-    evt.preventDefault()
-    handleCreate(formData)
-  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleCreate(formData);
+  };
   return (
     <>
-    <div>
-      <h1> Create A ticket </h1>
-    </div>
+      <div className={Styles.createTicket}>
+        <h1> Create A ticket </h1>
+      </div>
       <div className={Styles.mainComponent}>
-        <form 
+        <form
           onSubmit={handleSubmit}
-          ref={formElement}>
+          ref={formElement}
+          className={Styles.createTicketForm}
+        >
           <div className={Styles.subjectAndAddTicket}>
-            <input 
+            <input
               required
               type="text"
-              name="subject" 
+              name="subject"
               onChange={handleChange}
               placeholder="subject"
               className={Styles.subject}
@@ -38,12 +42,13 @@ function CreateTickets({handleCreate, handleGetAllLobby}) {
             <button
               type="submit"
               className="btn btn-primary btn-fluid"
-              disabled={!validForm}>
-                ADD A TICKET
+              disabled={!validForm}
+            >
+              ADD A TICKET
             </button>
           </div>
           <div>
-            <input 
+            <input
               required
               type="text"
               name="details"
@@ -53,31 +58,33 @@ function CreateTickets({handleCreate, handleGetAllLobby}) {
             />
           </div>
           <div>
-            <input 
+            <input
               required
               type="text"
-              name="assingedTo" 
+              name="assingedTo"
               onChange={handleChange}
               placeholder="assingedTo"
               className={Styles.assignedTo}
             />
-            <select        
+            <select
               required
               type="text"
-              name="severity" 
-              onChange={handleChange}>
-                <option value="Low">Low</option>
-                <option value="High">High</option>
-                <option value="Normal">Normal</option>
-                <option value="Urgent">Urgent</option>
+              name="severity"
+              onChange={handleChange}
+            >
+              <option value="Low">Low</option>
+              <option value="High">High</option>
+              <option value="Normal">Normal</option>
+              <option value="Urgent">Urgent</option>
             </select>
-            <select        
+            <select
               required
               type="text"
-              name="problems" 
-              onChange={handleChange}>
-                <option value="Software">Software</option>
-                <option value="Hardware">Hardware</option>
+              name="problems"
+              onChange={handleChange}
+            >
+              <option value="Software">Software</option>
+              <option value="Hardware">Hardware</option>
             </select>
           </div>
         </form>

@@ -2,33 +2,39 @@
   background-color: rgb(231, 231, 247);
   display: flex;
   justify-content: center;
+  margin-top: 6rem;
+  margin-right: 20rem;
+  margin-left: 20rem;
+  margin-top: 10rem;
 }
 
-.subject{
-  background-color: red;
-  width:20rem;
-  height:3rem;
+.subject {
+  /* background-color: red; */
+  width: 20rem;
+  height: 3rem;
 }
 
 .detail {
-  /* background-color: green; */
+  background-color: green;
   width: 60rem;
   height: 20rem;
   resize: vertical;
 }
 
-.detail{
-  /* background-color: blue; */
+.detail {
+  background-color: blue;
   width: 45rem;
   height: 10rem;
   resize: vertical;
   padding-bottom: 8rem;
-  flex-wrap: wrap
-} 
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
 
-  .subjectAndAddTicket{
+.subjectAndAddTicket {
   display: flex;
-  /* background-color:green; */
+  background-color: green;
   gap: 31.7rem;
 }
 
@@ -36,4 +42,14 @@
   display: flex;
   background-color: green;
   gap: 16.7rem;
+}
+
+.createTicketForm {
+  background-color: grey;
+}
+
+.createTicket {
+  display: flex;
+  background-color: green;
+  justify-content: center;
 }
