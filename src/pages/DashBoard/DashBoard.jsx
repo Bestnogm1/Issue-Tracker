@@ -32,18 +32,29 @@ function DashBoard({
   return (
     <>
       <Chakra.Tabs w="100%">
+        <div className={style.topNavBar}>
+          <h1>Ticket Tracker</h1>
+        </div>
+
         <Chakra.TabList w="100%">
           <div className={style.tabsModule}>
-            <Chakra.Tab> All</Chakra.Tab>
-            <Chakra.Tab> Low </Chakra.Tab>
-            <Chakra.Tab> Normal </Chakra.Tab>
-            <Chakra.Tab> High </Chakra.Tab>
-            <Chakra.Tab> Urgent </Chakra.Tab>
-            <Chakra.Tab onClick={() => handleDeleteTicket(handleGetAllLobby())}>
+            <SearchCompt
+              className={style.tab}
+              search={search}
+              setSearch={setSearch}
+            />
+            <Chakra.Tab className={style.tab}> All</Chakra.Tab>
+            <Chakra.Tab className={style.tab}> Low </Chakra.Tab>
+            <Chakra.Tab className={style.tab}> Normal </Chakra.Tab>
+            <Chakra.Tab className={style.tab}> High </Chakra.Tab>
+            <Chakra.Tab className={style.tab}> Urgent </Chakra.Tab>
+            <Chakra.Tab
+              className={style.tab}
+              onClick={() => handleDeleteTicket(handleGetAllLobby())}
+            >
               {" "}
               completed tickets
             </Chakra.Tab>
-            <SearchCompt search={search} setSearch={setSearch} />
           </div>
         </Chakra.TabList>
         <Chakra.TabPanels>

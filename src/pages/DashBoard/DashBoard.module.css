@@ -1,10 +1,30 @@
 .tabsModule {
   display: flex;
   height: 7rem;
-  background-color: black;
+  background-color: #f0f0f0;
   width: 100%;
   padding: 0;
   margin: 0;
-  /* width: auto; */
-  color: white;
+  color: black;
+}
+.tabsModule {
+  gap: 6rem;
+}
+.topNavBar {
+  display: flex;
+  height: 4rem;
+  background-color: white;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+.tab {
+  margin-top: 2rem;
+  height: 3rem;
+  font-size: 4rem;
+}
+
+.tab:hover {
+  background: red;
 }
