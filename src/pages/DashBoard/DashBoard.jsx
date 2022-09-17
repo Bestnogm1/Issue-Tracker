@@ -11,7 +11,10 @@ import CompletedTickets from "../../components/FilterSeverity/CompletedTickets";
 import style from "./DashBoard.module.css";
 import SearchCompt from "../../components/SearchComp/SearchCompt";
 import { useState } from "react";
-// import SearchCompt from "../../components/SearchComp/SearchCompt"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// <-- import styles to be used
+
+import {} from "@fortawesome/free-solid-svg-icons";
 dayjs.extend(relativeTime);
 function DashBoard({
   allTickets,
@@ -32,14 +35,13 @@ function DashBoard({
   return (
     <>
       <Chakra.Tabs w="100%">
-        <div className={style.topNavBar}>
-          <h1>Ticket Tracker</h1>
-        </div>
-
+        {/* <div className={style.topNavBar}>
+          <h1 className={style.topNavBarText}>Ticket Tracker</h1>
+        </div> */}
         <Chakra.TabList w="100%">
           <div className={style.tabsModule}>
             <SearchCompt
-              className={style.tab}
+              className={style.searchTab}
               search={search}
               setSearch={setSearch}
             />

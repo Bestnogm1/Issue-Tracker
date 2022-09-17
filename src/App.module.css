@@ -1,11 +1,10 @@
-.navBar{
+.navBar {
   display: flex;
   background-color: black;
   color: white;
-  width: 10rem;
+  width: 12rem;
   float: left;
   flex-direction: row;
   height: 62.5rem;
   padding: 0;
-  margin: 0;
 }

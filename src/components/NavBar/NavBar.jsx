@@ -8,23 +8,23 @@ const NavBar = ({ user, handleLogout }) => {
         {user ? (
           <nav className={styles.navBar}>
             <ul>
-              <li>Welcome,{user.name}</li>
-              <li>
+              <li className={styles.sidebarTags}>Welcome, {user.name}</li>
+              <li className={styles.sidebarTags}>
+                <Link to="/CreateTickets">Create</Link>
+              </li>
+              <li className={styles.sidebarTags}>
+                <Link to="/">Home</Link>
+              </li>
+              <li className={styles.sidebarTags}>
                 <Link to="/profiles">Profiles</Link>
               </li>
-              <li>
+              <li className={styles.sidebarTags}>
+                <Link to="/changePassword">Change Password</Link>
+              </li>
+              <li className={styles.sidebarTags}>
                 <Link to="" onClick={handleLogout}>
                   LOG OUT
                 </Link>
-              </li>
-              <li>
-                <Link to="/changePassword">Change Password</Link>
-              </li>
-              <li>
-                <Link to="/CreateTickets">Create</Link>
-              </li>
-              <li>
-                <Link to="/">Home</Link>
               </li>
             </ul>
           </nav>

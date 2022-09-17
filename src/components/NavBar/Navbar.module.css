@@ -1,6 +1,16 @@
 .navBar {
+  display: flex;
   color: red;
-  background-color: green;
-  padding-top: 9rem;
-  padding-left: 2rem;
+  background-color: grey;
+  height: 100%;
+  padding-top: 6rem;
+}
+.sidebarTags {
+  /* background-color: red; */
+  padding-top: 2rem;
+  padding-left: 3rem;
+  font-size: 1.5rem;
+  border-width: 1px;
+  align-items: center;
+  margin-top: 3rem;
 }
