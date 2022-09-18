@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Styles from "./CreateTickets.module.css";
+import * as Chakra from "@chakra-ui/react";
+
 function CreateTickets({ handleCreate, handleGetAllLobby }) {
   const formElement = useRef();
   const [validForm, setValidForm] = useState(false);
@@ -31,61 +33,86 @@ function CreateTickets({ handleCreate, handleGetAllLobby }) {
           className={Styles.createTicketForm}
         >
           <div className={Styles.subjectAndAddTicket}>
-            <input
-              required
-              type="text"
-              name="subject"
-              onChange={handleChange}
-              placeholder="subject"
-              className={Styles.subject}
-            />
-            <button
-              type="submit"
-              className="btn btn-primary btn-fluid"
-              disabled={!validForm}
-            >
-              ADD A TICKET
-            </button>
-          </div>
-          <div>
-            <input
-              required
-              type="text"
-              name="details"
-              onChange={handleChange}
-              placeholder="details"
-              className={Styles.detail}
-            />
-          </div>
-          <div>
-            <input
-              required
-              type="text"
-              name="assingedTo"
-              onChange={handleChange}
-              placeholder="assingedTo"
-              className={Styles.assignedTo}
-            />
             <select
               required
               type="text"
               name="severity"
               onChange={handleChange}
+              className={Styles.addTicketSeverity}
             >
               <option value="Low">Low</option>
               <option value="High">High</option>
               <option value="Normal">Normal</option>
               <option value="Urgent">Urgent</option>
             </select>
-            <select
+            <div className={Styles.CreateTicketsAddATicket}>
+              <Chakra.Button
+                type="submit"
+                colorScheme="green"
+                disabled={!validForm}
+              >
+                ADD A TICKET
+              </Chakra.Button>
+            </div>
+          </div>
+          <div className={Styles.createTicketSubjectBody}>
+            <input
               required
               type="text"
-              name="problems"
+              name="subject"
               onChange={handleChange}
-            >
-              <option value="Software">Software</option>
-              <option value="Hardware">Hardware</option>
-            </select>
+              placeholder="subject"
+              className={Styles.createTicketSubject}
+            />
+            <textarea
+              required
+              type="text"
+              name="details"
+              onChange={handleChange}
+              placeholder="details"
+              className={Styles.createTicketDetail}
+            />
+          </div>
+          <div className={Styles.createTicketInputBottom}>
+            <div className={Styles.createTicketInputBottomLeft}>
+              <div className={Styles.createTicketInputBottomLeftComp}>
+                <h1>
+                  <strong>Status</strong> open
+                </h1>
+                <div>
+                  <input
+                    required
+                    type="text"
+                    name="assingedTo"
+                    onChange={handleChange}
+                    placeholder="assingedTo"
+                    className={Styles.createTicketAssignedTo}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={Styles.createTicketInputBottomRight}>
+              <select
+                required
+                type="text"
+                name="severity"
+                onChange={handleChange}
+              >
+                <option value="Low">Low</option>
+                <option value="High">High</option>
+                <option value="Normal">Normal</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+              <select
+                required
+                type="text"
+                name="problems"
+                onChange={handleChange}
+              >
+                <option value="Software">Software</option>
+                <option value="Hardware">Hardware</option>
+              </select>
+            </div>
           </div>
         </form>
       </div>

@@ -1,55 +1,83 @@
 .mainComponent {
-  background-color: rgb(231, 231, 247);
   display: flex;
   justify-content: center;
-  margin-top: 6rem;
-  margin-right: 20rem;
-  margin-left: 20rem;
-  margin-top: 10rem;
+  margin-top: 7rem;
+  margin-right: 2rem;
+  margin-left: 7 rem;
+  /* margin-top: 10rem; */
+  height: 40rem;
+  padding: 0;
 }
 
-.subject {
-  /* background-color: red; */
-  width: 20rem;
+.createTicketSubject {
+  width: 19rem;
   height: 3rem;
+  border: 1px solid grey;
+  width: 100%;
 }
 
-.detail {
-  background-color: green;
-  width: 60rem;
+.createTicketDetail {
+  display: flex;
+  width: 100%;
   height: 20rem;
   resize: vertical;
-}
-
-.detail {
-  background-color: blue;
-  width: 45rem;
-  height: 10rem;
-  resize: vertical;
-  padding-bottom: 8rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid grey;
+  flex-wrap: nowrap;
+  padding-bottom: 20rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 
 .subjectAndAddTicket {
   display: flex;
-  background-color: green;
   gap: 31.7rem;
+  margin-bottom: 1rem;
 }
 
 .subjectAndAddTicket {
   display: flex;
-  background-color: green;
   gap: 16.7rem;
 }
 
 .createTicketForm {
-  background-color: grey;
+  width: 90%;
 }
 
 .createTicket {
   display: flex;
   background-color: green;
   justify-content: center;
+}
+.CreateTicketsAddATicket {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.createTicketInputBottom {
+  display: flex;
+  gap: 4rem;
+  height: 17.9%;
+}
+.createTicketInputBottomLeft {
+  display: flex;
+  background-color: blue;
+  width: 100%;
+  font-size: 1.5rem;
+}
+.createTicketInputBottomRight {
+  background-color: red;
+  width: 100%;
+}
+.addTicketSeverity {
+  border: 1px solid black;
+  width: 12%;
+}
+.createTicketAssignedTo {
+  border: 1px solid grey;
+}
+.createTicketAssignedToInput {
+  background-color: red;
+  border: 5px solid black;
 }
