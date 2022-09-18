@@ -62,14 +62,13 @@
 }
 .createTicketInputBottomLeft {
   display: flex;
-  background-color: blue;
+  /* background-color: blue; */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   width: 100%;
   font-size: 1.5rem;
 }
-.createTicketInputBottomRight {
-  background-color: red;
-  width: 100%;
-}
+
 .addTicketSeverity {
   border: 1px solid black;
   width: 12%;
@@ -78,6 +77,41 @@
   border: 1px solid grey;
 }
 .createTicketAssignedToInput {
-  background-color: red;
-  border: 5px solid black;
+  padding-top: 1rem;
+}
+.createTicketStatus {
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding-bottom: 1rem;
+  padding-top: 0.2rem;
+}
+.createTicketInputBottomRight {
+  display: flex;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+  font-size: 1.5rem;
+  flex-direction: column;
+}
+.createTicketSeverity {
+  /* background-color: red; */
+  /* border-bottom: 1px solid black; */
+  padding-bottom: 0.8rem;
+}
+.createTicketSeverityInput {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 40%;
+}
+.createTicketProblems {
+  padding-top: 1.5rem;
+  /* background-color: red; */
+  border-top: 1px solid black;
+  width: 40%;
+  padding-top: 1rem;
+}
+.createTicketProblemsInput {
+  border: 1px solid black;
+  width: 100%;
 }

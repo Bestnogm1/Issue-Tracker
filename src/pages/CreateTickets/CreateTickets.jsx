@@ -76,10 +76,12 @@ function CreateTickets({ handleCreate, handleGetAllLobby }) {
           <div className={Styles.createTicketInputBottom}>
             <div className={Styles.createTicketInputBottomLeft}>
               <div className={Styles.createTicketInputBottomLeftComp}>
-                <h1>
-                  <strong>Status</strong> open
-                </h1>
-                <div>
+                <div className={Styles.createTicketStatus}>
+                  <h1>
+                    <strong>Status:</strong> Open
+                  </h1>
+                </div>
+                <div className={Styles.createTicketAssignedToInput}>
                   <input
                     required
                     type="text"
@@ -92,26 +94,32 @@ function CreateTickets({ handleCreate, handleGetAllLobby }) {
               </div>
             </div>
             <div className={Styles.createTicketInputBottomRight}>
-              <select
-                required
-                type="text"
-                name="severity"
-                onChange={handleChange}
-              >
-                <option value="Low">Low</option>
-                <option value="High">High</option>
-                <option value="Normal">Normal</option>
-                <option value="Urgent">Urgent</option>
-              </select>
-              <select
-                required
-                type="text"
-                name="problems"
-                onChange={handleChange}
-              >
-                <option value="Software">Software</option>
-                <option value="Hardware">Hardware</option>
-              </select>
+              <div className={Styles.createTicketSeverity}>
+                <select
+                  required
+                  type="text"
+                  name="severity"
+                  onChange={handleChange}
+                  className={Styles.createTicketSeverityInput}
+                >
+                  <option value="Low">Low</option>
+                  <option value="High">High</option>
+                  <option value="Normal">Normal</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+              </div>
+              <div className={Styles.createTicketProblems}>
+                <select
+                  required
+                  type="text"
+                  name="problems"
+                  onChange={handleChange}
+                  className={Styles.createTicketProblemsInput}
+                >
+                  <option value="Software">Software</option>
+                  <option value="Hardware">Hardware</option>
+                </select>
+              </div>
             </div>
           </div>
         </form>
