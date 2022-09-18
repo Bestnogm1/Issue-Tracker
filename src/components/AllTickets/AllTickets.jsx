@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import TicketDetail from "../../pages/TicketDetail/TicketDetail";
 import dayjs from "dayjs";
 import * as Chakra from "@chakra-ui/react";
@@ -18,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 
 function AllTickets({ tickets, handleDeleteTicket, completed }) {
-  console.log(tickets);
   return (
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
