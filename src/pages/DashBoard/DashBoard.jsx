@@ -22,15 +22,15 @@ function DashBoard({
   completed,
   handleGetAllLobby,
 }) {
-  let [search, setSearch] = useState("");
-  let tickets = [];
-  allTickets.forEach((ticket) => {
-    if (ticket.assingedTo.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
-      return tickets.push(ticket);
-    } else {
-      return ticket;
-    }
-  });
+  // let [search, setSearch] = useState("");
+  // let SearchTicket = [];
+  // allTickets.forEach((ticket) => {
+  //   if (ticket.assingedTo.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
+  //     return SearchTicket.push(ticket);
+  //   } else {
+  //     return ticket;
+  //   }
+  // });
 
   return (
     <>
@@ -42,8 +42,8 @@ function DashBoard({
           <div className={style.tabsModule}>
             <SearchCompt
               className={style.searchTab}
-              search={search}
-              setSearch={setSearch}
+              // search={search}
+              // setSearch={setSearch}
             />
             <Chakra.Tab className={style.tab}> All</Chakra.Tab>
             <Chakra.Tab className={style.tab}> Low </Chakra.Tab>
@@ -62,47 +62,42 @@ function DashBoard({
         <Chakra.TabPanels>
           <Chakra.TabPanel>
             <AllTickets
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
-            <p>Low!</p>
             <Low
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
-            <p>Normal!</p>
             <Normal
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
-            <p>High!</p>
             <High
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
-            <p>Urgent!</p>
             <Urgent
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
-            <p>completed tickets!</p>
             <CompletedTickets
-              tickets={tickets}
+              tickets={allTickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
               handleGetAllLobby={handleGetAllLobby}

@@ -123,8 +123,14 @@ const App = () => {
         />
         {/* route to ticket/id but set up for later */}
         <Route
-          path="/tickets/:ticket_id"
-          element={user ? <TicketDetail /> : <Navigate to="/login" />}
+          path="/tickets-detail/:ticket_id"
+          element={
+            user ? (
+              <TicketDetail tickets={tickets} user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
       </Routes>
     </>

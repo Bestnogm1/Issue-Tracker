@@ -15,9 +15,11 @@
 .ticketCard {
   width: 50rem;
   display: flex;
-  border-color: grey;
   border-width: 1px;
   padding: 0;
+  box-shadow: 2px 2px 23px -11px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: 2px 2px 23px -11px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 2px 2px 23px -11px rgba(0, 0, 0, 1);
 }
 
 .ticketCardTopHeader {

@@ -3,9 +3,8 @@ import dayjs from "dayjs";
 import * as Chakra from "@chakra-ui/react";
 import Card from "react-bootstrap/Card";
 import style from "./AllTickets.module.css";
-
+import { Link } from "react-router-dom";
 // const element = <FontAwesomeIcon icon={faCoffee} />;
-
 import {
   Popover,
   PopoverTrigger,
@@ -79,6 +78,14 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                           defaultChecked="off"
                         >
                           Completed
+                        </Chakra.Button>
+                        <Chakra.Button>
+                          <Link
+                            to={`/tickets-detail/${ticket._id}`}
+                            state={[ticket]}
+                          >
+                            Detail{" "}
+                          </Link>
                         </Chakra.Button>
                         <Popover>
                           <PopoverTrigger>
