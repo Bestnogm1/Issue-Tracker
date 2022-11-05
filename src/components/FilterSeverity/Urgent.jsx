@@ -20,7 +20,7 @@ function Urgent({ tickets, handleDeleteTicket, completed }) {
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
         {tickets.map((ticket, k) => (
-          <>
+          <React.Fragment key={ticket._id}>
             {ticket.completed !== true ? (
               <>
                 {ticket?.severity === "Urgent" ? (
@@ -96,7 +96,7 @@ function Urgent({ tickets, handleDeleteTicket, completed }) {
                 ) : null}
               </>
             ) : null}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

@@ -22,15 +22,16 @@ function DashBoard({
   completed,
   handleGetAllLobby,
 }) {
-  // let [search, setSearch] = useState("");
-  // let SearchTicket = [];
-  // allTickets.forEach((ticket) => {
-  //   if (ticket.assingedTo.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
-  //     return SearchTicket.push(ticket);
-  //   } else {
-  //     return ticket;
-  //   }
-  // });
+  
+  let [search, setSearch] = useState("");
+  let SearchTicket = [];
+  allTickets.forEach((ticket) => {
+    if (ticket.assingedTo.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
+      return SearchTicket.push(ticket);
+    } else {
+      return ticket;
+    }
+  });
 
   return (
     <>
@@ -42,8 +43,8 @@ function DashBoard({
           <div className={style.tabsModule}>
             <SearchCompt
               className={style.searchTab}
-              // search={search}
-              // setSearch={setSearch}
+              search={search}
+              setSearch={setSearch}
             />
             <Chakra.Tab className={style.tab}> All</Chakra.Tab>
             <Chakra.Tab className={style.tab}> Low </Chakra.Tab>

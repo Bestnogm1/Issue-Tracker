@@ -25,7 +25,7 @@ function CompletedTickets({
     <div className={style.allTicketCard}>
       <div className={style.innerTicketCard}>
         {tickets.map((ticket, k) => (
-          <>
+          <React.Fragment key={ticket._id}>
             {ticket?.completed === true ? (
               <Chakra.Box key={k} className={style.ticketCard}>
                 <Card.Body key={k}>
@@ -109,7 +109,7 @@ function CompletedTickets({
                 </Card.Body>
               </Chakra.Box>
             ) : null}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>

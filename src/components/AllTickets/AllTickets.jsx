@@ -1,3 +1,4 @@
+import React from "react";
 import TicketDetail from "../../pages/TicketDetail/TicketDetail";
 import dayjs from "dayjs";
 import * as Chakra from "@chakra-ui/react";
@@ -21,10 +22,10 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
       <div className={style.innerTicketCard}>
         <>
           {tickets?.map((ticket, k) => (
-            <>
+            <React.Fragment key={ticket._id}>
               {ticket.completed !== true ? (
-                <Chakra.Box key={k} className={style.ticketCard}>
-                  <Card.Body key={k}>
+                <Chakra.Box className={style.ticketCard}>
+                  <Card.Body>
                     <div className={style.ticketCardTopHeader}>
                       <div className={style.ticketDate}>
                         <Card.Subtitle className="mb-2 text-muted">
@@ -113,7 +114,7 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                   </Card.Body>
                 </Chakra.Box>
               ) : null}
-            </>
+            </React.Fragment>
           ))}
         </>
       </div>
