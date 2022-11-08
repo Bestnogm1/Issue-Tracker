@@ -1,11 +1,10 @@
 import React from "react";
-import TicketDetail from "../../pages/TicketDetail/TicketDetail";
 import dayjs from "dayjs";
 import * as Chakra from "@chakra-ui/react";
 import Card from "react-bootstrap/Card";
 import style from "./AllTickets.module.css";
 import { Link } from "react-router-dom";
-// const element = <FontAwesomeIcon icon={faCoffee} />;
+
 import {
   Popover,
   PopoverTrigger,
@@ -29,7 +28,7 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                     <div className={style.ticketCardTopHeader}>
                       <div className={style.ticketDate}>
                         <Card.Subtitle className="mb-2 text-muted">
-                          {dayjs().to(dayjs(ticket.createdAt))}{" "}
+                          {dayjs().to(dayjs(ticket.createdAt))}
                         </Card.Subtitle>
                         {ticket.severity === "Low" ? (
                           <Chakra.Badge colorScheme="yellow">
@@ -52,8 +51,7 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                       <div className={style.assingedTo}>
                         <Card.Title>
                           <Chakra.Box>
-                            {" "}
-                            Assigned To: {ticket.assingedTo}
+                            Assigned To: {ticket?.assignedTo?.name}
                           </Chakra.Box>
                         </Card.Title>
                       </div>
@@ -85,7 +83,7 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                             to={`/tickets-detail/${ticket._id}`}
                             state={[ticket]}
                           >
-                            Detail{" "}
+                            Detail
                           </Link>
                         </Chakra.Button>
                         <Popover>
@@ -97,7 +95,6 @@ function AllTickets({ tickets, handleDeleteTicket, completed }) {
                             <PopoverCloseButton />
                             <PopoverHeader>Confirm Delete</PopoverHeader>
                             <PopoverBody>
-                              {" "}
                               <Chakra.Button
                                 colorScheme="red"
                                 w="5rem"

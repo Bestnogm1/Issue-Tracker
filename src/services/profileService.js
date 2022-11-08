@@ -8,5 +8,21 @@ async function getAllProfiles() {
   });
   return await res.json();
 }
-
-export { getAllProfiles };
+// async function getOneProfile() {
+//   const res = await fetch(`${BASE_URL}/findOneProfile`, {
+//     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
+//   });
+//   return await res.json();
+// }
+async function getOneProfile(profileId) {
+  const response = await fetch(`${BASE_URL}/findOneProfile`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    body: JSON.stringify({ profileId: profileId }),
+  });
+  return response.json();
+}
+export { getAllProfiles, getOneProfile };

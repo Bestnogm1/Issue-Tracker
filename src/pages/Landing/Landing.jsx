@@ -24,6 +24,7 @@ const Landing = ({
               handleGetAllLobby={handleGetAllLobby}
               handleCreateTickets={handleCreateTickets}
               completed={completed}
+              user={user}
             />
           </>
         ) : (

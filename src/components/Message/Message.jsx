@@ -1,40 +1,51 @@
 import React, { useState, useEffect } from "react";
-
-import MessageForm from "../../components/MessageForm/MessageForm.jsx";
 import * as messageService from "../../services/messageServices.js";
 
-function Message({ ticketDetail, user, ticketId }) {
-  const [messages, setMessages] = useState(null);
-  function handleCreateMessage(formData, details) {
-    messageService.createMessage(formData, details).then((result) => {
-      setMessages([...messages, result]);
-    });
-  }
-  const handleDeleteMessage = (id, ticketId) => {
-    messageService
-      .deleteOneMessage(id, ticketId)
-      .then((deleteOneMessage) =>
-        setMessages(
-          messages.filter((message) => message?._id !== deleteOneMessage._id)
-        )
-      );
-  };
+function Message({ ticketDetail, user, ticket_id }) {
+  const [inputData, setInputData] = useState("");
+  const [getAllMessage, setGetAllMessage] = useState([]);
+
   useEffect(() => {
-    async function fetchData() {
-      // console.log("From useEffect: ", ticketId);
-      const messages = await messageService.getAllMessages(ticketId);
-      return setMessages(messages);
-    }
-    fetchData();
+    messageService.getAllMessages().then((res) => setGetAllMessage(res));
   }, []);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newMessage = {
+      content: inputData,
+      ownedBy: { name: user.name },
+      ticketId: ticket_id,
+    };
+    messageService.createMessage({ ...newMessage, ownedBy: user.profile });
+    setGetAllMessage([...getAllMessage, newMessage]);
+    setInputData("");
+  }
 
   return (
     <>
-      <button
-      // onClick={() => handleDeleteMessage(message?._id, ticketDetails?._id)}
-      ></button>
-
-      <MessageForm createMessage={handleCreateMessage} details={ticketDetail} />
+      <div>
+        <input
+          required="required"
+          type="text"
+          placeholder="Add A Message"
+          value={inputData}
+          onChange={(e) => setInputData(e.target.value)}
+        />
+        <button onClick={(e) => handleSubmit(e)}> add a message </button>
+      </div>
+      <div>
+        {getAllMessage &&
+          getAllMessage.map((message) => (
+            <React.Fragment key={message._id}>
+              {message.ticketId === ticket_id ? (
+                <div>
+                  <h1>{message.content}</h1>
+                  <h1>{message.ownedBy.name}</h1>
+                </div>
+              ) : null}
+            </React.Fragment>
+          ))}
+      </div>
     </>
   );
 }

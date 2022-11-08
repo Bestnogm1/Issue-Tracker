@@ -11,23 +11,23 @@ import CompletedTickets from "../../components/FilterSeverity/CompletedTickets";
 import style from "./DashBoard.module.css";
 import SearchCompt from "../../components/SearchComp/SearchCompt";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// <-- import styles to be used
-
-import {} from "@fortawesome/free-solid-svg-icons";
 dayjs.extend(relativeTime);
+
 function DashBoard({
   allTickets,
   handleDeleteTicket,
   completed,
   handleGetAllLobby,
+  user,
 }) {
-  
   let [search, setSearch] = useState("");
-  let SearchTicket = [];
-  allTickets.forEach((ticket) => {
-    if (ticket.assingedTo.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
-      return SearchTicket.push(ticket);
+  let tickets = [];
+  allTickets?.forEach((ticket) => {
+    if (
+      ticket?.assignedTo?.name?.toLowerCase().indexOf(search.toLowerCase()) !==
+      -1
+    ) {
+      return tickets.push(ticket);
     } else {
       return ticket;
     }
@@ -55,7 +55,6 @@ function DashBoard({
               className={style.tab}
               onClick={() => handleDeleteTicket(handleGetAllLobby())}
             >
-              {" "}
               completed tickets
             </Chakra.Tab>
           </div>
@@ -63,45 +62,51 @@ function DashBoard({
         <Chakra.TabPanels>
           <Chakra.TabPanel>
             <AllTickets
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
+              user={user}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <Low
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
+              user={user}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <Normal
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
+              user={user}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <High
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
+              user={user}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <Urgent
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
+              user={user}
             />
           </Chakra.TabPanel>
           <Chakra.TabPanel>
             <CompletedTickets
-              tickets={allTickets}
+              tickets={tickets}
               handleDeleteTicket={handleDeleteTicket}
               completed={completed}
               handleGetAllLobby={handleGetAllLobby}
+              user={user}
             />
           </Chakra.TabPanel>
         </Chakra.TabPanels>

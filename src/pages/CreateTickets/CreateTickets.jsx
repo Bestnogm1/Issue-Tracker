@@ -1,11 +1,24 @@
 import { useState, useRef, useEffect } from "react";
 import Styles from "./CreateTickets.module.css";
 import * as Chakra from "@chakra-ui/react";
+import AssignedToProfile from "../../components/AssignedToProfile/AssignedToProfile";
+import * as profileService from "../../services/profileService";
 
-function CreateTickets({ handleCreate, handleGetAllLobby }) {
+function CreateTickets({ handleCreate }) {
   const formElement = useRef();
   const [validForm, setValidForm] = useState(false);
-  const [formData, setFormData] = useState("");
+  let [searchResults, setSearchResults] = useState([]);
+  const [formData, setFormData] = useState({ assignedTo: "" });
+  const [getAllProfile, setGetAllProfile] = useState([]);
+  const allProfile =
+    getAllProfile?.map((profile) => profile.name.toLowerCase()) ?? [];
+
+  function getOneProfile(profileName) {
+    const correctName = getAllProfile.find((profile) => {
+      return profile.name.toLowerCase() === profileName.toLowerCase();
+    });
+    return correctName._id;
+  }
 
   useEffect(() => {
     formElement.current.checkValidity()
@@ -13,14 +26,39 @@ function CreateTickets({ handleCreate, handleGetAllLobby }) {
       : setValidForm(false);
   }, [formData]);
 
+  useEffect(() => {
+    profileService
+      .getAllProfiles()
+      .then((profiles) => setGetAllProfile(profiles));
+  }, []);
+
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleCreate(formData);
+    if (!allProfile.includes(formData.assignedTo.toLowerCase())) {
+      return alert("Please Choose A Valid Name");
+    }
+    const newId = getOneProfile(formData.assignedTo);
+    handleCreate({ ...formData, assignedTo: newId });
   };
+
+  function handleProfileSelection(e) {
+    setFormData({ ...formData, assignedTo: e.target.textContent });
+  }
+
+  useEffect(() => {
+    let searchedProfile = getAllProfile.filter((profile) => {
+      if (!formData.assignedTo) return false;
+      if (profile.name.toLowerCase() === formData.assignedTo) return false;
+      if (profile.name.toLowerCase().includes(formData.assignedTo)) return true;
+      return false;
+    });
+    setSearchResults(searchedProfile);
+  }, [formData, getAllProfile]);
+
   return (
     <>
       <div className={Styles.createTicket}>
@@ -82,13 +120,11 @@ function CreateTickets({ handleCreate, handleGetAllLobby }) {
                   </h1>
                 </div>
                 <div className={Styles.createTicketAssignedToInput}>
-                  <input
-                    required
-                    type="text"
-                    name="assingedTo"
-                    onChange={handleChange}
-                    placeholder="assingedTo"
-                    className={Styles.createTicketAssignedTo}
+                  <AssignedToProfile
+                    formData={formData}
+                    handleChange={handleChange}
+                    searchResults={searchResults}
+                    handleProfileSelection={handleProfileSelection}
                   />
                 </div>
               </div>
