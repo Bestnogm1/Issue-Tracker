@@ -8,12 +8,7 @@ async function getAllProfiles() {
   });
   return await res.json();
 }
-// async function getOneProfile() {
-//   const res = await fetch(`${BASE_URL}/findOneProfile`, {
-//     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
-//   });
-//   return await res.json();
-// }
+
 async function getOneProfile(profileId) {
   const response = await fetch(`${BASE_URL}/findOneProfile`, {
     method: "POST",

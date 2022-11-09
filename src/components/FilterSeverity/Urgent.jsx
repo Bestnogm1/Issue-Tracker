@@ -4,6 +4,7 @@ import relativeTime from "dayjs/plugin/relativeTime.js";
 import * as Chakra from "@chakra-ui/react";
 import Card from "react-bootstrap/Card";
 import style from "../AllTickets/AllTickets.module.css";
+import { Link } from "react-router-dom";
 import {
   Popover,
   PopoverTrigger,
@@ -40,7 +41,6 @@ function Urgent({ tickets, handleDeleteTicket, completed }) {
                         <div className={style.assingedTo}>
                           <Card.Title>
                             <Chakra.Box>
-                              {" "}
                               Assigned To: {ticket.assingedTo}
                             </Chakra.Box>
                           </Card.Title>
@@ -57,10 +57,8 @@ function Urgent({ tickets, handleDeleteTicket, completed }) {
                         </div>
                         <div className={style.AllTicketsButton}>
                           <Chakra.Button
-                            colorScheme="red"
-                            w="5rem"
-                            h="2rem"
-                            fontSize="13px"
+                            size="sm"
+                            colorScheme="green"
                             onClick={() => {
                               completed(ticket);
                             }}
@@ -68,19 +66,27 @@ function Urgent({ tickets, handleDeleteTicket, completed }) {
                           >
                             Completed
                           </Chakra.Button>
+                          <Link
+                            to={`/tickets-detail/${ticket._id}`}
+                            state={[ticket]}
+                          >
+                            <Chakra.Button size="sm" colorScheme="blue">
+                              Detail
+                            </Chakra.Button>
+                          </Link>
                           <Popover>
                             <PopoverTrigger>
-                              <Chakra.Button>Delete</Chakra.Button>
+                              <Chakra.Button size="sm" colorScheme="red">
+                                Delete
+                              </Chakra.Button>
                             </PopoverTrigger>
                             <PopoverContent>
                               <PopoverArrow />
-                              <PopoverCloseButton />
+                              <PopoverCloseButton colorScheme="red" />
                               <PopoverHeader>Confirm Delete</PopoverHeader>
                               <PopoverBody>
-                                {" "}
                                 <Chakra.Button
                                   colorScheme="red"
-                                  w="5rem"
                                   fontSize="13px"
                                   onClick={() => handleDeleteTicket(ticket._id)}
                                 >

@@ -62,7 +62,7 @@ const SignupForm = (props) => {
                         </div>
 
                         <div className="form-group">
-                          <label for="exampleInputEmail1">First Name</label>
+                          <label htmlFor="exampleInputEmail1">First Name</label>
                           <input
                             className="form-control"
                             id="exampleInputEmail1"
@@ -75,7 +75,7 @@ const SignupForm = (props) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label for="exampleInputPassword1">Email</label>
+                          <label htmlFor="exampleInputPassword1">Email</label>
                           <input
                             className="form-control"
                             type="text"
@@ -88,7 +88,9 @@ const SignupForm = (props) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label for="exampleInputPassword1">Password</label>
+                          <label htmlFor="exampleInputPassword1">
+                            Password
+                          </label>
                           <input
                             className="form-control"
                             autoComplete="off"
@@ -101,7 +103,7 @@ const SignupForm = (props) => {
                           />
                         </div>
                         <div className="form-group">
-                          <label for="exampleInputPassword1">
+                          <label htmlFor="exampleInputPassword1">
                             Confirm Password
                           </label>
                           <input
@@ -139,9 +141,8 @@ const SignupForm = (props) => {
               </div>
               <small>
                 <li>
-                  Alredy Have an Account{" "}
+                  Already Have an Account?
                   <Link to="/login">
-                    {" "}
                     <Chakra.Text color="green">Login</Chakra.Text>
                   </Link>
                 </li>

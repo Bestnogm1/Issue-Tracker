@@ -4,7 +4,6 @@
   margin-top: 7rem;
   margin-right: 2rem;
   margin-left: 7 rem;
-  /* margin-top: 10rem; */
   height: 40rem;
   padding: 0;
 }
@@ -47,9 +46,9 @@
 
 .createTicket {
   display: flex;
-  background-color: green;
   justify-content: center;
 }
+
 .CreateTicketsAddATicket {
   display: flex;
   width: 100%;
@@ -94,8 +93,6 @@
   flex-direction: column;
 }
 .createTicketSeverity {
-  /* background-color: red; */
-  /* border-bottom: 1px solid black; */
   padding-bottom: 0.8rem;
 }
 .createTicketSeverityInput {
@@ -106,7 +103,6 @@
 }
 .createTicketProblems {
   padding-top: 1.5rem;
-  /* background-color: red; */
   border-top: 1px solid black;
   width: 40%;
   padding-top: 1rem;

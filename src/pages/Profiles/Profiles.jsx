@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
 import * as profileService from "../../services/profileService";
 import dayjs from "dayjs";
-import {
-  Grid,
-  GridItem,
-  Heading,
-  SimpleGrid,
-  Text,
-  Wrap,
-} from "@chakra-ui/react";
+import { GridItem, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 
 const Profiles = ({ user }) => {
   const [profiles, setProfiles] = useState([]);

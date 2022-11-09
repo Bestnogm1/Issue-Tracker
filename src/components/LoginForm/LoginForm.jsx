@@ -51,7 +51,9 @@ const LoginForm = (props) => {
                         <h6 className="h5 mb-0">Welcome back!</h6>
 
                         <div className="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
+                          <label htmlFor="exampleInputEmail1">
+                            Email address
+                          </label>
                           <input
                             className="form-control"
                             id="exampleInputEmail1"
@@ -63,7 +65,9 @@ const LoginForm = (props) => {
                           />
                         </div>
                         <div className="form-group mb-5">
-                          <label for="exampleInputPassword1">Password</label>
+                          <label htmlFor="exampleInputPassword1">
+                            Password
+                          </label>
                           <input
                             className="form-control"
                             type="password"
@@ -74,12 +78,17 @@ const LoginForm = (props) => {
                             onChange={handleChange}
                           />
                         </div>
-                        <Chakra.Button type="submit">Login</Chakra.Button>
+                        <Chakra.Button
+                          colorScheme="green"
+                          color="white"
+                          type="submit"
+                        >
+                          Login
+                        </Chakra.Button>
                       </div>
                     </div>
                     <div className="col-lg-6 d-none d-lg-inline-block">
                       <div className="account-block rounded-right">
-                        <div className="overlay rounded-right"></div>
                         <div className="account-testimonial">
                           <Quote />
                         </div>
