@@ -19,9 +19,6 @@ const NavBar = ({ user, handleLogout }) => {
                 <Link to="/profiles">Profiles</Link>
               </li>
               <li className={styles.sidebarTags}>
-                <Link to="/changePassword">Change Password</Link>
-              </li>
-              <li className={styles.sidebarTags}>
                 <Link to="" onClick={handleLogout}>
                   LOG OUT
                 </Link>

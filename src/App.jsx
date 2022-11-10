@@ -62,7 +62,7 @@ const App = () => {
   const handleGetAllLobby = () => {
     ticketsServices.getAllTickets().then((lobby) => setTickets(lobby));
   };
-
+  console.log(user);
   return (
     <>
       {user ? (

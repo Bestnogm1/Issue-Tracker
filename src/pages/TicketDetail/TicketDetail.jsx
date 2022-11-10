@@ -24,12 +24,13 @@ function TicketDetail({ tickets, user }) {
   useEffect(() => {
     ticketsServices.getAllTicketsId(ticket_id).then((res) => setTickets(res));
   }, []);
+
   return (
     <>
-      <div className={styles.ticketDetailsTitle}>
-        <h1>title</h1>
-      </div>
       <div className={styles.ticketDetails}>
+        <div className={styles.ticketDetailsTitle}>
+          <h1>Ticket Details</h1>
+        </div>
         <div className={styles.ticketDetailsRightSide}>
           <div className={styles.ticketDetailsRightTopContainer}>
             <div className={styles.ticketDetailsRightRequestCreated}>
