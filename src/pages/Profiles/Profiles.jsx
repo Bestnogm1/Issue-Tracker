@@ -6,6 +6,7 @@ import { GridItem, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 const Profiles = ({ user }) => {
   const [profiles, setProfiles] = useState([]);
   const [assignedTickets, setAssignedTickets] = useState([]);
+  const [foundUser, setFoundUser] = useState("");
   useEffect(() => {
     profileService.getAllProfiles().then((profiles) => setProfiles(profiles));
   }, []);
@@ -18,9 +19,8 @@ const Profiles = ({ user }) => {
 
   const findOwner = (ownerId) => {
     const foundOwner = profiles.find((owner) => owner._id === ownerId);
-    return foundOwner.name;
+    setFoundUser(foundOwner.name);
   };
-  console.log(assignedTickets);
   // const correctName = getAllProfile.find((profile) => {
   //   return profile.name.toLowerCase() === profileName.toLowerCase();
   // });

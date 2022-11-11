@@ -2,12 +2,23 @@ import { style } from "@mui/system";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 const NavBar = ({ user, handleLogout }) => {
+  let [firstChar, color] = user.userImage;
+  // borderRadius = "full";
+  // boxSize = "150px";
   return (
     <>
       <div className={styles.divNav}>
         {user ? (
           <nav className={styles.navBar}>
             <ul>
+              <div
+                className={styles.container}
+                style={{ background: `rgb(${color})` }}
+              >
+                <div className={styles.name} id="name">
+                  {firstChar.toUpperCase()}
+                </div>
+              </div>
               <li className={styles.sidebarTags}>Welcome, {user.name}</li>
               <li className={styles.sidebarTags}>
                 <Link to="/CreateTickets">Create</Link>

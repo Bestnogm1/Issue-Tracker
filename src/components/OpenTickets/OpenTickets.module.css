@@ -1,0 +1,23 @@
+.OpenTickets {
+  /* background-color: red; */
+  width: 30%;
+  height: 45rem;
+}
+.testAPi {
+  border: 1px solid black;
+  padding-top: 5px;
+  margin-top: 10px;
+  height: 30px;
+}
+.testAPi2 {
+  border: 6px solid black;
+  width: 350px;
+  height: 70px;
+}
+
+.testAPi3 {
+  border: 6px solid black;
+
+  width: 350px;
+  height: 300px;
+}

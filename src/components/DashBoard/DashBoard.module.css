@@ -1,0 +1,17 @@
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.allDashBoard {
+  /* background-color: red; */
+  display: flex;
+  gap: 3rem;
+  width: 100rem;
+  height: 100vh;
+  justify-content: space-around;
+  align-items: center;
+  position: "relative";
+  padding-bottom: 49px;
+}

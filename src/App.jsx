@@ -11,6 +11,8 @@ import * as ticketsServices from "./services/ticketsServices";
 import CreateTickets from "./pages/CreateTickets/CreateTickets";
 import TicketDetail from "./pages/TicketDetail/TicketDetail";
 import styles from "./App.module.css";
+
+import CrateTicketModel from "./components/CreateTicketModel/CreateTicketModel";
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [tickets, setTickets] = useState([]);
@@ -62,76 +64,83 @@ const App = () => {
   const handleGetAllLobby = () => {
     ticketsServices.getAllTickets().then((lobby) => setTickets(lobby));
   };
-  console.log(user);
+
   return (
     <>
-      {user ? (
-        <div className={styles.navBar}>
-          <NavBar user={user} handleLogout={handleLogout} />
-        </div>
-      ) : null}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Landing
-              user={user}
-              allTickets={tickets}
-              handleDeleteTicket={handleDeleteTicket}
-              handleGetAllLobby={handleGetAllLobby}
-              handleCreateTickets={handleCreateTickets}
-              completed={completed}
+      <div className={styles.allRoutesComp}>
+        <CrateTicketModel />
+        {user ? (
+          <div className={styles.navBar}>
+            <NavBar user={user} handleLogout={handleLogout} />
+          </div>
+        ) : null}
+        <div className={styles.right}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Landing
+                  user={user}
+                  allTickets={tickets}
+                  handleDeleteTicket={handleDeleteTicket}
+                  handleGetAllLobby={handleGetAllLobby}
+                  handleCreateTickets={handleCreateTickets}
+                  completed={completed}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/signup"
-          element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/login"
-          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/profiles"
-          element={user ? <Profiles user={user} /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/changePassword"
-          element={
-            user ? (
-              <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/CreateTickets"
-          element={
-            user ? (
-              <CreateTickets
-                handleGetAllLobby={handleGetAllLobby}
-                handleCreate={handleCreateTickets}
-                user={user}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        {/* route to ticket/id but set up for later */}
-        <Route
-          path="/tickets-detail/:ticket_id"
-          element={
-            user ? (
-              <TicketDetail tickets={tickets} user={user} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-      </Routes>
+            <Route
+              path="/signup"
+              element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+            />
+            <Route
+              path="/login"
+              element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+            />
+            <Route
+              path="/profiles"
+              element={
+                user ? <Profiles user={user} /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/changePassword"
+              element={
+                user ? (
+                  <ChangePassword handleSignupOrLogin={handleSignupOrLogin} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/CreateTickets"
+              element={
+                user ? (
+                  <CreateTickets
+                    handleGetAllLobby={handleGetAllLobby}
+                    handleCreate={handleCreateTickets}
+                    user={user}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            {/* route to ticket/id but set up for later */}
+            <Route
+              path="/tickets-detail/:ticket_id"
+              element={
+                user ? (
+                  <TicketDetail tickets={tickets} user={user} />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      </div>
     </>
   );
 };

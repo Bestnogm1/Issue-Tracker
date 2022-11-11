@@ -20,11 +20,11 @@ function CreateTickets({ handleCreate }) {
     return correctName._id;
   }
 
-  useEffect(() => {
-    formElement.current.checkValidity()
-      ? setValidForm(true)
-      : setValidForm(false);
-  }, [formData]);
+  // useEffect(() => {
+  //   formElement.current.checkValidity()
+  //     ? setValidForm(true)
+  //     : setValidForm(false);
+  // }, [formData]);
 
   useEffect(() => {
     profileService

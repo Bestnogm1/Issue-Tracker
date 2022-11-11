@@ -1,10 +1,14 @@
 .navBar {
   display: flex;
-  background-color: black;
+  /* background-color: black; */
   color: white;
-  width: 12rem;
+  width: 5rem;
   float: left;
   flex-direction: row;
   height: 62.5rem;
   padding: 0;
+}
+.allRoutesComp {
+  display: flex;
+  gap: 12rem;
 }
