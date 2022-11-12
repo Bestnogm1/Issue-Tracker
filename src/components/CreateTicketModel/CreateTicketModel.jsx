@@ -23,18 +23,29 @@ function CrateTicketModel(props) {
     // formData,
   } = useCreateTicketModelContexts();
   const [formData, setFormData] = useState([]);
-  const [testing, Settesting] = useState([]);
+  const [assignedProfile, seTassignedProfile] = useState([]);
+  const [issueType, setIssueType] = useState([]);
+  const [assignees, setAssignees] = useState([]);
+  const [priority, setPriority] = useState([]);
 
   const handleChange = (evt) => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+    setFormData({
+      ...formData,
+      [evt.target.name]: evt.target.value,
+    });
   };
-  let name = { qwe: formData };
+  // console.log(issueType);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    Settesting({ name });
-    // handleCreateTickets({ ...formData, assignedTo: "qwe", allName: name });
+    let submit = {
+      assignees,
+      issueType: issueType.value,
+      priority: priority.value,
+    };
+    console.log({ ...formData, ...submit });
+    // console.log(priority);
   };
-  console.log(testing);
   return (
     <div>
       <div>
@@ -60,9 +71,10 @@ function CrateTicketModel(props) {
                   Issue Type
                 </Chakra.Text>
                 <Select
-                  name="ShortSummary"
+                  name="IssueType"
+                  defaultValue={issueType}
                   options={CreateIssueData.options}
-                  // onChange={handleChange}
+                  onChange={setIssueType}
                 />
               </Chakra.Flex>
               <Chakra.Flex direction="column" pb="15px">
@@ -74,7 +86,7 @@ function CrateTicketModel(props) {
                   placeholder=" Short Summary"
                   required
                   type="text"
-                  name="ShortSummary"
+                  name="shortSummary"
                   onChange={handleChange}
                 />
               </Chakra.Flex>
@@ -85,9 +97,9 @@ function CrateTicketModel(props) {
                 <Chakra.Textarea
                   required
                   type="text"
-                  name="Details"
+                  name="description"
                   variant="filled"
-                  // onChange={handleChange}
+                  onChange={handleChange}
                   placeholder="details"
                   resize="none"
                 />
@@ -99,11 +111,12 @@ function CrateTicketModel(props) {
                 <Select
                   variant="filled"
                   isMulti
+                  defaultValue={assignees}
                   name="Assignees"
                   options={CreateIssueData.assignees}
                   className="basic-multi-select"
                   classNamePrefix="select"
-                  onChange={(e) => setFormData(e)}
+                  onChange={(e) => setAssignees(e)}
                 />
               </Chakra.Flex>
               <Chakra.Flex direction="column" pb="15px">
@@ -111,14 +124,10 @@ function CrateTicketModel(props) {
                   Priority
                 </Chakra.Text>
                 <Select
-                  name="Priority"
+                  name="priority"
+                  defaultValue={priority}
                   options={CreateIssueData.Priority}
-                  // defaultValue={assignees}
-                  variant="filled"
-                  // value={CreateIssueData.Priority.filter((option) => {
-                  //   return option.value === assignees;
-                  // })}
-                  // onChange={(e) => seTAssignees(e)}
+                  onChange={setPriority}
                 />
               </Chakra.Flex>
               <Chakra.Flex direction="column" pb="15px" gap="10px">
