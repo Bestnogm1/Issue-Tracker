@@ -1,32 +1,27 @@
-import React, { useEffect, useRef } from "react";
 import Modal from "react-modal";
+import { useState } from "react";
+import { useCreateTicketModelContexts } from "../../contexts/CreateTicketModelContexts/CreateTicketModelContexts";
+import AssigneeForm from "../AssigneeForm/AssigneeForm";
+import Select from "react-select";
 import * as Chakra from "@chakra-ui/react";
 import * as CreateIssueData from "../../Data/CreateIssueData/CreateIssueData";
-import * as profileService from "../../services/profileService";
-import { useState } from "react";
-import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
-import Select from "react-select";
 import "./CreateTicketModel.css";
-import { useCreateTicketModelContexts } from "../../contexts/CreateTicketModelContexts/CreateTicketModelContexts";
 
 function CrateTicketModel(props) {
   Modal.setAppElement("#root");
-  // const [assignees, seTAssignees] = useState(null);
-  // const [priority, setPriority] = useState(null);
-  // const { handleCreateTickets } = useTicketsContext();
+  //UseState
+  const [issueType, setIssueType] = useState([]);
+  const [assignees, setAssignees] = useState([]);
+  const [priority, setPriority] = useState([]);
+
   const {
     openModal,
     afterOpenModal,
     closeModal,
     modalIsOpen,
-    // setFormData,
-    // formData,
+    setFormData,
+    formData,
   } = useCreateTicketModelContexts();
-  const [formData, setFormData] = useState([]);
-  const [assignedProfile, seTassignedProfile] = useState([]);
-  const [issueType, setIssueType] = useState([]);
-  const [assignees, setAssignees] = useState([]);
-  const [priority, setPriority] = useState([]);
 
   const handleChange = (evt) => {
     setFormData({
@@ -34,7 +29,6 @@ function CrateTicketModel(props) {
       [evt.target.name]: evt.target.value,
     });
   };
-  // console.log(issueType);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -43,9 +37,9 @@ function CrateTicketModel(props) {
       issueType: issueType.value,
       priority: priority.value,
     };
-    console.log({ ...formData, ...submit });
-    // console.log(priority);
+    // { ...formData, ...submit }
   };
+
   return (
     <div>
       <div>
@@ -64,7 +58,6 @@ function CrateTicketModel(props) {
             <Chakra.Flex pb="15px" fontSize="25px">
               <h1> Create An Issue </h1>
             </Chakra.Flex>
-
             <form onSubmit={handleSubmit}>
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
@@ -108,15 +101,9 @@ function CrateTicketModel(props) {
                 <Chakra.Text mb="8px" fontSize="15px">
                   Assignees
                 </Chakra.Text>
-                <Select
-                  variant="filled"
-                  isMulti
-                  defaultValue={assignees}
-                  name="Assignees"
-                  options={CreateIssueData.assignees}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  onChange={(e) => setAssignees(e)}
+                <AssigneeForm
+                  setAssignees={setAssignees}
+                  assignees={assignees}
                 />
               </Chakra.Flex>
               <Chakra.Flex direction="column" pb="15px">

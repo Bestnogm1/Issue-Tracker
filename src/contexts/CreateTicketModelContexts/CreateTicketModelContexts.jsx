@@ -1,35 +1,25 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
+import { useUserContext } from "../UserContexts/UserContexts";
+
 const CreateTicketsModel = createContext(null);
 export const useCreateTicketModelContexts = () =>
   useContext(CreateTicketsModel);
 
-function CreateTicketModelContexts({ children }) {
+const CreateTicketModelContexts = ({ children }) => {
+  const { user } = useUserContext();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    issue: "",
     shortSummary: "",
     description: "",
     priority: "",
     assignees: "",
+    owner: user?.profile,
   });
-  // const [issue, setIssue] = useState("");
-  // const [shortSummary, setShortSummary] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [priority, setPriority] = useState([]);
-  // const [assignees, seAssignees] = useState("");
+  console.log(formData);
   let subtitle;
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const afterOpenModal = () => (subtitle.style.color = "#f00");
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <CreateTicketsModel.Provider
@@ -45,6 +35,6 @@ function CreateTicketModelContexts({ children }) {
       {children}
     </CreateTicketsModel.Provider>
   );
-}
+};
 
 export default CreateTicketModelContexts;

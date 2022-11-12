@@ -5,14 +5,14 @@ const CreateUserContexts = createContext(null);
 export const useProfileContext = () => useContext(CreateUserContexts);
 
 function ProfileContexts({ children }) {
-  const [profile, setProfiles] = useState();
+  const [profiles, setProfiles] = useState();
 
   useEffect(() => {
     profileService.getAllProfiles().then((profiles) => setProfiles(profiles));
   }, []);
 
   return (
-    <CreateUserContexts.Provider value={{ profile, setProfiles }}>
+    <CreateUserContexts.Provider value={{ profiles, setProfiles }}>
       {children}
     </CreateUserContexts.Provider>
   );

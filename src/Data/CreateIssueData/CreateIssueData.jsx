@@ -24,10 +24,4 @@ const Priority = [
   { value: "Low", label: "Low" },
 ];
 
-const assignees = [
-  { value: "Alex", label: "Alex" },
-  { value: "Cane", label: "Cane" },
-  { value: "Drip", label: "Drip" },
-];
-
-export { options, Priority, createIssueStyles, assignees };
+export { options, Priority, createIssueStyles };

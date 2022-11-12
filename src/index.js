@@ -12,10 +12,10 @@ import CreateTicketModelContexts from "./contexts/CreateTicketModelContexts/Crea
 
 ReactDOM.render(
   <React.StrictMode>
-    <CreateTicketModelContexts>
-      <ProfileContexts>
-        <ApiTesting>
-          <UserContexts>
+    <UserContexts>
+      <CreateTicketModelContexts>
+        <ProfileContexts>
+          <ApiTesting>
             <Tickets>
               <BrowserRouter>
                 <ChakraProvider>
@@ -23,10 +23,10 @@ ReactDOM.render(
                 </ChakraProvider>
               </BrowserRouter>
             </Tickets>
-          </UserContexts>
-        </ApiTesting>
-      </ProfileContexts>
-    </CreateTicketModelContexts>
+          </ApiTesting>
+        </ProfileContexts>
+      </CreateTicketModelContexts>
+    </UserContexts>
   </React.StrictMode>,
   document.getElementById("root")
 );
