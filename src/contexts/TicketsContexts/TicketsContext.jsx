@@ -2,8 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import * as ticketsServices from "../../services/ticketsServices";
 
-const GetAllTicketsContext = createContext(null);
-export const useTicketsContext = () => useContext(GetAllTicketsContext);
+const CreateTicketsContext = createContext(null);
+export const useTicketsContext = () => useContext(CreateTicketsContext);
 
 const Tickets = ({ children }) => {
   const [tickets, setTickets] = useState();
@@ -35,11 +35,11 @@ const Tickets = ({ children }) => {
   };
 
   return (
-    <GetAllTicketsContext.Provider
+    <CreateTicketsContext.Provider
       value={{ tickets, handleCreateTickets, completed, handleDeleteTicket }}
     >
       {children}
-    </GetAllTicketsContext.Provider>
+    </CreateTicketsContext.Provider>
   );
 };
 export default Tickets;
