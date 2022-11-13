@@ -31,7 +31,7 @@ function Window({ ticketDetail }) {
   function closeModal() {
     setIsOpen(false);
   }
-  // console.log(ticketDetail);
+
   return (
     <div>
       <Chakra.Button
@@ -82,10 +82,13 @@ function Window({ ticketDetail }) {
           {/*  */}
 
           <Chakra.Box>
-            <MainTabsComponents ticketDescription={ticketDetail?.description} />
+            <MainTabsComponents
+              ticketDescription={ticketDetail?.description}
+              ticketDetailId={ticketDetail._id}
+            />
           </Chakra.Box>
           <Chakra.Box>
-            <Comments />
+            <Comments ticketDetailId={ticketDetail._id} />
           </Chakra.Box>
         </Chakra.Box>
       </Modal>

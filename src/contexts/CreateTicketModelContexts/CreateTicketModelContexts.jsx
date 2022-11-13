@@ -9,11 +9,10 @@ const CreateTicketModelContexts = ({ children }) => {
   const { user } = useUserContext();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
-    shortSummary: "",
     title: "",
     priority: "",
     assignees: "",
-    owner: user?.profile,
+    owner: { name: user?.name },
   });
   let subtitle;
   const afterOpenModal = () => (subtitle.style.color = "#f00");

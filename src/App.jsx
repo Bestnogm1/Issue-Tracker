@@ -8,6 +8,7 @@ import styles from "./App.module.css";
 import { useUserContext } from "./contexts/UserContexts/UserContexts";
 import * as Chakra from "@chakra-ui/react";
 import NavBar from "./components/NavBar/NavBar";
+import CrateTicketModel from "./components/CreateTicketModel/CreateTicketModel";
 
 const App = () => {
   const { user, setUser } = useUserContext();
@@ -37,6 +38,7 @@ const App = () => {
                 path="/signup"
                 element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
               />
+              <Route path="/createTicket" element={<CrateTicketModel />} />
               <Route
                 path="/login"
                 element={<Login handleSignupOrLogin={handleSignupOrLogin} />}

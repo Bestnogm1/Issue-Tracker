@@ -3,13 +3,13 @@ import Select from "react-select";
 import { useProfileContext } from "../../contexts/ProfileContexts/ProfileContexts";
 
 const AssigneeForm = ({ setAssignees, assignees }) => {
+  const [newProfile, setNewProfile] = useState();
   const { profiles } = useProfileContext();
-  const [newProfile, setNewProfile] = useState([...profiles]);
 
   useEffect(() => {
     function changeData(data) {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].hasOwnProperty("name")) {
+      for (let i = 0; i < data?.length; i++) {
+        if (data[i]?.hasOwnProperty("name")) {
           data[i]["value"] = data[i]["name"];
           delete data[i]["name"];
         }
@@ -23,7 +23,7 @@ const AssigneeForm = ({ setAssignees, assignees }) => {
       }
       setNewProfile(data);
     }
-    changeData(newProfile);
+    changeData(profiles);
   }, [profiles]);
 
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import { useFakeApiTesting } from "../../contexts/FakeApiTesting/FakeApiTesting";
 import Window from "../Window/Window";
 import styles from "./OpenTickets.module.css";
 import * as Chakra from "@chakra-ui/react";
@@ -7,22 +6,24 @@ import dayjs from "dayjs";
 
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
 function OpenTickets(props) {
-  const { fakeTickets, setFakeTickets } = useFakeApiTesting();
-  const { tickets } = useTicketsContext();
-  // console.log(tickets);
+  const { tickets, setTickets, updateStatus } = useTicketsContext();
+
   function dragDropped(e) {
-    let grabData = e.dataTransfer.getData("todoId");
-    let editTicket = fakeTickets.map((ticket) => {
-      if (ticket.id === Number(grabData)) {
-        ticket.status = "OpenTickets";
+    let grabData = e.dataTransfer.getData("TicketId");
+    const status = "Open Ticket";
+
+    const setTicketToInOpenTicket = tickets.map((ticket) => {
+      if (ticket._id === grabData) {
+        ticket.status = status;
+        updateStatus(ticket._id, status);
       }
       return ticket;
     });
-    setFakeTickets(editTicket);
+    setTickets(setTicketToInOpenTicket);
   }
 
   const dragHasStarted = (e, id) => {
-    e.dataTransfer.setData("todoId", id);
+    e.dataTransfer.setData("TicketId", id);
   };
 
   function draggingOver(e) {
@@ -49,6 +50,7 @@ function OpenTickets(props) {
             onDrop={(e) => dragDropped(e)}
             droppable="true"
             onDragOver={(e) => draggingOver(e)}
+            height="100%"
           >
             {tickets?.map((ticket) => (
               <React.Fragment key={ticket._id}>
@@ -61,7 +63,7 @@ function OpenTickets(props) {
                     mb="15px"
                     mt="15px"
                     draggable="true"
-                    onDragStart={(e) => dragHasStarted(e, tickets.id)}
+                    onDragStart={(e) => dragHasStarted(e, ticket._id)}
                   >
                     <Chakra.Box p="13px">
                       <Chakra.Flex direction="column">

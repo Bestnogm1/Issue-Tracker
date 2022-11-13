@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import * as Chakra from "@chakra-ui/react";
 import styles from "./SideBar.module.css";
-import CrateTicketModel from "../CreateTicketModel/CreateTicketModel";
 import { AiOutlineHome } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import { CiLogout } from "react-icons/ci";
@@ -20,9 +19,14 @@ const SideBar = ({ user, handleLogout }) => {
             </Chakra.Box>
           </Chakra.Box>
           {/*  */}
-
-          {/*  Component */}
-          <CrateTicketModel />
+          <Link to="/createTicket">
+            <Chakra.Box>
+              <Icon color="white" aria-label="Call Sage" fontSize="55px" />
+              <Chakra.Badge variant="outline" fontSize="10px" color="white">
+                Add Ticket
+              </Chakra.Badge>
+            </Chakra.Box>
+          </Link>
           <Link to="/" onClick={handleLogout}>
             <Icon
               as={CiLogout}

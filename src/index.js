@@ -9,21 +9,23 @@ import ApiTesting from "./contexts/FakeApiTesting/FakeApiTesting";
 import UserContexts from "./contexts/UserContexts/UserContexts";
 import ProfileContexts from "./contexts/ProfileContexts/ProfileContexts";
 import CreateTicketModelContexts from "./contexts/CreateTicketModelContexts/CreateTicketModelContexts";
-
+import CreateCommentsContexts from "./contexts/CommentsContexts/CommentsContexts";
 ReactDOM.render(
   <React.StrictMode>
     <UserContexts>
       <CreateTicketModelContexts>
         <ProfileContexts>
-          <ApiTesting>
-            <Tickets>
-              <BrowserRouter>
-                <ChakraProvider>
-                  <App />
-                </ChakraProvider>
-              </BrowserRouter>
-            </Tickets>
-          </ApiTesting>
+          <CreateCommentsContexts>
+            <ApiTesting>
+              <Tickets>
+                <BrowserRouter>
+                  <ChakraProvider>
+                    <App />
+                  </ChakraProvider>
+                </BrowserRouter>
+              </Tickets>
+            </ApiTesting>
+          </CreateCommentsContexts>
         </ProfileContexts>
       </CreateTicketModelContexts>
     </UserContexts>

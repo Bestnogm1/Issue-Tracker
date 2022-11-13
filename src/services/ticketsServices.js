@@ -38,6 +38,18 @@ export async function updateTickets(ticketDetails) {
   return lobby.json();
 }
 
+export async function updateTicketStatus(ticketId, status) {
+  const lobby = await fetch(`${BASE_URL}/updateTicketStatus`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    body: JSON.stringify({ _id: ticketId, status: status }),
+  });
+  return lobby.json();
+}
+
 export async function completedOrNot(ticket) {
   ticket.completed = !ticket.completed;
   let data = await fetch(`${BASE_URL}/${ticket._id}`, {

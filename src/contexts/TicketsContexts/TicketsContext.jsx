@@ -28,15 +28,37 @@ const Tickets = ({ children }) => {
       )
     );
   };
+
   const handleDeleteTicket = (id) => {
     ticketsServices
       .deleteOneTickets(id)
       .then(setTickets(tickets.filter((ticket) => ticket._id !== id)));
   };
 
+  const updateStatus = (ticketId, status) => {
+    if (status === "Open Ticket") {
+      ticketsServices.updateTicketStatus(ticketId, status);
+    }
+    if (status === "In Progress") {
+      ticketsServices.updateTicketStatus(ticketId, status);
+    }
+    if (status === "On Hold") {
+      ticketsServices.updateTicketStatus(ticketId, status);
+    }
+    if (status === "Completed") {
+      ticketsServices.updateTicketStatus(ticketId, status);
+    }
+  };
   return (
     <CreateTicketsContext.Provider
-      value={{ tickets, handleCreateTickets, completed, handleDeleteTicket }}
+      value={{
+        updateStatus,
+        setTickets,
+        tickets,
+        handleCreateTickets,
+        completed,
+        handleDeleteTicket,
+      }}
     >
       {children}
     </CreateTicketsContext.Provider>
