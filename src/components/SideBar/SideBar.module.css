@@ -1,7 +1,7 @@
 .navBar {
   display: flex;
   color: red;
-  background-color: #6d9baa;
+  /* background-color: #6d9baa; */
   height: 100vh;
   padding-top: 6rem;
 }

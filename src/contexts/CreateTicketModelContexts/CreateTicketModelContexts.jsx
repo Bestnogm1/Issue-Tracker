@@ -15,7 +15,6 @@ const CreateTicketModelContexts = ({ children }) => {
     assignees: "",
     owner: user?.profile,
   });
-  console.log(formData);
   let subtitle;
   const afterOpenModal = () => (subtitle.style.color = "#f00");
   const openModal = () => setIsOpen(true);

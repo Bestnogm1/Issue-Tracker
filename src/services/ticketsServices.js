@@ -1,14 +1,14 @@
 import * as tokenService from "./tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/tickets`;
 
-export async function createTickets(ticketsDetail) {
+export async function createTickets(ticketForm) {
   const details = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(ticketsDetail),
+    body: JSON.stringify(ticketForm),
   });
   return details.json();
 }

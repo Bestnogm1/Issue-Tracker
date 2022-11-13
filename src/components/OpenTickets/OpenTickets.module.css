@@ -1,23 +1,39 @@
 .OpenTickets {
-  /* background-color: red; */
-  width: 30%;
-  height: 45rem;
+  overflow: scroll;
 }
-.testAPi {
-  border: 1px solid black;
-  padding-top: 5px;
-  margin-top: 10px;
-  height: 30px;
+.OpenTicketsCards {
+  border-radius: 11px 11px 11px 11px;
+  -moz-border-radius: 11px 11px 11px 11px;
+  -webkit-border-radius: 11px 11px 11px 11px;
+  border: 0px solid #000000;
+  /*  */
+  box-shadow: -1px 1px 10px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 1px 10px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 10px -3px rgba(0, 0, 0, 0.75);
 }
-.testAPi2 {
-  border: 6px solid black;
-  width: 350px;
-  height: 70px;
+.OpenTicketsBadge {
+  border-radius: 9px 9px 9px 9px;
+  -moz-border-radius: 9px 9px 9px 9px;
+  -webkit-border-radius: 9px 9px 9px 9px;
+  border: 0px solid #000000;
+  box-shadow: -3px 1px 10px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -3px 1px 10px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -3px 1px 10px -3px rgba(0, 0, 0, 0.75);
 }
-
-.testAPi3 {
-  border: 6px solid black;
-
-  width: 350px;
-  height: 300px;
+.OpenTickets {
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  border: 0px solid #000000;
+}
+.OpenTicketsCards {
+  min-height: 10rem;
+  max-height: 30rem;
+}
+.OpenTicketsDetail {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  -webkit-box-orient: vertical;
+  padding-top: 1em;
 }

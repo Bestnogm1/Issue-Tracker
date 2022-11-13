@@ -6,14 +6,20 @@ import Select from "react-select";
 import * as Chakra from "@chakra-ui/react";
 import * as CreateIssueData from "../../Data/CreateIssueData/CreateIssueData";
 import "./CreateTicketModel.css";
+import { createTickets } from "../../services/ticketsServices";
+import { Icon } from "@chakra-ui/react";
+import { IoMdAdd } from "react-icons/io";
+import { CiLogout } from "react-icons/ci";
 
 function CrateTicketModel(props) {
   Modal.setAppElement("#root");
+
   //UseState
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
   const [priority, setPriority] = useState([]);
 
+  //useCreateTicketModelContexts
   const {
     openModal,
     afterOpenModal,
@@ -23,6 +29,7 @@ function CrateTicketModel(props) {
     formData,
   } = useCreateTicketModelContexts();
 
+  //Input Change
   const handleChange = (evt) => {
     setFormData({
       ...formData,
@@ -30,6 +37,7 @@ function CrateTicketModel(props) {
     });
   };
 
+  //Input Submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
     let submit = {
@@ -37,14 +45,27 @@ function CrateTicketModel(props) {
       issueType: issueType.value,
       priority: priority.value,
     };
-    // { ...formData, ...submit }
+    createTickets({ ...formData, ...submit });
   };
 
   return (
     <div>
       <div>
-        <button onClick={openModal}> Create ticket</button>
+        <Chakra.Box>
+          <Icon
+            as={IoMdAdd}
+            color="white"
+            aria-label="Call Sage"
+            fontSize="55px"
+            onClick={() => openModal()}
+          />
+          <Chakra.Badge variant="outline" fontSize="10px" color="white">
+            Add Ticket
+          </Chakra.Badge>
+        </Chakra.Box>
       </div>
+
+      {/*  */}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -56,8 +77,15 @@ function CrateTicketModel(props) {
         <>
           <Chakra.Box>
             <Chakra.Flex pb="15px" fontSize="25px">
-              <h1> Create An Issue </h1>
+              <Chakra.Box width="50%">
+                <h1> Create An Issue </h1>
+              </Chakra.Box>
+              <Chakra.Flex width="50%" justifyContent="flex-end">
+                <Chakra.CloseButton size="lg" onClick={() => closeModal()} />
+              </Chakra.Flex>
             </Chakra.Flex>
+
+            {/*   */}
             <form onSubmit={handleSubmit}>
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
@@ -70,6 +98,8 @@ function CrateTicketModel(props) {
                   onChange={setIssueType}
                 />
               </Chakra.Flex>
+
+              {/*  */}
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
                   Short Summary
@@ -83,6 +113,8 @@ function CrateTicketModel(props) {
                   onChange={handleChange}
                 />
               </Chakra.Flex>
+
+              {/*  */}
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text fontSize="15px" mb="8px">
                   Description
@@ -97,6 +129,8 @@ function CrateTicketModel(props) {
                   resize="none"
                 />
               </Chakra.Flex>
+
+              {/*  */}
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
                   Assignees
@@ -106,6 +140,8 @@ function CrateTicketModel(props) {
                   assignees={assignees}
                 />
               </Chakra.Flex>
+
+              {/*  */}
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
                   Priority
@@ -117,6 +153,8 @@ function CrateTicketModel(props) {
                   onChange={setPriority}
                 />
               </Chakra.Flex>
+
+              {/*  */}
               <Chakra.Flex direction="column" pb="15px" gap="10px">
                 <Chakra.Button type="submit" colorScheme="green" size="sm">
                   Create Issue

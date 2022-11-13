@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import * as Chakra from "@chakra-ui/react";
 
 function Window({ name, id }) {
   const customStyles = {
@@ -33,7 +34,7 @@ function Window({ name, id }) {
   }
   return (
     <div>
-      <button onClick={openModal}> View More</button>
+      <Chakra.Badge onClick={openModal}> View More</Chakra.Badge>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -41,7 +42,7 @@ function Window({ name, id }) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>close</button>
+        <Chakra.Badge onClick={closeModal}>close</Chakra.Badge>
         <form>
           <div>{name}</div>
           <div>{id}</div>
