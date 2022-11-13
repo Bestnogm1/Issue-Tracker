@@ -1,7 +1,7 @@
-.OpenTickets {
+.Tickets {
   overflow: scroll;
 }
-.OpenTicketsCards {
+.TicketsCards {
   border-radius: 11px 11px 11px 11px;
   -moz-border-radius: 11px 11px 11px 11px;
   -webkit-border-radius: 11px 11px 11px 11px;
@@ -11,7 +11,7 @@
   -webkit-box-shadow: -1px 1px 10px -3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 1px 10px -3px rgba(0, 0, 0, 0.75);
 }
-.OpenTicketsBadge {
+.TicketsBadge {
   border-radius: 9px 9px 9px 9px;
   -moz-border-radius: 9px 9px 9px 9px;
   -webkit-border-radius: 9px 9px 9px 9px;
@@ -20,17 +20,17 @@
   -webkit-box-shadow: -3px 1px 10px -3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -3px 1px 10px -3px rgba(0, 0, 0, 0.75);
 }
-.OpenTickets {
+.TicketsBox {
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
   -webkit-border-radius: 7px 7px 7px 7px;
   border: 0px solid #000000;
 }
-.OpenTicketsCards {
+.TicketsCards {
   min-height: 10rem;
   max-height: 30rem;
 }
-.OpenTicketsDetail {
+.TicketsDetail {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 15;

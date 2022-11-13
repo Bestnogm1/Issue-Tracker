@@ -1,0 +1,15 @@
+.DescriptionTabDetail {
+  background-color: #f1f1f1;
+  overflow: scroll;
+  height: 10rem;
+  max-height: 13rem;
+  min-height: 5rem;
+  width: 42rem;
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  border: 0px solid #000000;
+}
+.DescriptionTabText {
+  margin: 10px;
+}

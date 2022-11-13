@@ -10,7 +10,7 @@ const CreateTicketModelContexts = ({ children }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     shortSummary: "",
-    description: "",
+    title: "",
     priority: "",
     assignees: "",
     owner: user?.profile,

@@ -102,14 +102,14 @@ function CrateTicketModel(props) {
               {/*  */}
               <Chakra.Flex direction="column" pb="15px">
                 <Chakra.Text mb="8px" fontSize="15px">
-                  Short Summary
+                  Title
                 </Chakra.Text>
                 <Chakra.Input
                   variant="filled"
-                  placeholder=" Short Summary"
+                  placeholder="title"
                   required
                   type="text"
-                  name="shortSummary"
+                  name="title"
                   onChange={handleChange}
                 />
               </Chakra.Flex>
