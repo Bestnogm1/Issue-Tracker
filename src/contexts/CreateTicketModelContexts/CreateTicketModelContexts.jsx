@@ -17,14 +17,13 @@ const CreateTicketModelContexts = ({ children }) => {
   let subtitle;
   const afterOpenModal = () => (subtitle.style.color = "#f00");
   const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
 
   return (
     <CreateTicketsModel.Provider
       value={{
+        setIsOpen,
         openModal,
         afterOpenModal,
-        closeModal,
         modalIsOpen,
         formData,
         setFormData,

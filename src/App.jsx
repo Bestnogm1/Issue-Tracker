@@ -38,7 +38,6 @@ const App = () => {
                 path="/signup"
                 element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
               />
-              <Route path="/createTicket" element={<CrateTicketModel />} />
               <Route
                 path="/login"
                 element={<Login handleSignupOrLogin={handleSignupOrLogin} />}

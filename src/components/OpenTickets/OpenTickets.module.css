@@ -1,5 +1,8 @@
 .Tickets {
   overflow: scroll;
+  min-width: 22.2%;
+  max-width: 22%;
+  border-radius: 11px 11px 11px 11px;
 }
 .TicketsCards {
   border-radius: 11px 11px 11px 11px;

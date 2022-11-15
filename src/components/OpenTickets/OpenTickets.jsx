@@ -32,10 +32,10 @@ function OpenTickets(props) {
 
   return (
     <>
-      <Chakra.Box h="45rem" w="35rem" bg="#F1F1F1" className={styles.Tickets}>
+      <Chakra.Box h="45rem" bg="#F1F1F1" className={styles.Tickets}>
         <Chakra.Badge
           ml="30px"
-          w="5.5rem"
+          w="35%"
           mb="15px"
           mt="15px"
           fontSize="1.5em"
@@ -52,14 +52,14 @@ function OpenTickets(props) {
             onDragOver={(e) => draggingOver(e)}
             height="100%"
           >
-            {tickets?.map((ticket) => (
-              <React.Fragment key={ticket._id}>
+            {tickets?.map((ticket, idx) => (
+              <React.Fragment key={idx}>
                 {ticket.status === "Open Ticket" ? (
                   <Chakra.Box
                     className={styles.TicketsCards}
                     bg="white"
-                    w="85%"
-                    ml="30px"
+                    w="87%"
+                    ml="20px"
                     mb="15px"
                     mt="15px"
                     draggable="true"
@@ -77,11 +77,15 @@ function OpenTickets(props) {
                           <Chakra.Text>{ticket.description}</Chakra.Text>
                         </Chakra.Box>
                       </Chakra.Flex>
-                      <Chakra.Flex direction="row" align="center" gap="10rem">
-                        <Window ticketDetail={ticket} />
-                        <Chakra.Text fontSize=".7em">
-                          {dayjs().to(dayjs(ticket.createdAt))}
-                        </Chakra.Text>
+                      <Chakra.Flex direction="row">
+                        <Chakra.Flex direction="row" align="end" w="50%">
+                          <Window ticketDetail={ticket} />
+                        </Chakra.Flex>
+                        <Chakra.Flex justify="end" w="50%">
+                          <Chakra.Text fontSize=".7em">
+                            {dayjs().to(dayjs(ticket.createdAt))}
+                          </Chakra.Text>
+                        </Chakra.Flex>
                       </Chakra.Flex>
                     </Chakra.Box>
                   </Chakra.Box>

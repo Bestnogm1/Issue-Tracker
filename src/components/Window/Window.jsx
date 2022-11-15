@@ -3,8 +3,11 @@ import Modal from "react-modal";
 import * as Chakra from "@chakra-ui/react";
 import MainTabsComponents from "../TabsComponents/MainTabsComponents";
 import Comments from "../Comments/Comments";
+import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
+import { useNavigate } from "react-router-dom";
 
 function Window({ ticketDetail }) {
+  const { handleDeleteTicket } = useTicketsContext();
   Modal.setAppElement("body");
   const customStyles = {
     content: {
@@ -15,10 +18,10 @@ function Window({ ticketDetail }) {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       width: "45rem",
-      height: "45rem",
+      height: "49rem",
     },
   };
-
+  let navigate = useNavigate();
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -30,6 +33,8 @@ function Window({ ticketDetail }) {
   }
   function closeModal() {
     setIsOpen(false);
+    navigate("/");
+    window.location.reload();
   }
 
   return (
@@ -43,7 +48,7 @@ function Window({ ticketDetail }) {
         Detail
       </Chakra.Button>
       {/*  */}
-
+      {/* <button onClick={closeModal}>Close</button> */}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -56,7 +61,7 @@ function Window({ ticketDetail }) {
         <Chakra.Box>
           <Chakra.Flex>
             {/* <Chakra.Badge onClick={closeModal}>close</Chakra.Badge> */}
-            <Chakra.Text fontSize="3rem" fontWeight="bold">
+            <Chakra.Text fontSize="3rem" fontWeight="bold" width="100%">
               {ticketDetail?.title}
             </Chakra.Text>
           </Chakra.Flex>
@@ -91,6 +96,15 @@ function Window({ ticketDetail }) {
             <Comments ticketDetailId={ticketDetail._id} />
           </Chakra.Box>
         </Chakra.Box>
+        <Chakra.Button
+          ml="10px"
+          mt="15px"
+          colorScheme="red"
+          size="md"
+          onClick={() => handleDeleteTicket(ticketDetail._id)}
+        >
+          Delete
+        </Chakra.Button>
       </Modal>
     </div>
   );

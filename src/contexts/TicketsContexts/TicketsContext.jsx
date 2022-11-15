@@ -7,7 +7,7 @@ export const useTicketsContext = () => useContext(CreateTicketsContext);
 
 const Tickets = ({ children }) => {
   const [tickets, setTickets] = useState();
-
+  console.log(tickets);
   useEffect(() => {
     ticketsServices.getAllTickets().then((res) => setTickets(res));
   }, []);

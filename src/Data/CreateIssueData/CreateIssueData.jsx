@@ -1,3 +1,15 @@
+// const createIssueStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//     width: "50rem",
+//     height: "50rem",
+//   },
+// };
 const createIssueStyles = {
   content: {
     top: "50%",
@@ -7,7 +19,11 @@ const createIssueStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "50rem",
-    height: "40rem",
+    height: "50rem",
+    "box-shadow": "-1px 0 5px 0",
+    "min-width": "10%",
+    "max-width": "50%",
+    "max-height": "100%",
   },
 };
 

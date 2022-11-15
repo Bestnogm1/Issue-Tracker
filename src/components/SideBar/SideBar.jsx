@@ -4,29 +4,28 @@ import styles from "./SideBar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import { CiLogout } from "react-icons/ci";
+import CrateTicketModel from "../CreateTicketModel/CreateTicketModel";
 const SideBar = ({ user, handleLogout }) => {
-  let [firstChar, color] = user.userImage;
+  // let [firstChar, color] = user.userImage;
   const SidebarContent = () => (
     <Chakra.VStack>
       {user ? (
         <>
-          <Chakra.Box
-            className={styles.container}
-            style={{ background: `rgb(${color})` }}
-          >
-            <Chakra.Box className={styles.name} id="name">
-              {firstChar.toUpperCase()}
-            </Chakra.Box>
-          </Chakra.Box>
+          {/* <Chakra.Box
+           className={styles.container}
+           style={{ background: `rgb(${color})` }}
+         >
+           <Chakra.Box className={styles.name} id="name">
+             {firstChar.toUpperCase()}
+           </Chakra.Box>
+         </Chakra.Box> */}
           {/*  */}
-          <Link to="/createTicket">
-            <Chakra.Box>
-              <Icon color="white" aria-label="Call Sage" fontSize="55px" />
-              <Chakra.Badge variant="outline" fontSize="10px" color="white">
-                Add Ticket
-              </Chakra.Badge>
-            </Chakra.Box>
-          </Link>
+          <Chakra.Box>
+            <Icon color="white" aria-label="Call Sage" fontSize="55px" />
+            <Chakra.Badge variant="outline" fontSize="10px" color="white">
+              <CrateTicketModel />
+            </Chakra.Badge>
+          </Chakra.Box>
           <Link to="/" onClick={handleLogout}>
             <Icon
               as={CiLogout}
@@ -73,11 +72,12 @@ const SideBar = ({ user, handleLogout }) => {
         position="fixed"
         left={0}
         p={5}
-        w="150px"
+        w="110px"
         top={0}
         h="100%"
         bg="#334746"
         pt="5rem"
+        mr="20rem"
       >
         <SidebarContent />
       </Chakra.Box>

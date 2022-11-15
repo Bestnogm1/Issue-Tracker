@@ -11,9 +11,26 @@ function CommentsContexts({ children }) {
   useEffect(() => {
     messageService.getAllMessages().then((res) => setGetAllMessage(res));
   }, []);
+
+  const handleDeleteComments = (tempUUID) => {
+    messageService
+      .deleteOneMessage(tempUUID)
+      .then(
+        setGetAllMessage(
+          getAllMessage?.filter((message) => message?.tempUUID !== tempUUID)
+        )
+      );
+  };
+
   return (
     <CreateCommentsContexts.Provider
-      value={{ inputData, setInputData, getAllMessage, setGetAllMessage }}
+      value={{
+        inputData,
+        getAllMessage,
+        setInputData,
+        setGetAllMessage,
+        handleDeleteComments,
+      }}
     >
       {children}
     </CreateCommentsContexts.Provider>

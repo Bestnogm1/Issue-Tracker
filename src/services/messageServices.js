@@ -25,12 +25,14 @@ async function getAllMessages() {
   return result;
 }
 
-export async function deleteOneMessage(id, ticketId) {
-  return fetch(`${BASE_URL}/${ticketId}/message/${id}`, {
-    method: "DELETE",
+export async function deleteOneMessage(id) {
+  return fetch(`${BASE_URL}/deleteMessage`, {
+    method: "POST",
     headers: {
+      "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
+    body: JSON.stringify({ tempUUID: id }),
   }).then((res) => res.json());
 }
 export { createMessage, getAllMessages, deleteOneMessage as delete };

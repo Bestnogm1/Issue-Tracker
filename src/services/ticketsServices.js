@@ -18,11 +18,12 @@ export async function getAllTickets() {
 }
 
 export async function deleteOneTickets(id) {
-  return fetch(`${BASE_URL}/${id}`, {
+  return fetch(`${BASE_URL}/deleteTicket/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
+    body: JSON.stringify({ id: id }),
   }).then((res) => res.json());
 }
 
