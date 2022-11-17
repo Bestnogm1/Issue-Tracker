@@ -4,7 +4,6 @@ import styles from "./Login.module.css";
 
 const LoginPage = (props) => {
   const [message, setMessage] = useState([""]);
-
   const updateMessage = (msg) => {
     setMessage(msg);
   };

@@ -4,11 +4,9 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Landing from "./pages/Landing/Landing";
 import * as authService from "./services/authService";
-import styles from "./App.module.css";
 import { useUserContext } from "./contexts/UserContexts/UserContexts";
 import * as Chakra from "@chakra-ui/react";
 import NavBar from "./components/NavBar/NavBar";
-import CrateTicketModel from "./components/CreateTicketModel/CreateTicketModel";
 
 const App = () => {
   const { user, setUser } = useUserContext();

@@ -15,7 +15,7 @@ const ClosedTickets = () => {
   const dragDropped = (e) => {
     const grabData = e.dataTransfer.getData("TicketId");
     const status = "Completed";
-    const setTicketToInOpenTicket = tickets.map((ticket) => {
+    const setTicketToInOpenTicket = tickets?.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = "Completed";
         updateStatus(ticket._id, status);

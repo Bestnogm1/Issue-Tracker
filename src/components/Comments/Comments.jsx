@@ -11,16 +11,16 @@ const Comments = ({ ticketDetailId }) => {
 
   return (
     <Chakra.Box className={styles.CommentsMain}>
-      {getAllMessage.map((message, index) => (
+      {getAllMessage?.map((message, index) => (
         <React.Fragment key={index}>
-          {message.ticketId === ticketDetailId ? (
+          {message?.ticketId === ticketDetailId ? (
             <Chakra.Box w="100%" className={styles.CommentsComp}>
               <Chakra.Flex direction="row" gap="2rem">
                 <Chakra.Text>{message.ownedBy.name}</Chakra.Text>
                 <Chakra.Text>
                   {dayjs().to(dayjs(message.createdAt))}
                 </Chakra.Text>
-                {message.ownedBy.email === user.email ? (
+                {message?.ownedBy.email === user.email ? (
                   <Chakra.Button
                     size="small"
                     bg="red"
@@ -35,7 +35,7 @@ const Comments = ({ ticketDetailId }) => {
               </Chakra.Flex>
               <Chakra.Box className={styles.Comments}>
                 <Chakra.Flex>
-                  <Chakra.Text>{message.content}</Chakra.Text>
+                  <Chakra.Text>{message?.content}</Chakra.Text>
                 </Chakra.Flex>
               </Chakra.Box>
             </Chakra.Box>

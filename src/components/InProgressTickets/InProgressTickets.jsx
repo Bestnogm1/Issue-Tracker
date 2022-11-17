@@ -15,7 +15,7 @@ const InProgressTickets = () => {
   const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "In Progress";
-    const setTicketToInProgress = tickets.map((ticket) => {
+    const setTicketToInProgress = tickets?.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = status;
         updateStatus(ticket._id, status);
@@ -30,7 +30,7 @@ const InProgressTickets = () => {
       <Chakra.Box h="45rem" bg="#F1F1F1" className={styles.Tickets}>
         <Chakra.Badge
           ml="30px"
-          w="10rem"
+          w="13rem"
           mb="15px"
           mt="15px"
           fontSize="1.5em"

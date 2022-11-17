@@ -1,68 +1,69 @@
-# Decoupled MERN Stack with JWT Auth Template - Front End
+# Ticket Issue
 
-This is the front end of a decoupled MERN Stack app that includes JWT Authentication.
+#### In This application is a issue tracking product in this application your're able to create issue Then Drag and drop it to other section.
 
-When combined with the back end found [here](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end), you'll have all you need to build a full stack MERN app!
+<!-- #### This application is a JIRA Clone in this application your're able to create issue Then Drag and drop it to other section and . -->
 
-Use this to go build things! 🚀
+#
 
-## To Use This Template
+## Getting Started:
 
-**Replace `<name-of-your-app-here>` in the commands below with the name of your app!**
+To run the project locally:
 
-```bash
-git clone https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end <name-of-your-app-here>-front-end
-cd <name-of-your-app-here>-front-end
-```
+1. Clone and initiate the [front-end repository](https://github.com/Bestnogm1/Mern-Stack-Book-FE.git) (following the step-by-step setup guide in the README).
 
-Once you are in the project directory:
+2. Navigate to the directory you want to clone this app into and run the command.
 
 ```bash
-rm -rf .git
+git clone https://github.com/Bestnogm1/Mern-Stack-Book-BE-.git
 ```
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
-
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
-
-Re-initialize a git repository:
-
-```bash
-git init
-```
-
-Use the GitHub CLI to create a new project repository on GitHub:
-
-```bash
-gh repo create <name-of-your-app-here>-front-end
-```
-
-Run `npm i` to fetch the template's dependencies:
-
-```bash
-npm i
-```
-
-touch a `.env` file:
+3. After cloning the back-end project directory, run the command.
 
 ```bash
 touch .env
 ```
 
-Fill it with the following:
-
-```
-REACT_APP_BACKEND_SERVER_URL=http://localhost:3001
-```
-
-> 🚨 DO NOT place secrets in this `.env` file. The contents of this file WILL be exposed to site visitors.
-
-Delete this README.md, then make an initial commit:
+4.
 
 ```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
+DATABASE_URL=mongodb+srv://<your-username>:<your-password>@cluster0.53jre.mongodb.net/<datbase-name>?retryWrites=true&w=majority
+
+SECRET=<create-a-secret-key>
 ```
 
-You're done!# ticket-fornt-end-
+5. Install all dependencies by running the command.
+
+```bash
+npm i
+```
+
+6. Spin up the app by running the command.
+
+```bash
+npm start
+```
+
+# Technologies Used
+
+### This is a MERN stack application and was built using:
+
+![](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=whit)
+![](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1)
+![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=whit)
+![](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=whit)
+![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
+![](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=whit)
+![](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=whit)
+![](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=whit)
+
+#
+
+# Screenshots:
+
+<img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.35 AM.jpg">
+<img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.34 AM.jpg">

@@ -15,7 +15,7 @@ const OnHoldTickets = () => {
   const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "On Hold";
-    const setTicketToOnHoldTickets = tickets.map((ticket) => {
+    const setTicketToOnHoldTickets = tickets?.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = status;
         updateStatus(ticket._id, status);

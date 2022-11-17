@@ -9,20 +9,10 @@ import { FiLogIn } from "react-icons/fi";
 import CrateTicketModel from "../CreateTicketModel/CreateTicketModel";
 
 const SideBar = ({ user, handleLogout }) => {
-  let [firstChar, color] = user.userImage;
   const SidebarContent = () => (
     <Chakra.VStack>
       {user ? (
         <>
-          <Chakra.Box
-            className={styles.container}
-            style={{ background: `rgb(${color})` }}
-          >
-            <Chakra.Box className={styles.name} id="name">
-              {firstChar.toUpperCase()}
-            </Chakra.Box>
-          </Chakra.Box>
-          {/*  */}
           <Chakra.Box pt="1rem">
             <Link to="/">
               <Chakra.Flex direction="column" justify="center">

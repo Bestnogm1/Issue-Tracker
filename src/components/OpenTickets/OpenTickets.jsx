@@ -15,7 +15,7 @@ const OpenTickets = () => {
   const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "Open Ticket";
-    const setTicketToOpenTicket = tickets.map((ticket) => {
+    const setTicketToOpenTicket = tickets?.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = status;
         updateStatus(ticket._id, status);

@@ -1,6 +1,6 @@
 import * as tokenService from "./tokenService";
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/messages`;
-
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}api/messages`;
+console.log(process.env.REACT_APP_BACKEND_SERVER_URL);
 export const createMessage = async (messageForm) => {
   const message = await fetch(`${BASE_URL}/createMessage`, {
     method: "POST",
