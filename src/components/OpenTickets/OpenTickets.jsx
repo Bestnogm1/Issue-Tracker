@@ -47,46 +47,56 @@ const OpenTickets = () => {
             onDragOver={(e) => draggingOver(e)}
             height="100%"
           >
-            {tickets?.map((ticket, idx) => (
-              <React.Fragment key={idx}>
-                {ticket.status === "Open Ticket" ? (
-                  <Chakra.Box
-                    className={styles.TicketsCards}
-                    bg="white"
-                    w="87%"
-                    ml="20px"
-                    mb="15px"
-                    mt="15px"
-                    draggable="true"
-                    onDragStart={(e) => dragHasStarted(e, ticket._id)}
-                  >
-                    <Chakra.Box p="13px">
-                      <Chakra.Flex direction="column">
-                        <Chakra.Text color="green">{ticket.title}</Chakra.Text>
-                        <Chakra.Text fontSize=".8em">
-                          {ticket?.owner.name}
-                        </Chakra.Text>
-                      </Chakra.Flex>
-                      <Chakra.Flex direction="column">
-                        <Chakra.Box className={styles.TicketsDetail}>
-                          <Chakra.Text>{ticket.description}</Chakra.Text>
-                        </Chakra.Box>
-                      </Chakra.Flex>
-                      <Chakra.Flex direction="row">
-                        <Chakra.Flex direction="row" align="end" w="50%">
-                          <Window ticketDetail={ticket} color={"green"} />
-                        </Chakra.Flex>
-                        <Chakra.Flex justify="end" w="50%">
-                          <Chakra.Text fontSize=".7em">
-                            {dayjs().to(dayjs(ticket.createdAt))}
+            {tickets ? (
+              tickets?.map((ticket, idx) => (
+                <React.Fragment key={idx}>
+                  {ticket.status === "Open Ticket" ? (
+                    <Chakra.Box
+                      className={styles.TicketsCards}
+                      bg="white"
+                      w="87%"
+                      ml="20px"
+                      mb="15px"
+                      mt="15px"
+                      draggable="true"
+                      onDragStart={(e) => dragHasStarted(e, ticket._id)}
+                    >
+                      <Chakra.Box p="13px">
+                        <Chakra.Flex direction="column">
+                          <Chakra.Text color="green">
+                            {ticket.title}
+                          </Chakra.Text>
+                          <Chakra.Text fontSize=".8em">
+                            {ticket?.owner.name}
                           </Chakra.Text>
                         </Chakra.Flex>
-                      </Chakra.Flex>
+                        <Chakra.Flex direction="column">
+                          <Chakra.Box className={styles.TicketsDetail}>
+                            <Chakra.Text>{ticket.description}</Chakra.Text>
+                          </Chakra.Box>
+                        </Chakra.Flex>
+                        <Chakra.Flex direction="row">
+                          <Chakra.Flex direction="row" align="end" w="50%">
+                            <Window ticketDetail={ticket} color={"green"} />
+                          </Chakra.Flex>
+                          <Chakra.Flex justify="end" w="50%">
+                            <Chakra.Text fontSize=".7em">
+                              {dayjs().to(dayjs(ticket.createdAt))}
+                            </Chakra.Text>
+                          </Chakra.Flex>
+                        </Chakra.Flex>
+                      </Chakra.Box>
                     </Chakra.Box>
-                  </Chakra.Box>
-                ) : null}
-              </React.Fragment>
-            ))}
+                  ) : null}
+                </React.Fragment>
+              ))
+            ) : (
+              <Chakra.Box>
+                <Chakra.Flex w="100%" justify="center" align="center" size="lg">
+                  <Chakra.Spinner />
+                </Chakra.Flex>
+              </Chakra.Box>
+            )}
           </Chakra.Box>
         </Chakra.Box>
       </Chakra.Box>
