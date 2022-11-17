@@ -2,6 +2,8 @@
 
 #### In This application is a issue tracking product in this application your're able to create issue Then Drag and drop it to other section.
 
+[Deployed Link](https://637677baa94b554b8bf43094--scintillating-sherbet-a5313a.netlify.app/)
+
 <!-- #### This application is a JIRA Clone in this application your're able to create issue Then Drag and drop it to other section and . -->
 
 #
@@ -63,5 +65,6 @@ npm start
 
 # Screenshots:
 
+Drag And Drop Feature
 <img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.35 AM.jpg">
 <img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.34 AM.jpg">
