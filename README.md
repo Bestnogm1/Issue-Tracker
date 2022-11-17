@@ -10,12 +10,12 @@
 
 To run the project locally:
 
-1. Clone and initiate the [front-end repository](https://github.com/Bestnogm1/Mern-Stack-Book-FE.git) (following the step-by-step setup guide in the README).
+1. Clone and initiate the [Back-End repository](https://github.com/Bestnogm1/tikcet-backend.git) (following the step-by-step setup guide in the README).
 
 2. Navigate to the directory you want to clone this app into and run the command.
 
 ```bash
-git clone https://github.com/Bestnogm1/Mern-Stack-Book-BE-.git
+git clone https://github.com/Bestnogm1/Issue-Tracker.git
 ```
 
 3. After cloning the back-end project directory, run the command.
@@ -27,9 +27,7 @@ touch .env
 4.
 
 ```bash
-DATABASE_URL=mongodb+srv://<your-username>:<your-password>@cluster0.53jre.mongodb.net/<datbase-name>?retryWrites=true&w=majority
-
-SECRET=<create-a-secret-key>
+REACT_APP_BACKEND_SERVER_URL=http://localhost:3001
 ```
 
 5. Install all dependencies by running the command.
