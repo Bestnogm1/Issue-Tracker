@@ -1,0 +1,18 @@
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+.allDashBoard {
+  display: flex;
+  gap: 2rem;
+  width: 100rem;
+  min-width: 40rem;
+  max-width: 110rem;
+  height: 100vh;
+  align-items: center;
+  position: "relative";
+  padding-bottom: 49px;
+  flex-wrap: wrap;
+}

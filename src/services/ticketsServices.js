@@ -1,58 +1,42 @@
 import * as tokenService from "./tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/tickets`;
 
-export async function createTickets(ticketsDetail) {
+export const createTickets = async (ticketForm) => {
   const details = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(ticketsDetail),
+    body: JSON.stringify(ticketForm),
   });
   return details.json();
-}
+};
 
-export async function getAllTickets() {
-  return fetch(BASE_URL).then((res) => res.json());
-}
+export const getAllTickets = async () => {
+  const allTickets = await fetch(BASE_URL);
+  return allTickets.json();
+};
 
-export async function deleteOneTickets(id) {
-  return fetch(`${BASE_URL}/${id}`, {
+export const deleteOneTickets = async (id) => {
+  const deleteTicket = await fetch(`${BASE_URL}/deleteTicket/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-  }).then((res) => res.json());
-}
+    body: JSON.stringify({ id: id }),
+  });
+  return deleteTicket.json();
+};
 
-export async function updateTickets(ticketDetails) {
-  const lobby = await fetch(`${BASE_URL}/${ticketDetails._id}`, {
-    method: "PUT",
+export const updateTicketStatus = async (ticketId, status) => {
+  const lobby = await fetch(`${BASE_URL}/updateTicketStatus`, {
+    method: "POST",
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(ticketDetails),
+    body: JSON.stringify({ _id: ticketId, status: status }),
   });
   return lobby.json();
-}
-
-export async function completedOrNot(ticket) {
-  ticket.completed = !ticket.completed;
-  let data = await fetch(`${BASE_URL}/${ticket._id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${tokenService.getToken()}`,
-    },
-    body: JSON.stringify(ticket),
-  });
-  return data.json();
-}
-
-export async function getAllTicketsId(id) {
-  const tickets = await fetch(`${BASE_URL}/${id}`);
-  const data = await tickets.json();
-  return data;
-}
+};

@@ -1,0 +1,28 @@
+.navBar {
+  display: flex;
+  color: red;
+  /* background-color: #6d9baa; */
+  height: 100vh;
+  padding-top: 6rem;
+}
+.sidebarTags {
+  padding-top: 2rem;
+  padding-left: 3rem;
+  font-size: 1.5rem;
+  border-width: 1px;
+  align-items: center;
+  margin-top: 3rem;
+}
+.container {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  background: #333;
+}
+.name {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 36px;
+  line-height: 100px;
+}
