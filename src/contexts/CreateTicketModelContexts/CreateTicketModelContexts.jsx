@@ -14,9 +14,12 @@ const CreateTicketModelContexts = ({ children }) => {
     assignees: "",
     owner: { name: user?.name },
   });
+
+  //Handle Close and open modal
   let subtitle;
   const afterOpenModal = () => (subtitle.style.color = "#f00");
   const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <CreateTicketsModel.Provider
@@ -27,6 +30,7 @@ const CreateTicketModelContexts = ({ children }) => {
         modalIsOpen,
         formData,
         setFormData,
+        closeModal,
       }}
     >
       {children}

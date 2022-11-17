@@ -1,13 +1,23 @@
-import { Box, Center, Text, Flex } from "@chakra-ui/react";
+import * as Chakra from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import { FaBug } from "react-icons/fa";
 
 const NavBar = () => {
   return (
-    <Flex bg="#033e38" p={4} color="white" justifyContent="center">
-      <Center flex="1" h="40px">
-        <Text fontSize="xl">Page Title</Text>
-      </Center>
-      <Box flex="1" />
-    </Flex>
+    <Chakra.Flex bg="#033e38" p={4} color="white" justifyContent="center">
+      <Chakra.Center flex="1" h="40px">
+        <Chakra.Text fontSize="3rem" fontWeight="bold">
+          <Icon
+            as={FaBug}
+            color="white"
+            aria-label="Call Sage"
+            fontSize="55px"
+          />
+          Issue Tracker
+        </Chakra.Text>
+      </Chakra.Center>
+      <Chakra.Box flex="1" />
+    </Chakra.Flex>
   );
 };
 

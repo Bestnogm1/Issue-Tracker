@@ -3,7 +3,7 @@ import * as Chakra from "@chakra-ui/react";
 import DescriptionTab from "./DescriptionTab";
 import CommentsTabs from "./CommentsTabs";
 
-function MainTabsComponents({ ticketDescription, ticketDetailId }) {
+const MainTabsComponents = ({ ticketDescription, ticketDetailId }) => {
   return (
     <Chakra.Tabs>
       <Chakra.TabList>
@@ -20,6 +20,6 @@ function MainTabsComponents({ ticketDescription, ticketDetailId }) {
       </Chakra.TabPanels>
     </Chakra.Tabs>
   );
-}
+};
 
 export default MainTabsComponents;

@@ -3,8 +3,11 @@ import * as Chakra from "@chakra-ui/react";
 import styles from "./SideBar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
-import { CiLogout } from "react-icons/ci";
+import { IoLogOutOutline } from "react-icons/io5";
+import { MdPersonAddAlt } from "react-icons/md";
+import { FiLogIn } from "react-icons/fi";
 import CrateTicketModel from "../CreateTicketModel/CreateTicketModel";
+
 const SideBar = ({ user, handleLogout }) => {
   // let [firstChar, color] = user.userImage;
   const SidebarContent = () => (
@@ -20,48 +23,65 @@ const SideBar = ({ user, handleLogout }) => {
            </Chakra.Box>
          </Chakra.Box> */}
           {/*  */}
-          <Chakra.Box>
-            <Icon color="white" aria-label="Call Sage" fontSize="55px" />
-            <Chakra.Badge variant="outline" fontSize="10px" color="white">
-              <CrateTicketModel />
-            </Chakra.Badge>
+          <Chakra.Box pt="3rem">
+            <Link to="/">
+              <Chakra.Flex direction="column" justify="center">
+                <Icon
+                  as={AiOutlineHome}
+                  color="white"
+                  aria-label="Call Sage"
+                  fontSize="85px"
+                />
+                <Chakra.Badge align="center">Home</Chakra.Badge>
+              </Chakra.Flex>
+            </Link>
           </Chakra.Box>
-          <Link to="/" onClick={handleLogout}>
-            <Icon
-              as={CiLogout}
-              color="white"
-              aria-label="Call Sage"
-              fontSize="55px"
-            />
-            <Chakra.Badge variant="outline" fontSize="10px" color="white">
-              Logout
-            </Chakra.Badge>
-          </Link>
-          <Link to="/">
-            {" "}
-            <Chakra.Box>
-              <Icon
-                as={AiOutlineHome}
-                color="white"
-                aria-label="Call Sage"
-                fontSize="55px"
-              />
-              <Chakra.Badge variant="outline" fontSize="10px" color="white">
-                Home
-              </Chakra.Badge>
-            </Chakra.Box>
-          </Link>
+          <Chakra.Box pt="3rem">
+            <CrateTicketModel />
+          </Chakra.Box>
+          <Chakra.Box pt="3rem">
+            <Link to="/" onClick={handleLogout}>
+              <Chakra.Flex direction="column" justify="center">
+                <Icon
+                  as={IoLogOutOutline}
+                  color="white"
+                  aria-label="Call Sage"
+                  fontSize="85px"
+                />
+                <Chakra.Badge align="center">Logout</Chakra.Badge>
+              </Chakra.Flex>
+            </Link>
+          </Chakra.Box>
         </>
       ) : (
         <>
-          <Link to="/signup">
-            <Chakra.Button w="100%">signup</Chakra.Button>
-          </Link>
+          <Chakra.Box pt="3rem">
+            <Link to="/signup">
+              <Chakra.Flex direction="column" justify="center">
+                <Icon
+                  as={MdPersonAddAlt}
+                  color="white"
+                  aria-label="Call Sage"
+                  fontSize="85px"
+                />
+                <Chakra.Badge align="center">Signup</Chakra.Badge>
+              </Chakra.Flex>
+            </Link>
+          </Chakra.Box>
+          <Chakra.Box pt="3rem">
+            <Link to="/login">
+              <Chakra.Flex direction="column" justify="center">
+                <Icon
+                  as={FiLogIn}
+                  color="white"
+                  aria-label="Call Sage"
+                  fontSize="85px"
+                />
+                <Chakra.Badge align="center">Login</Chakra.Badge>
+              </Chakra.Flex>
+            </Link>
+          </Chakra.Box>
           {/*  */}
-
-          <Link to="/login">
-            <Chakra.Button w="100%">Login</Chakra.Button>
-          </Link>
         </>
       )}
     </Chakra.VStack>

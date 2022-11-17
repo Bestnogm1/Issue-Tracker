@@ -6,8 +6,9 @@ const AssigneeForm = ({ setAssignees, assignees }) => {
   const [newProfile, setNewProfile] = useState();
   const { profiles } = useProfileContext();
 
+  //Remove the "name" key and switch it to "value" for the Assignee Form
   useEffect(() => {
-    function changeData(data) {
+    const createSelectData = (data) => {
       for (let i = 0; i < data?.length; i++) {
         if (data[i]?.hasOwnProperty("name")) {
           data[i]["value"] = data[i]["name"];
@@ -22,8 +23,8 @@ const AssigneeForm = ({ setAssignees, assignees }) => {
         delete data[i]["ticketAssignedToMe"];
       }
       setNewProfile(data);
-    }
-    changeData(profiles);
+    };
+    createSelectData(profiles);
   }, [profiles]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Modal from "react-modal";
 import { useCreateTicketModelContexts } from "../../contexts/CreateTicketModelContexts/CreateTicketModelContexts";
 import AssigneeForm from "../AssigneeForm/AssigneeForm";
@@ -9,22 +9,27 @@ import styles from "./CreateTicketModel.module.css";
 import { createTickets } from "../../services/ticketsServices";
 import { useNavigate } from "react-router-dom";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
+import { MdAdd } from "react-icons/md";
+
 function CrateTicketModel(props) {
   Modal.setAppElement("body");
+
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
   const [priority, setPriority] = useState([]);
   const formElement = useRef();
+
   const {
     setFormData,
     formData,
     modalIsOpen,
     afterOpenModal,
     openModal,
-    setIsOpen,
+    closeModal,
   } = useCreateTicketModelContexts();
   const { setTickets, tickets } = useTicketsContext();
   const navigate = useNavigate();
+
   //Input Change
   const handleChange = (evt) => {
     setFormData({
@@ -32,12 +37,13 @@ function CrateTicketModel(props) {
       [evt.target.name]: evt.target.value,
     });
   };
+
   //Input Submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
     let submit = {
       assignees,
-      issueType: issueType.value,
+      issue: issueType.value,
       priority: priority.value,
       status: "Open Ticket",
     };
@@ -47,38 +53,45 @@ function CrateTicketModel(props) {
     window.location.reload();
   };
 
-  function closeModal() {
-    setIsOpen(false);
-    navigate("/");
-  }
-
   return (
     <Chakra.Box align="center" bc="red">
-      {/*  */}
-      <Chakra.Button
-        colorScheme="teal"
-        variant="outline"
-        onClick={openModal}
-        size="xs"
-      >
-        Detail
-      </Chakra.Button>
+      <Chakra.Box variant="outline" onClick={openModal} size="lg">
+        <Chakra.Flex direction="column" justify="center">
+          <Chakra.Icon
+            as={MdAdd}
+            color="white"
+            aria-label="Call Sage"
+            fontSize="85px"
+          />
+          <Chakra.Badge>Add issue</Chakra.Badge>
+        </Chakra.Flex>
+      </Chakra.Box>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={CreateIssueData.createIssueStyles}
-        // style={CreateIssueData.createIssueStyles}
-        contentLabel="Example Modal"
+        contentLabel="Create Ticket Modal"
       >
         <Chakra.Box
           p="2rem"
           className={styles.createTickets}
           onClick={openModal}
         >
-          <Chakra.Flex pb="15px" justify="flexStart" pr="20rem">
-            <Chakra.Box>
+          <Chakra.Flex pb="15px" justify="flexStart" align="center">
+            <Chakra.Box w="50%">
               <Chakra.Text fontSize="50px"> Create An Issue </Chakra.Text>
+            </Chakra.Box>
+            <Chakra.Box w="50%">
+              <Chakra.Flex align="center" justify="flex-end">
+                <Chakra.Button
+                  fontSize="20px"
+                  variant="ghost"
+                  onClick={closeModal}
+                >
+                  X
+                </Chakra.Button>
+              </Chakra.Flex>
             </Chakra.Box>
           </Chakra.Flex>
           {/*   */}
@@ -94,8 +107,6 @@ function CrateTicketModel(props) {
                 onChange={setIssueType}
               />
             </Chakra.Flex>
-
-            {/*  */}
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
                 Title
@@ -109,8 +120,6 @@ function CrateTicketModel(props) {
                 onChange={handleChange}
               />
             </Chakra.Flex>
-
-            {/*  */}
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text fontSize="15px" mb="8px">
                 Description
@@ -125,16 +134,12 @@ function CrateTicketModel(props) {
                 resize="none"
               />
             </Chakra.Flex>
-
-            {/*  */}
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
                 Assignees
               </Chakra.Text>
               <AssigneeForm setAssignees={setAssignees} assignees={assignees} />
             </Chakra.Flex>
-
-            {/*  */}
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
                 Priority
@@ -146,17 +151,20 @@ function CrateTicketModel(props) {
                 onChange={setPriority}
               />
             </Chakra.Flex>
-
-            {/*  */}
             <Chakra.Flex direction="column" pb="15px" gap="10px">
-              <Chakra.Button type="submit" colorScheme="green" size="sm">
+              <Chakra.Button
+                type="submit"
+                bg="lightGreen"
+                size="sm"
+                color="black"
+              >
                 Create Issue
               </Chakra.Button>
               <Chakra.Button
                 size="sm"
                 colorScheme="gray"
                 variant="ghost"
-                onClick={openModal}
+                onClick={closeModal}
               >
                 Cancel
               </Chakra.Button>

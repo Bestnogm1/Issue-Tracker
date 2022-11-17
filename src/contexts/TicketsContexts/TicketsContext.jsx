@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
 import * as ticketsServices from "../../services/ticketsServices";
 
 const CreateTicketsContext = createContext(null);
@@ -7,7 +6,7 @@ export const useTicketsContext = () => useContext(CreateTicketsContext);
 
 const Tickets = ({ children }) => {
   const [tickets, setTickets] = useState();
-  console.log(tickets);
+
   useEffect(() => {
     ticketsServices.getAllTickets().then((res) => setTickets(res));
   }, []);
@@ -18,23 +17,13 @@ const Tickets = ({ children }) => {
     });
   };
 
-  const completed = (_ticket) => {
-    ticketsServices.completedOrNot(_ticket).then(
-      setTickets(
-        tickets.filter((ticket) => {
-          if (ticket._id === _ticket._id) return (ticket.completed = true);
-          return ticket;
-        })
-      )
-    );
-  };
-
   const handleDeleteTicket = (id) => {
     ticketsServices
       .deleteOneTickets(id)
       .then(setTickets(tickets.filter((ticket) => ticket._id !== id)));
   };
 
+  // Handling the Status of the tickets
   const updateStatus = (ticketId, status) => {
     if (status === "Open Ticket") {
       ticketsServices.updateTicketStatus(ticketId, status);
@@ -49,6 +38,25 @@ const Tickets = ({ children }) => {
       ticketsServices.updateTicketStatus(ticketId, status);
     }
   };
+
+  //Inline Style components for the Modal
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width: "45rem",
+      height: "49rem",
+      boxShadow: "-1px 0 5px 0",
+      minWidth: "10%",
+      maxWidth: "50%",
+      maxHeight: "100%",
+    },
+  };
+
   return (
     <CreateTicketsContext.Provider
       value={{
@@ -56,8 +64,8 @@ const Tickets = ({ children }) => {
         setTickets,
         tickets,
         handleCreateTickets,
-        completed,
         handleDeleteTicket,
+        customStyles,
       }}
     >
       {children}

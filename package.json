@@ -16,7 +16,6 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "bootstrap": "^5.2.0-beta1",
     "buffer": "^6.0.3",
     "chakra-react-select": "^4.4.0",
     "dayjs": "^1.11.3",
@@ -63,7 +62,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.6"
+    "postcss": "^8.4.14"
   }
 }

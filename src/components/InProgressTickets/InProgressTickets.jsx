@@ -5,10 +5,14 @@ import styles from "../OpenTickets/OpenTickets.module.css";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
 import dayjs from "dayjs";
 
-function InProgressTickets(props) {
+const InProgressTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
 
-  function dragDropped(e) {
+  //handling different state of drag
+  const dragHasStarted = (e, id) => e.dataTransfer.setData("TicketId", id);
+  const draggingOver = (e) => e.preventDefault();
+
+  const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "In Progress";
     const setTicketToInProgress = tickets.map((ticket) => {
@@ -19,14 +23,6 @@ function InProgressTickets(props) {
       return ticket;
     });
     setTickets(setTicketToInProgress);
-  }
-
-  function draggingOver(e) {
-    e.preventDefault();
-  }
-
-  const dragHasStarted = (e, id) => {
-    e.dataTransfer.setData("TicketId", id);
   };
 
   return (
@@ -54,7 +50,6 @@ function InProgressTickets(props) {
           >
             {tickets?.map((ticket, idx) => (
               <React.Fragment key={idx}>
-                {/* {ticket.status === "Open Ticket" ? ( */}
                 {ticket.status === "In Progress" ? (
                   <Chakra.Box
                     className={styles.TicketsCards}
@@ -80,7 +75,7 @@ function InProgressTickets(props) {
                       </Chakra.Flex>
                       <Chakra.Flex direction="row">
                         <Chakra.Flex direction="row" align="end" w="50%">
-                          <Window ticketDetail={ticket} />
+                          <Window ticketDetail={ticket} color={"red"} />
                         </Chakra.Flex>
                         <Chakra.Flex justify="end" w="50%">
                           <Chakra.Text fontSize=".7em">
@@ -98,6 +93,6 @@ function InProgressTickets(props) {
       </Chakra.Box>
     </>
   );
-}
+};
 
 export default InProgressTickets;

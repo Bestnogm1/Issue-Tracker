@@ -3,10 +3,11 @@ import * as Chakra from "@chakra-ui/react";
 import styles from "./Comments.module.css";
 import { useCreateCommentsContexts } from "../../contexts/CommentsContexts/CommentsContexts";
 import { useUserContext } from "../../contexts/UserContexts/UserContexts";
-function Comments({ ticketDetailId }) {
+
+const Comments = ({ ticketDetailId }) => {
   const { getAllMessage, handleDeleteComments } = useCreateCommentsContexts();
   const { user } = useUserContext();
-  console.log(getAllMessage);
+
   return (
     <Chakra.Box className={styles.CommentsMain}>
       {getAllMessage.map((message, index) => (
@@ -19,7 +20,8 @@ function Comments({ ticketDetailId }) {
                 {message.ownedBy.email === user.email ? (
                   <Chakra.Button
                     size="small"
-                    colorScheme="red"
+                    bg="red"
+                    color="white"
                     variant="solid"
                     width="4rem"
                     onClick={() => handleDeleteComments(message?.tempUUID)}
@@ -39,6 +41,6 @@ function Comments({ ticketDetailId }) {
       ))}
     </Chakra.Box>
   );
-}
+};
 
 export default Comments;

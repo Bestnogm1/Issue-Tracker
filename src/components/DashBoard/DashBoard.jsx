@@ -1,4 +1,3 @@
-// import {useId} from 'react';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import InProgressTickets from "../InProgressTickets/InProgressTickets";
@@ -10,7 +9,7 @@ import * as Chakra from "@chakra-ui/react";
 
 dayjs.extend(relativeTime);
 
-function DashBoard({ isOver, children }) {
+const DashBoard = () => {
   return (
     <Chakra.Box
       className={styles.allDashBoard}
@@ -27,6 +26,6 @@ function DashBoard({ isOver, children }) {
       </Chakra.Box>
     </Chakra.Box>
   );
-}
+};
 
 export default DashBoard;

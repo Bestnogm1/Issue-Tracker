@@ -1,7 +1,8 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import styles from "./Styles/DescriptionTab.module.css";
-function DescriptionTab({ ticketDescription }) {
+
+const DescriptionTab = ({ ticketDescription }) => {
   return (
     <div>
       <Chakra.Box className={styles.DescriptionTabDetail}>
@@ -13,6 +14,6 @@ function DescriptionTab({ ticketDescription }) {
       </Chakra.Box>
     </div>
   );
-}
+};
 
 export default DescriptionTab;

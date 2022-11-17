@@ -4,7 +4,8 @@ import * as messageService from "../../services/messageServices.js";
 const CreateCommentsContexts = createContext(null);
 export const useCreateCommentsContexts = () =>
   useContext(CreateCommentsContexts);
-function CommentsContexts({ children }) {
+
+const CommentsContexts = ({ children }) => {
   const [inputData, setInputData] = useState("");
   const [getAllMessage, setGetAllMessage] = useState([]);
 
@@ -35,6 +36,6 @@ function CommentsContexts({ children }) {
       {children}
     </CreateCommentsContexts.Provider>
   );
-}
+};
 
 export default CommentsContexts;

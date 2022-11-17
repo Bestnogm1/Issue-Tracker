@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { MovingComponent } from "react-moving-text";
 function Quote(props) {
   const [quotes, setQuote] = useState("");
-  let randomQuote = [
+
+  const randomQuote = [
     {
       quote: "Be yourself; everyone else is already taken.",
       author: "Oscar Wilde",
@@ -220,6 +221,7 @@ function Quote(props) {
     let random = Math.floor(Math.random() * randomQuote.length);
     setQuote(randomQuote[random]);
   }, []);
+
   return (
     <div>
       <MovingComponent

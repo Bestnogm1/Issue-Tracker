@@ -3,32 +3,27 @@ import Window from "../Window/Window";
 import styles from "./OpenTickets.module.css";
 import * as Chakra from "@chakra-ui/react";
 import dayjs from "dayjs";
-
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
-function OpenTickets(props) {
+
+const OpenTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
 
-  function dragDropped(e) {
+  //handling different state of drag
+  const dragHasStarted = (e, id) => e.dataTransfer.setData("TicketId", id);
+  const draggingOver = (e) => e.preventDefault();
+
+  const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "Open Ticket";
-
-    const setTicketToInOpenTicket = tickets.map((ticket) => {
+    const setTicketToOpenTicket = tickets.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = status;
         updateStatus(ticket._id, status);
       }
       return ticket;
     });
-    setTickets(setTicketToInOpenTicket);
-  }
-
-  const dragHasStarted = (e, id) => {
-    e.dataTransfer.setData("TicketId", id);
+    setTickets(setTicketToOpenTicket);
   };
-
-  function draggingOver(e) {
-    e.preventDefault();
-  }
 
   return (
     <>
@@ -79,7 +74,7 @@ function OpenTickets(props) {
                       </Chakra.Flex>
                       <Chakra.Flex direction="row">
                         <Chakra.Flex direction="row" align="end" w="50%">
-                          <Window ticketDetail={ticket} />
+                          <Window ticketDetail={ticket} color={"green"} />
                         </Chakra.Flex>
                         <Chakra.Flex justify="end" w="50%">
                           <Chakra.Text fontSize=".7em">
@@ -97,6 +92,6 @@ function OpenTickets(props) {
       </Chakra.Box>
     </>
   );
-}
+};
 
 export default OpenTickets;

@@ -4,38 +4,18 @@ import * as Chakra from "@chakra-ui/react";
 import MainTabsComponents from "../TabsComponents/MainTabsComponents";
 import Comments from "../Comments/Comments";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
-import { useNavigate } from "react-router-dom";
 
-function Window({ ticketDetail }) {
-  const { handleDeleteTicket } = useTicketsContext();
+function Window({ ticketDetail, color }) {
   Modal.setAppElement("body");
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      width: "45rem",
-      height: "49rem",
-    },
-  };
-  let navigate = useNavigate();
-  let subtitle;
+
   const [modalIsOpen, setIsOpen] = useState(false);
-  function openModal() {
-    setIsOpen(true);
-  }
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
-  function closeModal() {
-    setIsOpen(false);
-    navigate("/");
-    window.location.reload();
-  }
+  const { handleDeleteTicket, customStyles } = useTicketsContext();
+
+  //functions to handle Open and Close Modal
+  let subtitle;
+  const afterOpenModal = () => (subtitle.style.color = "#f00");
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <div>
@@ -47,8 +27,6 @@ function Window({ ticketDetail }) {
       >
         Detail
       </Chakra.Button>
-      {/*  */}
-      {/* <button onClick={closeModal}>Close</button> */}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -56,17 +34,23 @@ function Window({ ticketDetail }) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        {/*  */}
-
         <Chakra.Box>
-          <Chakra.Flex>
-            {/* <Chakra.Badge onClick={closeModal}>close</Chakra.Badge> */}
-            <Chakra.Text fontSize="3rem" fontWeight="bold" width="100%">
-              {ticketDetail?.title}
-            </Chakra.Text>
+          <Chakra.Flex pb="15px" justify="flexStart" align="center">
+            <Chakra.Box w="50%">
+              <Chakra.Text fontSize="50px"> {ticketDetail?.title} </Chakra.Text>
+            </Chakra.Box>
+            <Chakra.Box w="50%">
+              <Chakra.Flex align="center" justify="flex-end">
+                <Chakra.Button
+                  fontSize="20px"
+                  variant="ghost"
+                  onClick={closeModal}
+                >
+                  X
+                </Chakra.Button>
+              </Chakra.Flex>
+            </Chakra.Box>
           </Chakra.Flex>
-          {/*  */}
-
           <Chakra.Box>
             <Chakra.Flex gap="1rem">
               <Chakra.Text fontSize="20px">Assignee: </Chakra.Text>
@@ -76,16 +60,70 @@ function Window({ ticketDetail }) {
                 </React.Fragment>
               ))}
             </Chakra.Flex>
-            <Chakra.Flex fontSize="20px">
+            <Chakra.Flex fontSize="20px" color={color}>
               Status: {ticketDetail?.status}
+            </Chakra.Flex>
+            <Chakra.Flex fontSize="20px" align="center">
+              Priority:
+              {ticketDetail?.priority === "Urgent" ? (
+                <Chakra.Badge
+                  colorScheme="orange"
+                  align="center"
+                  color="white"
+                  variant="solid"
+                  fontSize="0.6em"
+                  rounded="md"
+                  height="20px"
+                  ml=".5rem"
+                >
+                  {ticketDetail?.priority}
+                </Chakra.Badge>
+              ) : ticketDetail?.priority === "High" ? (
+                <Chakra.Badge
+                  colorScheme="red"
+                  align="center"
+                  color="white"
+                  variant="solid"
+                  fontSize="0.6em"
+                  rounded="md"
+                  height="20px"
+                  ml=".5rem"
+                >
+                  {ticketDetail?.priority}
+                </Chakra.Badge>
+              ) : ticketDetail?.priority === "Normal" ? (
+                <Chakra.Badge
+                  colorScheme="green"
+                  align="center"
+                  color="white"
+                  variant="solid"
+                  fontSize="0.6em"
+                  rounded="md"
+                  height="20px"
+                  ml=".5rem"
+                >
+                  {ticketDetail?.priority}
+                </Chakra.Badge>
+              ) : ticketDetail?.priority === "Low" ? (
+                <Chakra.Badge
+                  colorScheme="yellow"
+                  align="center"
+                  color="white"
+                  variant="solid"
+                  fontSize="0.6em"
+                  rounded="md"
+                  height="20px"
+                  ml=".5rem"
+                >
+                  {ticketDetail?.priority}
+                </Chakra.Badge>
+              ) : null}
             </Chakra.Flex>
           </Chakra.Box>
           <Chakra.Flex gap="2rem" align="center">
             <Chakra.Text fontSize="20px">Issue:</Chakra.Text>
             <Chakra.Badge>{ticketDetail?.issue}</Chakra.Badge>
           </Chakra.Flex>
-          {/*  */}
-
           <Chakra.Box>
             <MainTabsComponents
               ticketDescription={ticketDetail?.description}

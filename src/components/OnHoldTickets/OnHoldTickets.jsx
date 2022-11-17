@@ -1,34 +1,29 @@
 import React from "react";
-import style from "./OnHoldTickets.module.css";
-import * as Chakra from "@chakra-ui/react";
-import styles from "../OpenTickets/OpenTickets.module.css";
-import Window from "../Window/Window";
 import dayjs from "dayjs";
-
+import * as Chakra from "@chakra-ui/react";
+import Window from "../Window/Window";
+import styles from "../OpenTickets/OpenTickets.module.css";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
-function OnHoldTickets(props) {
+
+const OnHoldTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
 
-  function dragDropped(e) {
+  //handling different state of drag
+  const dragHasStarted = (e, id) => e.dataTransfer.setData("TicketId", id);
+  const draggingOver = (e) => e.preventDefault();
+
+  const dragDropped = (e) => {
     let grabData = e.dataTransfer.getData("TicketId");
     const status = "On Hold";
-    const setTicketToInOpenTicket = tickets.map((ticket) => {
+    const setTicketToOnHoldTickets = tickets.map((ticket) => {
       if (ticket._id === grabData) {
         ticket.status = status;
         updateStatus(ticket._id, status);
       }
       return ticket;
     });
-    setTickets(setTicketToInOpenTicket);
-  }
-  // enum: ["Open Ticket", "In Progress", "On Hold", "Completed"]
-  const dragHasStarted = (e, id) => {
-    e.dataTransfer.setData("TicketId", id);
+    setTickets(setTicketToOnHoldTickets);
   };
-
-  function draggingOver(e) {
-    e.preventDefault();
-  }
 
   return (
     <>
@@ -82,7 +77,7 @@ function OnHoldTickets(props) {
                       </Chakra.Flex>
                       <Chakra.Flex direction="row">
                         <Chakra.Flex direction="row" align="end" w="50%">
-                          <Window ticketDetail={ticket} />
+                          <Window ticketDetail={ticket} color={"lightblue"} />
                         </Chakra.Flex>
                         <Chakra.Flex justify="end" w="50%">
                           <Chakra.Text fontSize=".7em">
@@ -100,6 +95,6 @@ function OnHoldTickets(props) {
       </Chakra.Box>
     </>
   );
-}
+};
 
 export default OnHoldTickets;

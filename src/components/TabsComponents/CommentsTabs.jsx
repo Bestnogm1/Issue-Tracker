@@ -4,26 +4,23 @@ import * as messageService from "../../services/messageServices.js";
 import { useCreateCommentsContexts } from "../../contexts/CommentsContexts/CommentsContexts";
 import { useUserContext } from "../../contexts/UserContexts/UserContexts.jsx";
 import { v4 as uuidv4 } from "uuid";
-function CommentsTabs({ ticketDetailId }) {
+
+const CommentsTabs = ({ ticketDetailId }) => {
+  const { user } = useUserContext();
   const { inputData, setInputData, getAllMessage, setGetAllMessage } =
     useCreateCommentsContexts();
-  const { user } = useUserContext();
-  console.log(user);
-  console.log(getAllMessage);
-  function handleSubmit(e) {
+
+  const handleSubmit = () => {
     const newMessage = {
       content: inputData,
       ownedBy: { name: user.name, profile: user.profile, email: user.email },
       ticketId: ticketDetailId,
       tempUUID: uuidv4(),
     };
-
     messageService.createMessage({ ...newMessage, ownedBy: user.profile });
     setGetAllMessage([...getAllMessage, newMessage]);
-
-    console.log(getAllMessage);
     setInputData("");
-  }
+  };
 
   return (
     <Chakra.Box>
@@ -49,6 +46,6 @@ function CommentsTabs({ ticketDetailId }) {
       </Chakra.Flex>
     </Chakra.Box>
   );
-}
+};
 
 export default CommentsTabs;
