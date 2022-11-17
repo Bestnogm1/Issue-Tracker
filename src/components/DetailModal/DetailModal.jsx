@@ -4,9 +4,11 @@ import * as Chakra from "@chakra-ui/react";
 import MainTabsComponents from "../TabsComponents/MainTabsComponents";
 import Comments from "../Comments/Comments";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
+import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
-function Window({ ticketDetail, color }) {
+const DetailModal = ({ ticketDetail, color }) => {
   Modal.setAppElement("body");
+  const { user } = useUserContext();
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const { handleDeleteTicket, customStyles } = useTicketsContext();
@@ -56,7 +58,9 @@ function Window({ ticketDetail, color }) {
               <Chakra.Text fontSize="20px">Assignee: </Chakra.Text>
               {ticketDetail?.assignees.map((assignee, i) => (
                 <React.Fragment key={i}>
-                  <Chakra.Text fontSize="20px"> {assignee?.name}</Chakra.Text>
+                  <Chakra.Badge fontSize="15px" align="center">
+                    {assignee?.name}
+                  </Chakra.Badge>
                 </React.Fragment>
               ))}
             </Chakra.Flex>
@@ -134,18 +138,20 @@ function Window({ ticketDetail, color }) {
             <Comments ticketDetailId={ticketDetail._id} />
           </Chakra.Box>
         </Chakra.Box>
-        <Chakra.Button
-          ml="10px"
-          mt="15px"
-          colorScheme="red"
-          size="md"
-          onClick={() => handleDeleteTicket(ticketDetail._id)}
-        >
-          Delete
-        </Chakra.Button>
+        {user.profile === ticketDetail.owner._id ? (
+          <Chakra.Button
+            ml="10px"
+            mt="15px"
+            colorScheme="red"
+            size="md"
+            onClick={() => handleDeleteTicket(ticketDetail._id)}
+          >
+            Delete
+          </Chakra.Button>
+        ) : null}
       </Modal>
     </div>
   );
-}
+};
 
-export default Window;
+export default DetailModal;

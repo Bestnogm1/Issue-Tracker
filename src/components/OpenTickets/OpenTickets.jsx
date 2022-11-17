@@ -1,5 +1,5 @@
 import React from "react";
-import Window from "../Window/Window";
+import DetailModal from "../DetailModal/DetailModal";
 import styles from "./OpenTickets.module.css";
 import * as Chakra from "@chakra-ui/react";
 import dayjs from "dayjs";
@@ -77,7 +77,10 @@ const OpenTickets = () => {
                         </Chakra.Flex>
                         <Chakra.Flex direction="row">
                           <Chakra.Flex direction="row" align="end" w="50%">
-                            <Window ticketDetail={ticket} color={"green"} />
+                            <DetailModal
+                              ticketDetail={ticket}
+                              color={"green"}
+                            />
                           </Chakra.Flex>
                           <Chakra.Flex justify="end" w="50%">
                             <Chakra.Text fontSize=".7em">

@@ -3,6 +3,7 @@ import * as Chakra from "@chakra-ui/react";
 import styles from "./Comments.module.css";
 import { useCreateCommentsContexts } from "../../contexts/CommentsContexts/CommentsContexts";
 import { useUserContext } from "../../contexts/UserContexts/UserContexts";
+import dayjs from "dayjs";
 
 const Comments = ({ ticketDetailId }) => {
   const { getAllMessage, handleDeleteComments } = useCreateCommentsContexts();
@@ -16,7 +17,9 @@ const Comments = ({ ticketDetailId }) => {
             <Chakra.Box w="100%" className={styles.CommentsComp}>
               <Chakra.Flex direction="row" gap="2rem">
                 <Chakra.Text>{message.ownedBy.name}</Chakra.Text>
-                <Chakra.Text>1Hour ago</Chakra.Text>
+                <Chakra.Text>
+                  {dayjs().to(dayjs(message.createdAt))}
+                </Chakra.Text>
                 {message.ownedBy.email === user.email ? (
                   <Chakra.Button
                     size="small"
