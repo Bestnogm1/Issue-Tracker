@@ -38,5 +38,6 @@ export const updateTicketStatus = async (ticketId, status) => {
     },
     body: JSON.stringify({ _id: ticketId, status: status }),
   });
-  return lobby.json();
+
+  return lobby;
 };
