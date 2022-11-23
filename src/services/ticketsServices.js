@@ -2,13 +2,14 @@ import * as tokenService from "./tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}api/tickets`;
 
 export const createTickets = async (ticketForm) => {
+  console.log(ticketForm, "coming from ticket services");
   const details = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(ticketForm),
+    body: JSON.stringify({ ticketForm }),
   });
   return details.json();
 };
@@ -34,7 +35,6 @@ export const updateTicketStatus = async (ticketId, status) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: JSON.stringify({ _id: ticketId, status: status }),
   });

@@ -71,6 +71,11 @@ const OnHoldTickets = () => {
                             {ticket?.owner.name}
                           </Chakra.Text>
                         </Chakra.Flex>
+                        <Chakra.Flex>
+                          {ticket.imageUrl ? (
+                            <img src={ticket.imageUrl} alt="issueTicketImage" />
+                          ) : null}
+                        </Chakra.Flex>
                         <Chakra.Flex direction="column">
                           <Chakra.Box className={styles.TicketsDetail}>
                             <Chakra.Text>{ticket.description}</Chakra.Text>

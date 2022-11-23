@@ -10,6 +10,8 @@ import { createTickets } from "../../services/ticketsServices";
 import { useNavigate } from "react-router-dom";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
 import { MdAdd } from "react-icons/md";
+import AddImages from "../AddImages/AddImages";
+import { v4 as uuidv4 } from "uuid";
 
 function CrateTicketModel(props) {
   Modal.setAppElement("body");
@@ -26,7 +28,11 @@ function CrateTicketModel(props) {
     afterOpenModal,
     openModal,
     closeModal,
+    file,
+    setFile,
+    submitImage,
   } = useCreateTicketModelContexts();
+
   const { setTickets, tickets } = useTicketsContext();
   const navigate = useNavigate();
 
@@ -38,6 +44,7 @@ function CrateTicketModel(props) {
     });
   };
 
+  let tempUUID = uuidv4();
   //Input Submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -46,11 +53,19 @@ function CrateTicketModel(props) {
       issue: issueType.value,
       priority: priority.value,
       status: "Open Ticket",
+      tempUUID: tempUUID,
     };
     createTickets({ ...formData, ...submit });
     setTickets([...tickets, { ...formData, ...submit }]);
+
+    if (file) {
+      submitImage(tempUUID);
+    }
     navigate("/");
-    window.location.reload();
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 300);
   };
 
   return (
@@ -95,6 +110,9 @@ function CrateTicketModel(props) {
             </Chakra.Box>
           </Chakra.Flex>
           {/*   */}
+          {/*  */}
+          <AddImages file={file} setFile={setFile} submitImage={submitImage} />
+          {/*  */}
           <form onSubmit={handleSubmit} ref={formElement}>
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
