@@ -42,5 +42,6 @@
 }
 
 .imgContainer {
-  max-width: 90%;
+  margin-top: 1em;
+  max-width: 100%;
 }

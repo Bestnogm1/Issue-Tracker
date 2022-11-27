@@ -16,8 +16,6 @@ const Comments = ({ ticketDetailId }) => {
           {message?.ticketId === ticketDetailId ? (
             <Chakra.Box w="100%" className={styles.CommentsComp}>
               <Chakra.Flex direction="row" gap="2rem">
-                {/* <Chakra.Text>{message.ownedBy.name}</Chakra.Text>
-                 */}
                 <Chakra.Tooltip
                   label={message.ownedBy.name}
                   aria-label="A tooltip"

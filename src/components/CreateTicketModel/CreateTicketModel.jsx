@@ -14,7 +14,7 @@ import AddImages from "../AddImages/AddImages";
 import { v4 as uuidv4 } from "uuid";
 
 function CrateTicketModel(props) {
-  Modal.setAppElement("body");
+  Modal.setAppElement("#root");
 
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
@@ -102,7 +102,9 @@ function CrateTicketModel(props) {
                 <Chakra.Button
                   fontSize="20px"
                   variant="ghost"
-                  onClick={closeModal}
+                  onClick={() => {
+                    closeModal();
+                  }}
                 >
                   X
                 </Chakra.Button>

@@ -11,15 +11,20 @@ const CreateTicketModelContexts = ({ children }) => {
   const { user } = useUserContext();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [file, setFile] = useState();
+
   const [formData, setFormData] = useState({
     title: "",
     owner: user?.profile,
   });
+
   //Handle Close and open modal
   let subtitle;
   const afterOpenModal = () => (subtitle.style.color = "#f00");
   const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const closeModal = () => {
+    setIsOpen(false);
+    setFile(null);
+  };
 
   const submitImage = async (tempUUID) => {
     const addImage = new FormData();

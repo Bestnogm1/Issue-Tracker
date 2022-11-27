@@ -77,7 +77,7 @@ const OnHoldTickets = () => {
                             </Chakra.Text>
                           </Chakra.Flex>
                         </Chakra.Flex>
-                        <Chakra.Flex>
+                        <Chakra.Flex className={styles.imgContainer}>
                           {ticket.imageUrl ? (
                             <img src={ticket.imageUrl} alt="issueTicketImage" />
                           ) : null}
@@ -87,7 +87,7 @@ const OnHoldTickets = () => {
                             <Chakra.Text>{ticket.description}</Chakra.Text>
                           </Chakra.Box>
                         </Chakra.Flex>
-                        <Chakra.Flex direction="row">
+                        <Chakra.Flex direction="row" pt="15px">
                           <Chakra.Flex direction="row" align="end" w="50%">
                             <DetailModal
                               ticketDetail={ticket}

@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as ticketsServices from "../../services/ticketsServices";
+import { useToast } from "@chakra-ui/react";
+import * as Chakra from "@chakra-ui/react";
 
 const CreateTicketsContext = createContext(null);
 export const useTicketsContext = () => useContext(CreateTicketsContext);
 
 const Tickets = ({ children }) => {
   const [tickets, setTickets] = useState();
+  const toast = useToast();
 
   useEffect(() => {
     ticketsServices.getAllTickets().then((res) => setTickets(res));
@@ -21,6 +24,14 @@ const Tickets = ({ children }) => {
     ticketsServices
       .deleteOneTickets(id)
       .then(setTickets(tickets.filter((ticket) => ticket._id !== id)));
+    toast({
+      position: "bottom-left",
+      render: () => (
+        <Chakra.Box color="white" p={3} bg="red.500">
+          Ticket Deleted
+        </Chakra.Box>
+      ),
+    });
   };
 
   // Handling the Status of the tickets

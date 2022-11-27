@@ -144,6 +144,7 @@ const DetailModal = ({ ticketDetail, color }) => {
             <MainTabsComponents
               ticketDescription={ticketDetail?.description}
               ticketDetailId={ticketDetail._id}
+              ticketDetail={ticketDetail}
             />
           </Chakra.Box>
           <Chakra.Box>
