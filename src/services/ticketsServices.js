@@ -35,6 +35,7 @@ export const updateTicketStatus = async (ticketId, status) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: JSON.stringify({ _id: ticketId, status: status }),
   });

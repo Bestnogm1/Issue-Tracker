@@ -58,9 +58,21 @@ const DetailModal = ({ ticketDetail, color }) => {
               <Chakra.Text fontSize="20px">Assignee: </Chakra.Text>
               {ticketDetail?.assignees.map((assignee, i) => (
                 <React.Fragment key={i}>
-                  <Chakra.Badge fontSize="15px" align="center">
-                    {assignee?.name}
-                  </Chakra.Badge>
+                  <>
+                    <Chakra.Flex align="center" direction="column">
+                      <Chakra.Tooltip
+                        label={assignee.name}
+                        aria-label="A tooltip"
+                      >
+                        <Chakra.Image
+                          borderRadius="full"
+                          boxSize="30px"
+                          src={assignee.profilePicture}
+                          alt={assignee.name}
+                        />
+                      </Chakra.Tooltip>
+                    </Chakra.Flex>
+                  </>
                 </React.Fragment>
               ))}
             </Chakra.Flex>

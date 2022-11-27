@@ -63,11 +63,19 @@ const InProgressTickets = () => {
                       onDragStart={(e) => dragHasStarted(e, ticket._id)}
                     >
                       <Chakra.Box p="13px">
-                        <Chakra.Flex direction="column">
-                          <Chakra.Text color="red">{ticket.title}</Chakra.Text>
-                          <Chakra.Text fontSize=".8em">
-                            {ticket?.owner.name}
-                          </Chakra.Text>
+                        <Chakra.Flex direction="row" align="center">
+                          <Chakra.Flex direction="row" w="50%">
+                            <Chakra.Text color="red">
+                              {ticket.title}
+                            </Chakra.Text>
+                          </Chakra.Flex>
+                          <Chakra.Flex w="50%" justify="end">
+                            <Chakra.Text fontSize=".8em">
+                              <Chakra.Badge color="red">
+                                {ticket?.owner.name}
+                              </Chakra.Badge>
+                            </Chakra.Text>
+                          </Chakra.Flex>
                         </Chakra.Flex>
                         <Chakra.Flex>
                           {ticket.imageUrl ? (

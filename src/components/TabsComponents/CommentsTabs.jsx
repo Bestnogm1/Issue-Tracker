@@ -13,7 +13,12 @@ const CommentsTabs = ({ ticketDetailId }) => {
   const handleSubmit = () => {
     const newMessage = {
       content: inputData,
-      ownedBy: { name: user.name, profile: user.profile, email: user.email },
+      ownedBy: {
+        name: user.name,
+        profile: user.profile,
+        email: user.email,
+        profilePicture: user.profilePicture,
+      },
       ticketId: ticketDetailId,
       tempUUID: uuidv4(),
     };

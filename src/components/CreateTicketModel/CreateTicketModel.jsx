@@ -109,10 +109,12 @@ function CrateTicketModel(props) {
               </Chakra.Flex>
             </Chakra.Box>
           </Chakra.Flex>
-          {/*   */}
-          {/*  */}
+          <Chakra.Text mb="8px" fontSize="15px">
+            Add Image
+          </Chakra.Text>
+
           <AddImages file={file} setFile={setFile} submitImage={submitImage} />
-          {/*  */}
+
           <form onSubmit={handleSubmit} ref={formElement}>
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
@@ -148,7 +150,7 @@ function CrateTicketModel(props) {
                 name="description"
                 variant="filled"
                 onChange={handleChange}
-                placeholder="details"
+                placeholder="Details"
                 resize="none"
               />
             </Chakra.Flex>
