@@ -20,6 +20,7 @@ function CrateTicketModel(props) {
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
   const [priority, setPriority] = useState([]);
+  const [disableButton, setDisableButton] = useState(false);
   const formElement = useRef();
   const { user } = useUserContext();
 
@@ -51,6 +52,7 @@ function CrateTicketModel(props) {
   //Input Submit tickets
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setDisableButton(true);
     let submit = {
       assignees,
       issue: issueType.value,
@@ -191,6 +193,7 @@ function CrateTicketModel(props) {
                 bg="lightGreen"
                 size="sm"
                 color="black"
+                disabled={disableButton}
               >
                 Create Issue
               </Chakra.Button>
