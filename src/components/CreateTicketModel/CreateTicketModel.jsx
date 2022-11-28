@@ -12,6 +12,7 @@ import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext
 import { MdAdd } from "react-icons/md";
 import AddImages from "../AddImages/AddImages";
 import { v4 as uuidv4 } from "uuid";
+import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
 function CrateTicketModel(props) {
   Modal.setAppElement("#root");
@@ -20,6 +21,7 @@ function CrateTicketModel(props) {
   const [assignees, setAssignees] = useState([]);
   const [priority, setPriority] = useState([]);
   const formElement = useRef();
+  const { user } = useUserContext();
 
   const {
     setFormData,
@@ -57,8 +59,12 @@ function CrateTicketModel(props) {
       tempUUID: tempUUID,
     };
     createTickets({ ...formData, ...submit });
-    setTickets([...tickets, { ...formData, ...submit }]);
 
+    setTickets([
+      ...tickets,
+      { ...formData, ...submit, owner: { name: user.name } },
+    ]);
+    console.log(tickets);
     if (fileForImg) {
       await submitImage(tempUUID);
       window.location.reload();

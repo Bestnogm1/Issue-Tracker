@@ -15,7 +15,7 @@ const ClosedTickets = () => {
   const draggingOver = (e) => e.preventDefault();
 
   const dragDropped = (e) => {
-    let grabData = e.dataTransfer.getData("ticketTempUUID");
+    let grabData = e.dataTransfer.getData("TicketTempUUID");
     const status = "Completed";
     const setTicketToOpenTicket = tickets?.map((ticket) => {
       if (ticket.tempUUID === grabData) {
