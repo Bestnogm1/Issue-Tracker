@@ -74,7 +74,7 @@ const OpenTickets = () => {
                           <Chakra.Flex w="50%" justify="end">
                             <Chakra.Text fontSize=".8em">
                               <Chakra.Badge color="green">
-                                {ticket?.owner.name}
+                                {ticket?.owner?.name}
                               </Chakra.Badge>
                             </Chakra.Text>
                           </Chakra.Flex>

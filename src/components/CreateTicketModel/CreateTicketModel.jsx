@@ -62,9 +62,13 @@ function CrateTicketModel(props) {
 
     setTickets([
       ...tickets,
-      { ...formData, ...submit, owner: { name: user.name } },
+      {
+        ...formData,
+        ...submit,
+        owner: { name: user?.name, _id: user.profile },
+      },
     ]);
-    console.log(tickets);
+
     if (fileForImg) {
       await submitImage(tempUUID);
       window.location.reload();

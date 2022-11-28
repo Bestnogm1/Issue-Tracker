@@ -151,8 +151,7 @@ const DetailModal = ({ ticketDetail, color }) => {
             <Comments ticketDetailId={ticketDetail._id} />
           </Chakra.Box>
         </Chakra.Box>
-        {user.profile === ticketDetail.owner._id ||
-        user.profile === ticketDetail.owner ? (
+        {user.profile === ticketDetail.owner._id ? (
           <Chakra.Button
             ml="10px"
             mt="15px"
