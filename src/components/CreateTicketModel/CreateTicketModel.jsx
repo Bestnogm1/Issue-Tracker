@@ -10,9 +10,11 @@ import { createTickets } from "../../services/ticketsServices";
 import { useNavigate } from "react-router-dom";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
 import { MdAdd } from "react-icons/md";
+import AddImages from "../AddImages/AddImages";
+import { v4 as uuidv4 } from "uuid";
 
 function CrateTicketModel(props) {
-  Modal.setAppElement("body");
+  Modal.setAppElement("#root");
 
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
@@ -26,7 +28,11 @@ function CrateTicketModel(props) {
     afterOpenModal,
     openModal,
     closeModal,
+    fileForImg,
+    setFileForImg,
+    submitImage,
   } = useCreateTicketModelContexts();
+
   const { setTickets, tickets } = useTicketsContext();
   const navigate = useNavigate();
 
@@ -38,19 +44,28 @@ function CrateTicketModel(props) {
     });
   };
 
-  //Input Submit
-  const handleSubmit = (evt) => {
+  let tempUUID = uuidv4();
+
+  //Input Submit tickets
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     let submit = {
       assignees,
       issue: issueType.value,
       priority: priority.value,
       status: "Open Ticket",
+      tempUUID: tempUUID,
     };
     createTickets({ ...formData, ...submit });
     setTickets([...tickets, { ...formData, ...submit }]);
+
+    if (fileForImg) {
+      await submitImage(tempUUID);
+      window.location.reload();
+    }
+
     navigate("/");
-    window.location.reload();
+    closeModal();
   };
 
   return (
@@ -87,14 +102,23 @@ function CrateTicketModel(props) {
                 <Chakra.Button
                   fontSize="20px"
                   variant="ghost"
-                  onClick={closeModal}
+                  onClick={() => closeModal()}
                 >
                   X
                 </Chakra.Button>
               </Chakra.Flex>
             </Chakra.Box>
           </Chakra.Flex>
-          {/*   */}
+          <Chakra.Text mb="8px" fontSize="15px">
+            Add Image
+          </Chakra.Text>
+
+          <AddImages
+            fileForImg={fileForImg}
+            setFileForImg={setFileForImg}
+            submitImage={submitImage}
+          />
+
           <form onSubmit={handleSubmit} ref={formElement}>
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
@@ -130,7 +154,7 @@ function CrateTicketModel(props) {
                 name="description"
                 variant="filled"
                 onChange={handleChange}
-                placeholder="details"
+                placeholder="Details"
                 resize="none"
               />
             </Chakra.Flex>

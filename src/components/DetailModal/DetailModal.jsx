@@ -15,7 +15,7 @@ const DetailModal = ({ ticketDetail, color }) => {
 
   //functions to handle Open and Close Modal
   let subtitle;
-  const afterOpenModal = () => (subtitle.style.color = "#f00");
+  // const afterOpenModal = () => (subtitle.style.color = "#fFF000000");
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -31,7 +31,7 @@ const DetailModal = ({ ticketDetail, color }) => {
       </Chakra.Button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
+        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -58,9 +58,21 @@ const DetailModal = ({ ticketDetail, color }) => {
               <Chakra.Text fontSize="20px">Assignee: </Chakra.Text>
               {ticketDetail?.assignees.map((assignee, i) => (
                 <React.Fragment key={i}>
-                  <Chakra.Badge fontSize="15px" align="center">
-                    {assignee?.name}
-                  </Chakra.Badge>
+                  <>
+                    <Chakra.Flex align="center" direction="column">
+                      <Chakra.Tooltip
+                        label={assignee.name}
+                        aria-label="A tooltip"
+                      >
+                        <Chakra.Image
+                          borderRadius="full"
+                          boxSize="30px"
+                          src={assignee.profilePicture}
+                          alt={assignee.name}
+                        />
+                      </Chakra.Tooltip>
+                    </Chakra.Flex>
+                  </>
                 </React.Fragment>
               ))}
             </Chakra.Flex>
@@ -132,19 +144,21 @@ const DetailModal = ({ ticketDetail, color }) => {
             <MainTabsComponents
               ticketDescription={ticketDetail?.description}
               ticketDetailId={ticketDetail._id}
+              ticketDetail={ticketDetail}
             />
           </Chakra.Box>
           <Chakra.Box>
             <Comments ticketDetailId={ticketDetail._id} />
           </Chakra.Box>
         </Chakra.Box>
-        {user.profile === ticketDetail.owner._id ? (
+        {user.profile === ticketDetail.owner._id ||
+        user.profile === ticketDetail.owner ? (
           <Chakra.Button
             ml="10px"
             mt="15px"
             colorScheme="red"
             size="md"
-            onClick={() => handleDeleteTicket(ticketDetail._id)}
+            onClick={() => handleDeleteTicket(ticketDetail.tempUUID)}
           >
             Delete
           </Chakra.Button>

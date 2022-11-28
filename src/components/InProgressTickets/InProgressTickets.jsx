@@ -9,20 +9,22 @@ const InProgressTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
 
   //handling different state of drag
-  const dragHasStarted = (e, id) => e.dataTransfer.setData("TicketId", id);
+  const dragHasStarted = (e, tempUUID) => {
+    e.dataTransfer.setData("TicketTempUUID", tempUUID);
+  };
   const draggingOver = (e) => e.preventDefault();
 
   const dragDropped = (e) => {
-    let grabData = e.dataTransfer.getData("TicketId");
+    let grabData = e.dataTransfer.getData("TicketTempUUID");
     const status = "In Progress";
-    const setTicketToInProgress = tickets?.map((ticket) => {
-      if (ticket._id === grabData) {
+    const setTicketToOpenTicket = tickets?.map((ticket) => {
+      if (ticket.tempUUID === grabData) {
         ticket.status = status;
-        updateStatus(ticket._id, status);
+        updateStatus(ticket.tempUUID, status);
       }
       return ticket;
     });
-    setTickets(setTicketToInProgress);
+    setTickets(setTicketToOpenTicket);
   };
 
   return (
@@ -60,21 +62,34 @@ const InProgressTickets = () => {
                       mb="15px"
                       mt="15px"
                       draggable="true"
-                      onDragStart={(e) => dragHasStarted(e, ticket._id)}
+                      onDragStart={(e) => dragHasStarted(e, ticket.tempUUID)}
                     >
                       <Chakra.Box p="13px">
-                        <Chakra.Flex direction="column">
-                          <Chakra.Text color="red">{ticket.title}</Chakra.Text>
-                          <Chakra.Text fontSize=".8em">
-                            {ticket?.owner.name}
-                          </Chakra.Text>
+                        <Chakra.Flex direction="row" align="center">
+                          <Chakra.Flex direction="row" w="50%">
+                            <Chakra.Text color="red">
+                              {ticket.title}
+                            </Chakra.Text>
+                          </Chakra.Flex>
+                          <Chakra.Flex w="50%" justify="end">
+                            <Chakra.Text fontSize=".8em">
+                              <Chakra.Badge color="red">
+                                {ticket?.owner.name}
+                              </Chakra.Badge>
+                            </Chakra.Text>
+                          </Chakra.Flex>
+                        </Chakra.Flex>
+                        <Chakra.Flex className={styles.imgContainer}>
+                          {ticket.imageUrl ? (
+                            <img src={ticket.imageUrl} alt="issueTicketImage" />
+                          ) : null}
                         </Chakra.Flex>
                         <Chakra.Flex direction="column">
                           <Chakra.Box className={styles.TicketsDetail}>
                             <Chakra.Text>{ticket.description}</Chakra.Text>
                           </Chakra.Box>
                         </Chakra.Flex>
-                        <Chakra.Flex direction="row">
+                        <Chakra.Flex direction="row" pt="15px">
                           <Chakra.Flex direction="row" align="end" w="50%">
                             <DetailModal ticketDetail={ticket} color={"red"} />
                           </Chakra.Flex>

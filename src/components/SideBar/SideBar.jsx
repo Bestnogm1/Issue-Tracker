@@ -13,6 +13,21 @@ const SideBar = ({ user, handleLogout }) => {
     <Chakra.VStack>
       {user ? (
         <>
+          <Chakra.Box pt="2rem">
+            <Chakra.Flex direction="column" justify="center">
+              <Chakra.Tooltip label={user?.name} aria-label="A tooltip">
+                <Chakra.Image
+                  borderRadius="full"
+                  boxSize="70px"
+                  src={user?.profilePicture}
+                  alt={user?.name}
+                />
+              </Chakra.Tooltip>
+              <Chakra.Badge align="center" mt="10px">
+                {user.name}
+              </Chakra.Badge>
+            </Chakra.Flex>
+          </Chakra.Box>
           <Chakra.Box pt="1rem">
             <Link to="/">
               <Chakra.Flex direction="column" justify="center">

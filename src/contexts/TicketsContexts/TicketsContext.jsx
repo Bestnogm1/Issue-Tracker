@@ -1,41 +1,54 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as ticketsServices from "../../services/ticketsServices";
+import { useToast } from "@chakra-ui/react";
+import * as Chakra from "@chakra-ui/react";
 
 const CreateTicketsContext = createContext(null);
 export const useTicketsContext = () => useContext(CreateTicketsContext);
 
 const Tickets = ({ children }) => {
-  const [tickets, setTickets] = useState();
+  const [tickets, setTickets] = useState([]);
+  const toast = useToast();
 
   useEffect(() => {
     ticketsServices.getAllTickets().then((res) => setTickets(res));
   }, []);
 
   const handleCreateTickets = (newTickets) => {
-    ticketsServices.createTickets(newTickets).then((createTickets) => {
+    ticketsServices?.createTickets(newTickets).then((createTickets) => {
       setTickets([createTickets, ...tickets]);
     });
   };
 
-  const handleDeleteTicket = (id) => {
+  const handleDeleteTicket = (tempUUID) => {
     ticketsServices
-      .deleteOneTickets(id)
-      .then(setTickets(tickets.filter((ticket) => ticket._id !== id)));
+      .deleteOneTickets(tempUUID)
+      .then(
+        setTickets(tickets.filter((ticket) => ticket.tempUUID !== tempUUID))
+      );
+    toast({
+      position: "bottom-left",
+      render: () => (
+        <Chakra.Box color="white" p={3} bg="red.500">
+          Ticket Deleted
+        </Chakra.Box>
+      ),
+    });
   };
 
   // Handling the Status of the tickets
-  const updateStatus = (ticketId, status) => {
+  const updateStatus = (ticketTempUUID, status) => {
     if (status === "Open Ticket") {
-      ticketsServices.updateTicketStatus(ticketId, status);
+      ticketsServices.updateTicketStatus(ticketTempUUID, status);
     }
     if (status === "In Progress") {
-      ticketsServices.updateTicketStatus(ticketId, status);
+      ticketsServices.updateTicketStatus(ticketTempUUID, status);
     }
     if (status === "On Hold") {
-      ticketsServices.updateTicketStatus(ticketId, status);
+      ticketsServices.updateTicketStatus(ticketTempUUID, status);
     }
     if (status === "Completed") {
-      ticketsServices.updateTicketStatus(ticketId, status);
+      ticketsServices.updateTicketStatus(ticketTempUUID, status);
     }
   };
 

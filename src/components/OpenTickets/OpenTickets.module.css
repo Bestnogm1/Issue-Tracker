@@ -31,12 +31,17 @@
 }
 .TicketsCards {
   min-height: 10rem;
-  max-height: 30rem;
+  max-height: 50rem;
 }
 .TicketsDetail {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 15;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   padding-top: 1em;
+}
+
+.imgContainer {
+  margin-top: 1em;
+  max-width: 100%;
 }

@@ -9,8 +9,10 @@ const SignupForm = (props) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
+    lastName: "",
     email: "",
     password: "",
+    profilePicture: "",
     passwordConf: "",
   });
 
@@ -20,6 +22,7 @@ const SignupForm = (props) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+      profilePicture: createProfileImage(formData.name, formData.lastName),
     });
   };
 
@@ -34,11 +37,20 @@ const SignupForm = (props) => {
     }
   };
 
-  const { name, email, password, passwordConf } = formData;
+  const { name, email, password, passwordConf, lastName } = formData;
 
   const isFormInvalid = () => {
     return !(name && email && password && password === passwordConf);
   };
+
+  const randomHexCodeColor = () => {
+    const hexCodes = ["442288", "6CA2EA", "B5D33D", "EB7D5B", "FED23F"];
+    return hexCodes[Math.floor(Math.random() * 5)];
+  };
+
+  function createProfileImage(name, lastName) {
+    return `https://ui-avatars.com/api/?name=${name}+${lastName}&background=${randomHexCodeColor()}`;
+  }
 
   return (
     <>
@@ -71,6 +83,21 @@ const SignupForm = (props) => {
                             autoComplete="off"
                             value={name}
                             name="name"
+                            onChange={handleChange}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="exampleInputPassword1">
+                            Last name
+                          </label>
+                          <input
+                            className="form-control"
+                            type="text"
+                            autoComplete="off"
+                            placeholder="last name"
+                            id="lastName"
+                            value={lastName}
+                            name="lastName"
                             onChange={handleChange}
                           />
                         </div>

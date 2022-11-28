@@ -8,7 +8,7 @@ export const createTickets = async (ticketForm) => {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify(ticketForm),
+    body: JSON.stringify({ ticketForm }),
   });
   return details.json();
 };
@@ -18,25 +18,24 @@ export const getAllTickets = async () => {
   return allTickets.json();
 };
 
-export const deleteOneTickets = async (id) => {
-  const deleteTicket = await fetch(`${BASE_URL}/deleteTicket/${id}`, {
+export const deleteOneTickets = async (tempUUID) => {
+  const deleteTicket = await fetch(`${BASE_URL}/deleteTicket/${tempUUID}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify({ id: id }),
   });
-  return deleteTicket.json();
+  return deleteTicket;
 };
 
-export const updateTicketStatus = async (ticketId, status) => {
+export const updateTicketStatus = async (ticketTempUUID, status) => {
   const lobby = await fetch(`${BASE_URL}/updateTicketStatus`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-    body: JSON.stringify({ _id: ticketId, status: status }),
+    body: JSON.stringify({ tempUUID: ticketTempUUID, status: status }),
   });
 
   return lobby;
