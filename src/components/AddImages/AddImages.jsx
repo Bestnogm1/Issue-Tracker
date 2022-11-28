@@ -1,24 +1,24 @@
-import { Button, Icon, Image } from "@chakra-ui/react";
+import { Icon, Image } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 // FcAddImage;
 import { FcAddImage } from "react-icons/fc";
 import { FcRemoveImage } from "react-icons/fc";
 
-const AddImages = ({ setFile, file }) => {
+const AddImages = ({ setFileForImg, fileForImg }) => {
   const [previewImage, setPreviewImage] = useState();
   const fileInputRef = useRef();
 
   useEffect(() => {
-    if (file) {
+    if (fileForImg) {
       const fileReader = new FileReader();
       fileReader.onloadend = () => {
         setPreviewImage(fileReader.result);
       };
-      fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(fileForImg);
     } else {
       setPreviewImage(null);
     }
-  }, [file]);
+  }, [fileForImg]);
 
   return (
     <>
@@ -35,7 +35,7 @@ const AddImages = ({ setFile, file }) => {
             color="white"
             aria-label="Call Sage"
             fontSize="35px"
-            onClick={() => setFile(null)}
+            onClick={() => setFileForImg(null)}
           />
         </>
       ) : (
@@ -54,7 +54,7 @@ const AddImages = ({ setFile, file }) => {
       )}
       <input
         ref={fileInputRef}
-        onChange={(e) => setFile(e.target.files[0])}
+        onChange={(e) => setFileForImg(e.target.files[0])}
         style={{ display: "none" }}
         type="file"
         accept="image/*"

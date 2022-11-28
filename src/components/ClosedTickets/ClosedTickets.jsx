@@ -9,20 +9,22 @@ const ClosedTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
 
   //handling different state of drag
-  const dragHasStarted = (e, id) => e.dataTransfer.setData("TicketId", id);
+  const dragHasStarted = (e, tempUUID) => {
+    e.dataTransfer.setData("TicketTempUUID", tempUUID);
+  };
   const draggingOver = (e) => e.preventDefault();
 
   const dragDropped = (e) => {
-    const grabData = e.dataTransfer.getData("TicketId");
+    let grabData = e.dataTransfer.getData("ticketTempUUID");
     const status = "Completed";
-    const setTicketToInOpenTicket = tickets?.map((ticket) => {
-      if (ticket._id === grabData) {
-        ticket.status = "Completed";
-        updateStatus(ticket._id, status);
+    const setTicketToOpenTicket = tickets?.map((ticket) => {
+      if (ticket.tempUUID === grabData) {
+        ticket.status = status;
+        updateStatus(ticket.tempUUID, status);
       }
       return ticket;
     });
-    setTickets(setTicketToInOpenTicket);
+    setTickets(setTicketToOpenTicket);
   };
 
   return (
@@ -60,7 +62,7 @@ const ClosedTickets = () => {
                       mb="15px"
                       mt="15px"
                       draggable="true"
-                      onDragStart={(e) => dragHasStarted(e, ticket?._id)}
+                      onDragStart={(e) => dragHasStarted(e, ticket.tempUUID)}
                     >
                       <Chakra.Box p="13px">
                         <Chakra.Flex direction="row" align="center">

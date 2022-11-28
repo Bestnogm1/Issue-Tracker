@@ -28,8 +28,8 @@ function CrateTicketModel(props) {
     afterOpenModal,
     openModal,
     closeModal,
-    file,
-    setFile,
+    fileForImg,
+    setFileForImg,
     submitImage,
   } = useCreateTicketModelContexts();
 
@@ -45,8 +45,9 @@ function CrateTicketModel(props) {
   };
 
   let tempUUID = uuidv4();
-  //Input Submit
-  const handleSubmit = (evt) => {
+
+  //Input Submit tickets
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     let submit = {
       assignees,
@@ -58,14 +59,13 @@ function CrateTicketModel(props) {
     createTickets({ ...formData, ...submit });
     setTickets([...tickets, { ...formData, ...submit }]);
 
-    if (file) {
-      submitImage(tempUUID);
-    }
-    navigate("/");
-
-    setTimeout(() => {
+    if (fileForImg) {
+      await submitImage(tempUUID);
       window.location.reload();
-    }, 300);
+    }
+
+    navigate("/");
+    closeModal();
   };
 
   return (
@@ -102,9 +102,7 @@ function CrateTicketModel(props) {
                 <Chakra.Button
                   fontSize="20px"
                   variant="ghost"
-                  onClick={() => {
-                    closeModal();
-                  }}
+                  onClick={() => closeModal()}
                 >
                   X
                 </Chakra.Button>
@@ -115,7 +113,11 @@ function CrateTicketModel(props) {
             Add Image
           </Chakra.Text>
 
-          <AddImages file={file} setFile={setFile} submitImage={submitImage} />
+          <AddImages
+            fileForImg={fileForImg}
+            setFileForImg={setFileForImg}
+            submitImage={submitImage}
+          />
 
           <form onSubmit={handleSubmit} ref={formElement}>
             <Chakra.Flex direction="column" pb="15px">

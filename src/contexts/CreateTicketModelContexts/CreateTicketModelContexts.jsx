@@ -10,7 +10,7 @@ export const useCreateTicketModelContexts = () =>
 const CreateTicketModelContexts = ({ children }) => {
   const { user } = useUserContext();
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [file, setFile] = useState();
+  const [fileForImg, setFileForImg] = useState();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -23,12 +23,12 @@ const CreateTicketModelContexts = ({ children }) => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => {
     setIsOpen(false);
-    setFile(null);
+    setFileForImg(null);
   };
 
   const submitImage = async (tempUUID) => {
     const addImage = new FormData();
-    addImage.append("image", file);
+    addImage.append("image", fileForImg);
     addImage.append("uuid", tempUUID);
     await axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER_URL}api/tickets/addImagesToTicket`,
@@ -49,8 +49,8 @@ const CreateTicketModelContexts = ({ children }) => {
         formData,
         setFormData,
         closeModal,
-        file,
-        setFile,
+        fileForImg,
+        setFileForImg,
         submitImage,
       }}
     >

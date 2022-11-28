@@ -8,7 +8,7 @@ const DetailImageTab = ({ ticketDetail }) => {
         <Chakra.Image
           src={ticketDetail.imageUrl}
           alt="ticketDetail img"
-          boxSize="400px"
+          boxSize="700px"
         />
       </>
     </div>
