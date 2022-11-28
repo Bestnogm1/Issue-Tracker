@@ -1,8 +1,8 @@
 # Ticket Issue
 
-#### In This application is a issue tracking product in this application your're able to create issue Then Drag and drop it to other section.
+#### This application is a proprietary issue tracking product in this application your're able to create issue Then Drag and drop it to other section to keep track of the status of you issue.
 
-[Deployed Link](https://637677baa94b554b8bf43094--scintillating-sherbet-a5313a.netlify.app/)
+[Deployed Link](https://scintillating-sherbet-a5313a.netlify.app)
 
 <!-- #### This application is a JIRA Clone in this application your're able to create issue Then Drag and drop it to other section and . -->
 
@@ -60,11 +60,13 @@ npm start
 ![](https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=whit)
 ![](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=whit)
 ![](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=whit)
+![](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
 #
 
 # Screenshots:
 
 Drag And Drop Feature
-<img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.35 AM.jpg">
+<img alt="Issue Tracker" src="src/img/Image 11-28-22 at 12.02 AM.jpg">
 <img alt="Issue Tracker" src="src/img/Image 11-17-22 at 11.34 AM.jpg">
