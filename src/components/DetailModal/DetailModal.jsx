@@ -14,8 +14,6 @@ const DetailModal = ({ ticketDetail, color }) => {
   const { handleDeleteTicket, customStyles } = useTicketsContext();
 
   //functions to handle Open and Close Modal
-  let subtitle;
-  // const afterOpenModal = () => (subtitle.style.color = "#fFF000000");
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
@@ -143,15 +141,15 @@ const DetailModal = ({ ticketDetail, color }) => {
           <Chakra.Box>
             <MainTabsComponents
               ticketDescription={ticketDetail?.description}
-              ticketDetailId={ticketDetail._id}
+              ticketDetailId={ticketDetail?._id}
               ticketDetail={ticketDetail}
             />
           </Chakra.Box>
           <Chakra.Box>
-            <Comments ticketDetailId={ticketDetail._id} />
+            <Comments ticketDetailId={ticketDetail?._id} />
           </Chakra.Box>
         </Chakra.Box>
-        {user.profile === ticketDetail.owner._id ? (
+        {user.profile === ticketDetail?.owner?._id ? (
           <Chakra.Button
             ml="10px"
             mt="15px"
