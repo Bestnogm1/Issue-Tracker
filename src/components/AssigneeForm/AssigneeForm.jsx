@@ -27,6 +27,7 @@ const AssigneeForm = ({ setAssignees, assignees, user }) => {
     };
     createSelectData([...profiles]);
   }, []);
+
   return (
     <div>
       <>
