@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useProfileContext } from "../../contexts/ProfileContexts/ProfileContexts";
 
-const AssigneeForm = ({ setAssignees, assignees }) => {
+const AssigneeForm = ({ setAssignees, assignees, user }) => {
   const [newProfile, setNewProfile] = useState([]);
   const { profiles } = useProfileContext();
 
@@ -23,12 +23,10 @@ const AssigneeForm = ({ setAssignees, assignees }) => {
         delete data[i]["ticketAssignedToMe"];
         delete data[i]["__v"];
       }
-
       setNewProfile(data);
     };
     createSelectData([...profiles]);
   }, []);
-
   return (
     <div>
       <>

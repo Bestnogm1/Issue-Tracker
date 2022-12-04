@@ -27,7 +27,7 @@ const OpenTickets = () => {
     });
     setTickets(setTicketToOpenTicket);
   };
-
+  console.log(tickets, "tickets");
   return (
     <>
       <Chakra.Box h="45rem" bg="#F1F1F1" className={styles.Tickets}>

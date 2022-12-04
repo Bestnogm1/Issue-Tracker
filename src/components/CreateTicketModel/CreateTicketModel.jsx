@@ -79,8 +79,7 @@ function CrateTicketModel(props) {
     navigate("/");
     closeModal();
   };
-  console.log(user);
-  console.log("================================");
+
   return (
     <Chakra.Box align="center" bc="red">
       <Chakra.Box variant="outline" onClick={openModal} size="lg">
@@ -175,7 +174,11 @@ function CrateTicketModel(props) {
               <Chakra.Text mb="8px" fontSize="15px">
                 Assignees
               </Chakra.Text>
-              <AssigneeForm setAssignees={setAssignees} assignees={assignees} />
+              <AssigneeForm
+                setAssignees={setAssignees}
+                assignees={assignees}
+                user={user}
+              />
             </Chakra.Flex>
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">
