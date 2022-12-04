@@ -29,6 +29,7 @@ const CommentsTabs = ({ ticketDetailId }) => {
     setInputData("");
     createdCommentTost();
   };
+
   function createdCommentTost() {
     toast({
       position: "bottom-left",
@@ -53,14 +54,16 @@ const CommentsTabs = ({ ticketDetailId }) => {
           value={inputData}
           onChange={(e) => setInputData(e.target.value)}
         />
-        <Chakra.Button
-          background="lightGreen"
-          width="5rem"
-          size="sm"
-          onClick={() => handleSubmit()}
-        >
-          Add
-        </Chakra.Button>
+        {user ? (
+          <Chakra.Button
+            background="lightGreen"
+            width="5rem"
+            size="sm"
+            onClick={() => handleSubmit()}
+          >
+            Add
+          </Chakra.Button>
+        ) : null}
       </Chakra.Flex>
     </Chakra.Box>
   );

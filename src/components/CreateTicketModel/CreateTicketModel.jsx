@@ -49,7 +49,7 @@ function CrateTicketModel(props) {
 
   let tempUUID = uuidv4();
 
-  //Input Submit tickets
+  // Submit tickets
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setDisableButton(true);
@@ -67,7 +67,7 @@ function CrateTicketModel(props) {
       {
         ...formData,
         ...submit,
-        owner: { name: user?.name, _id: user?.profile },
+        owner: { name: user.name, _id: user?.profile },
       },
     ]);
 
@@ -174,7 +174,11 @@ function CrateTicketModel(props) {
               <Chakra.Text mb="8px" fontSize="15px">
                 Assignees
               </Chakra.Text>
-              <AssigneeForm setAssignees={setAssignees} assignees={assignees} />
+              <AssigneeForm
+                setAssignees={setAssignees}
+                assignees={assignees}
+                user={user}
+              />
             </Chakra.Flex>
             <Chakra.Flex direction="column" pb="15px">
               <Chakra.Text mb="8px" fontSize="15px">

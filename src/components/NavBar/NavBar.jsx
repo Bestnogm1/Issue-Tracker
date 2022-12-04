@@ -1,6 +1,7 @@
 import * as Chakra from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { FaBug } from "react-icons/fa";
+import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
 const NavBar = () => {
   return (

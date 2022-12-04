@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useProfileContext } from "../../contexts/ProfileContexts/ProfileContexts";
 
-const AssigneeForm = ({ setAssignees, assignees }) => {
-  const [newProfile, setNewProfile] = useState();
+const AssigneeForm = ({ setAssignees, assignees, user }) => {
+  const [newProfile, setNewProfile] = useState([]);
   const { profiles } = useProfileContext();
 
   //Remove the "name" key and switch it to "value" for the Assignee Form
@@ -21,11 +21,12 @@ const AssigneeForm = ({ setAssignees, assignees }) => {
         delete data[i]["email"];
         delete data[i]["updatedAt"];
         delete data[i]["ticketAssignedToMe"];
+        delete data[i]["__v"];
       }
       setNewProfile(data);
     };
-    createSelectData(profiles);
-  }, [profiles]);
+    createSelectData([...profiles]);
+  }, []);
   return (
     <div>
       <>

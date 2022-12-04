@@ -29,7 +29,6 @@ const DetailModal = ({ ticketDetail, color }) => {
       </Chakra.Button>
       <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
@@ -149,16 +148,18 @@ const DetailModal = ({ ticketDetail, color }) => {
             <Comments ticketDetailId={ticketDetail?._id} />
           </Chakra.Box>
         </Chakra.Box>
-        {user.profile === ticketDetail?.owner?._id ? (
-          <Chakra.Button
-            ml="10px"
-            mt="15px"
-            colorScheme="red"
-            size="md"
-            onClick={() => handleDeleteTicket(ticketDetail.tempUUID)}
-          >
-            Delete
-          </Chakra.Button>
+        {user ? (
+          user.profile === ticketDetail.owner?._id ? (
+            <Chakra.Button
+              ml="10px"
+              mt="15px"
+              colorScheme="red"
+              size="md"
+              onClick={() => handleDeleteTicket(ticketDetail.tempUUID)}
+            >
+              Delete
+            </Chakra.Button>
+          ) : null
         ) : null}
       </Modal>
     </div>

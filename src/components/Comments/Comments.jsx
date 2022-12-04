@@ -37,16 +37,18 @@ const Comments = ({ ticketDetailId }) => {
                       <Chakra.Text>{message?.content}</Chakra.Text>
                     </Chakra.Flex>
                   </Chakra.Box>
-                  {message?.ownedBy.email === user.email ? (
-                    <Chakra.Button
-                      size="small"
-                      color="red"
-                      variant="link"
-                      width="4rem"
-                      onClick={() => handleDeleteComments(message?.tempUUID)}
-                    >
-                      Delete
-                    </Chakra.Button>
+                  {user ? (
+                    message?.ownedBy.email === user.email ? (
+                      <Chakra.Button
+                        size="small"
+                        color="red"
+                        variant="link"
+                        width="4rem"
+                        onClick={() => handleDeleteComments(message?.tempUUID)}
+                      >
+                        Delete
+                      </Chakra.Button>
+                    ) : null
                   ) : null}
                 </Chakra.Box>
               ) : null}

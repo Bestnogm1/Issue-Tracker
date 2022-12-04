@@ -24,27 +24,23 @@ const App = () => {
 
   return (
     <>
-      <>
-        <SideBar user={user} handleLogout={handleLogout} />
+      <SideBar user={user} handleLogout={handleLogout} />
+      <Chakra.Box>
+        <NavBar />
         <Chakra.Box>
-          <NavBar />
-          <Chakra.Box>
-            {/*  */}
-            <Routes>
-              <Route path="/" element={<Landing user={user} />} />
-              <Route
-                path="/signup"
-                element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-              />
-              <Route
-                path="/login"
-                element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-              />
-            </Routes>
-            {/*  */}
-          </Chakra.Box>
+          <Routes>
+            <Route path="/" element={<Landing user={user} />} />
+            <Route
+              path="/signup"
+              element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+            />
+            <Route
+              path="/login"
+              element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+            />
+          </Routes>
         </Chakra.Box>
-      </>
+      </Chakra.Box>
     </>
   );
 };

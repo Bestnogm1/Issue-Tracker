@@ -15,7 +15,6 @@ const CreateTicketModelContexts = ({ children }) => {
   const [formData, setFormData] = useState({
     title: "",
     owner: user?.profile,
-    // owner: { owner: user?.profile, name: user.name },
   });
 
   //Handle Close and open modal
