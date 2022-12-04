@@ -29,7 +29,6 @@ const DetailModal = ({ ticketDetail, color }) => {
       </Chakra.Button>
       <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"

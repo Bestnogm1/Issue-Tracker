@@ -1,6 +1,5 @@
 import { Icon, Image } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-// FcAddImage;
 import { FcAddImage } from "react-icons/fc";
 import { FcRemoveImage } from "react-icons/fc";
 

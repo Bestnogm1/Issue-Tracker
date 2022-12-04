@@ -49,7 +49,7 @@ function CrateTicketModel(props) {
 
   let tempUUID = uuidv4();
 
-  //Input Submit tickets
+  // Submit tickets
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setDisableButton(true);
@@ -67,7 +67,7 @@ function CrateTicketModel(props) {
       {
         ...formData,
         ...submit,
-        owner: { name: user?.name, _id: user?.profile },
+        owner: { name: user.name, _id: user?.profile },
       },
     ]);
 
@@ -79,7 +79,8 @@ function CrateTicketModel(props) {
     navigate("/");
     closeModal();
   };
-
+  console.log(user);
+  console.log("================================");
   return (
     <Chakra.Box align="center" bc="red">
       <Chakra.Box variant="outline" onClick={openModal} size="lg">

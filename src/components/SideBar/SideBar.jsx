@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import * as Chakra from "@chakra-ui/react";
-import styles from "./SideBar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -61,17 +60,19 @@ const SideBar = ({ user, handleLogout }) => {
       ) : (
         <>
           <Chakra.Box pt="3rem">
-            <Link to="/">
-              <Chakra.Flex direction="column" justify="center">
-                <Icon
-                  as={AiOutlineHome}
-                  color="white"
-                  aria-label="Call Sage"
-                  fontSize="85px"
-                />
-                <Chakra.Badge align="center">Home</Chakra.Badge>
-              </Chakra.Flex>
-            </Link>
+            <Chakra.Flex direction="column" justify="center" pb="3rem">
+              <Link to="/">
+                <Chakra.Flex direction="column" justify="center">
+                  <Icon
+                    as={AiOutlineHome}
+                    color="white"
+                    aria-label="Call Sage"
+                    fontSize="85px"
+                  />
+                  <Chakra.Badge align="center">Home</Chakra.Badge>
+                </Chakra.Flex>
+              </Link>
+            </Chakra.Flex>
             <Link to="/signup">
               <Chakra.Flex direction="column" justify="center">
                 <Icon
