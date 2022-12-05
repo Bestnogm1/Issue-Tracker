@@ -53,25 +53,33 @@ const DetailModal = ({ ticketDetail, color }) => {
           <Chakra.Box>
             <Chakra.Flex gap="1rem">
               <Chakra.Text fontSize="20px">Assignee: </Chakra.Text>
-              {ticketDetail?.assignees.map((assignee, i) => (
-                <React.Fragment key={i}>
-                  <>
-                    <Chakra.Flex align="center" direction="column">
-                      <Chakra.Tooltip
-                        label={assignee.name}
-                        aria-label="A tooltip"
-                      >
-                        <Chakra.Image
-                          borderRadius="full"
-                          boxSize="30px"
-                          src={assignee.profilePicture}
-                          alt={assignee.name}
-                        />
-                      </Chakra.Tooltip>
-                    </Chakra.Flex>
-                  </>
-                </React.Fragment>
-              ))}
+              {ticketDetail?.assignees.length !== 0 ? (
+                ticketDetail?.assignees.map((assignee, i) => (
+                  <React.Fragment key={i}>
+                    <>
+                      <Chakra.Flex align="center" direction="column">
+                        <Chakra.Tooltip
+                          label={assignee.name}
+                          aria-label="A tooltip"
+                        >
+                          <Chakra.Image
+                            borderRadius="full"
+                            boxSize="30px"
+                            src={assignee.profilePicture}
+                            alt={assignee.name}
+                          />
+                        </Chakra.Tooltip>
+                      </Chakra.Flex>
+                    </>
+                  </React.Fragment>
+                ))
+              ) : (
+                <Chakra.Flex align="center" direction="column">
+                  <Chakra.Badge>
+                    <h1>Unassigned</h1>
+                  </Chakra.Badge>
+                </Chakra.Flex>
+              )}
             </Chakra.Flex>
             <Chakra.Flex fontSize="20px" color={color}>
               Status: {ticketDetail?.status}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import dayjs from "dayjs";
 import * as Chakra from "@chakra-ui/react";
 import DetailModal from "../DetailModal/DetailModal";
@@ -7,15 +7,17 @@ import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext
 
 const OnHoldTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
-
+  const draggingItem = useRef();
+  const dragOverItem = useRef();
   //handling different state of drag
-  const dragHasStarted = (e, tempUUID) => {
+  const dragHasStarted = (e, tempUUID, ticketIndexPosition) => {
     e.dataTransfer.setData("TicketTempUUID", tempUUID);
+    draggingItem.current = ticketIndexPosition;
   };
   const draggingOver = (e) => e.preventDefault();
 
   const dragDropped = (e) => {
-    let grabData = e.dataTransfer.getData("TicketTempUUID");
+    let grabData = e.dataTransfer.getData("ticketTempUUID");
     const status = "On Hold";
 
     const setTicketToOpenTicket = tickets?.map((ticket) => {
@@ -26,6 +28,19 @@ const OnHoldTickets = () => {
       return ticket;
     });
     setTickets(setTicketToOpenTicket);
+  };
+
+  const handleDragEnter = (e, position) => {
+    dragOverItem.current = position;
+  };
+
+  const handleSort = () => {
+    let sortedTickets = [...tickets];
+    const draggedOverContent = sortedTickets.splice(draggingItem.current, 1)[0];
+    sortedTickets.splice(dragOverItem.current, 0, draggedOverContent);
+    draggingItem.current = null;
+    dragOverItem.current = null;
+    setTickets(sortedTickets);
   };
 
   return (
@@ -59,11 +74,15 @@ const OnHoldTickets = () => {
                       className={styles.TicketsCards}
                       bg="white"
                       w="87%"
-                      ml="30px"
+                      ml="20px"
                       mb="15px"
                       mt="15px"
                       draggable="true"
-                      onDragStart={(e) => dragHasStarted(e, ticket.tempUUID)}
+                      onDragStart={(e) =>
+                        dragHasStarted(e, ticket.tempUUID, idx)
+                      }
+                      onDragEnter={(e) => handleDragEnter(e, idx)}
+                      onDragEnd={handleSort}
                     >
                       <Chakra.Box p="13px">
                         <Chakra.Flex direction="row" align="center">

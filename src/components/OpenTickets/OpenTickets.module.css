@@ -45,3 +45,6 @@
   margin-top: 1em;
   max-width: 100%;
 }
+.TicketsCards:hover {
+  background-color: rgb(217, 236, 227);
+}
