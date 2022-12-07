@@ -4,9 +4,11 @@ import * as Chakra from "@chakra-ui/react";
 import DetailModal from "../DetailModal/DetailModal";
 import styles from "../OpenTickets/OpenTickets.module.css";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
+import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
 const OnHoldTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
+  const { user } = useUserContext();
   const draggingItem = useRef();
   const dragOverItem = useRef();
   //handling different state of drag
@@ -93,8 +95,10 @@ const OnHoldTickets = () => {
                           </Chakra.Flex>
                           <Chakra.Flex w="50%" justify="end">
                             <Chakra.Text fontSize=".8em">
-                              <Chakra.Badge color="lightblue">
-                                {ticket?.owner.name}
+                              <Chakra.Badge color="green">
+                                {ticket?.owner?.name
+                                  ? ticket?.owner?.name
+                                  : user?.name}
                               </Chakra.Badge>
                             </Chakra.Text>
                           </Chakra.Flex>
