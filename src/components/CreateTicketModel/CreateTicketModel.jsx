@@ -72,8 +72,7 @@ function CrateTicketModel(props) {
       },
     ]);
     if (fileForImg) {
-      await submitImage(tempUUID);
-      // window.location.reload();
+      submitImage(tempUUID);
     }
     navigate("/");
     closeModal();
