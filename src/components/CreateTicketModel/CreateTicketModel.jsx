@@ -16,7 +16,7 @@ import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
 function CrateTicketModel(props) {
   Modal.setAppElement("#root");
-
+  const [previewImage, setPreviewImage] = useState();
   const [issueType, setIssueType] = useState([]);
   const [assignees, setAssignees] = useState([]);
   const [priority, setPriority] = useState([]);
@@ -68,14 +68,13 @@ function CrateTicketModel(props) {
         ...formData,
         ...submit,
         owner: { name: user.name, _id: user?.profile },
+        imageUrl: fileForImg ? previewImage : null,
       },
     ]);
-
     if (fileForImg) {
       await submitImage(tempUUID);
-      window.location.reload();
+      // window.location.reload();
     }
-
     navigate("/");
     closeModal();
   };
@@ -129,6 +128,8 @@ function CrateTicketModel(props) {
             fileForImg={fileForImg}
             setFileForImg={setFileForImg}
             submitImage={submitImage}
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
           />
 
           <form onSubmit={handleSubmit} ref={formElement}>

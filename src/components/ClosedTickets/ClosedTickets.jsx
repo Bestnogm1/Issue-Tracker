@@ -41,8 +41,6 @@ const ClosedTickets = () => {
     setTickets(sortedTickets);
   };
 
-  const status = "Completed";
-
   return (
     <>
       <Chakra.Box h="45rem" bg="#F1F1F1" className={styles.Tickets}>

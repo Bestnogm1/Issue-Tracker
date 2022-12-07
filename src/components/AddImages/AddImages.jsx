@@ -1,10 +1,14 @@
 import { Icon, Image } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { FcAddImage } from "react-icons/fc";
 import { FcRemoveImage } from "react-icons/fc";
 
-const AddImages = ({ setFileForImg, fileForImg }) => {
-  const [previewImage, setPreviewImage] = useState();
+const AddImages = ({
+  setFileForImg,
+  fileForImg,
+  previewImage,
+  setPreviewImage,
+}) => {
   const fileInputRef = useRef();
 
   useEffect(() => {
