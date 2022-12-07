@@ -53,12 +53,18 @@ function CrateTicketModel(props) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     setDisableButton(true);
+
+    if (fileForImg) {
+      await submitImage(tempUUID);
+    }
+
     let submit = {
       assignees,
       issue: issueType.value,
       priority: priority.value,
       status: "Open Ticket",
       tempUUID: tempUUID,
+      imageUrl: fileForImg ? true : null,
     };
     createTickets({ ...formData, ...submit });
 
@@ -71,9 +77,7 @@ function CrateTicketModel(props) {
         imageUrl: fileForImg ? previewImage : null,
       },
     ]);
-    if (fileForImg) {
-      submitImage(tempUUID);
-    }
+
     navigate("/");
     closeModal();
   };
