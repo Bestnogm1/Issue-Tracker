@@ -148,12 +148,12 @@ const DetailModal = ({ ticketDetail, color }) => {
           <Chakra.Box>
             <MainTabsComponents
               ticketDescription={ticketDetail?.description}
-              ticketDetailId={ticketDetail?._id}
+              ticketDetailId={ticketDetail?.tempUUID}
               ticketDetail={ticketDetail}
             />
           </Chakra.Box>
           <Chakra.Box>
-            <Comments ticketDetailId={ticketDetail?._id} />
+            <Comments ticketDetailId={ticketDetail?.tempUUID} />
           </Chakra.Box>
         </Chakra.Box>
         {user ? (

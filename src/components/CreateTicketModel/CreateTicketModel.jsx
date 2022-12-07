@@ -43,7 +43,7 @@ function CrateTicketModel(props) {
   const handleChange = (evt) => {
     setFormData({
       ...formData,
-      title: evt.target.value,
+      [evt.target.name]: evt.target.value,
     });
   };
 
@@ -67,7 +67,8 @@ function CrateTicketModel(props) {
       imageUrl: fileForImg ? true : null,
       owner: user.profile,
     };
-    createTickets({ ...formData, ...submit });
+
+    await createTickets({ ...formData, ...submit });
 
     setTickets([
       ...tickets,
@@ -78,7 +79,6 @@ function CrateTicketModel(props) {
         imageUrl: fileForImg ? previewImage : null,
       },
     ]);
-
     navigate("/");
     closeModal();
   };
