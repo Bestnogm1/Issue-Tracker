@@ -23,7 +23,9 @@ function CrateTicketModel(props) {
   const [disableButton, setDisableButton] = useState(false);
   const formElement = useRef();
   const { user } = useUserContext();
-
+  console.log("====================================");
+  console.log(user);
+  console.log("====================================");
   const {
     setFormData,
     formData,
@@ -43,7 +45,7 @@ function CrateTicketModel(props) {
   const handleChange = (evt) => {
     setFormData({
       ...formData,
-      [evt.target.name]: evt.target.value,
+      title: evt.target.value,
     });
   };
 
@@ -65,6 +67,7 @@ function CrateTicketModel(props) {
       status: "Open Ticket",
       tempUUID: tempUUID,
       imageUrl: fileForImg ? true : null,
+      owner: user.profile,
     };
     createTickets({ ...formData, ...submit });
 

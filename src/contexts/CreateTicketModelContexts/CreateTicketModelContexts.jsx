@@ -1,21 +1,15 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 
-import { useUserContext } from "../UserContexts/UserContexts";
-
 const CreateTicketsModel = createContext(null);
 export const useCreateTicketModelContexts = () =>
   useContext(CreateTicketsModel);
 
 const CreateTicketModelContexts = ({ children }) => {
-  const { user } = useUserContext();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [fileForImg, setFileForImg] = useState();
 
-  const [formData, setFormData] = useState({
-    title: "",
-    owner: user?.profile,
-  });
+  const [formData, setFormData] = useState({});
 
   //Handle Close and open modal
   let subtitle;

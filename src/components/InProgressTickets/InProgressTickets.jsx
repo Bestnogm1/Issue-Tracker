@@ -4,11 +4,9 @@ import DetailModal from "../DetailModal/DetailModal";
 import styles from "../OpenTickets/OpenTickets.module.css";
 import { useTicketsContext } from "../../contexts/TicketsContexts/TicketsContext";
 import dayjs from "dayjs";
-import { useUserContext } from "../../contexts/UserContexts/UserContexts";
 
 const InProgressTickets = () => {
   const { tickets, setTickets, updateStatus } = useTicketsContext();
-  const { user } = useUserContext();
 
   const draggingItem = useRef();
   const dragOverItem = useRef();
@@ -95,9 +93,7 @@ const InProgressTickets = () => {
                           <Chakra.Flex w="50%" justify="end">
                             <Chakra.Text fontSize=".8em">
                               <Chakra.Badge color="green">
-                                {ticket?.owner?.name
-                                  ? ticket?.owner?.name
-                                  : user?.name}
+                                {ticket?.owner?.name}
                               </Chakra.Badge>
                             </Chakra.Text>
                           </Chakra.Flex>
