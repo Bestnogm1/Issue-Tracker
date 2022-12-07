@@ -23,9 +23,7 @@ function CrateTicketModel(props) {
   const [disableButton, setDisableButton] = useState(false);
   const formElement = useRef();
   const { user } = useUserContext();
-  console.log("====================================");
-  console.log(user);
-  console.log("====================================");
+
   const {
     setFormData,
     formData,
