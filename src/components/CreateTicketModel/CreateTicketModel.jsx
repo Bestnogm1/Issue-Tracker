@@ -67,7 +67,7 @@ function CrateTicketModel(props) {
       {
         ...formData,
         ...submit,
-        owner: { name: user.name, _id: user?.profile },
+        owner: { name: user?.name, _id: user?.profile },
         imageUrl: fileForImg ? previewImage : null,
       },
     ]);
