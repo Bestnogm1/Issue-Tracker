@@ -5,6 +5,7 @@ import { useCreateCommentsContexts } from "../../contexts/CommentsContexts/Comme
 import { useUserContext } from "../../contexts/UserContexts/UserContexts.jsx";
 import { v4 as uuidv4 } from "uuid";
 import { useToast } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const CommentsTabs = ({ ticketDetailId }) => {
   const { user } = useUserContext();
@@ -44,26 +45,43 @@ const CommentsTabs = ({ ticketDetailId }) => {
   return (
     <Chakra.Box>
       <Chakra.Flex direction="column" gap="20px">
-        <Chakra.Textarea
-          required
-          type="text"
-          name="description"
-          variant="filled"
-          placeholder="details"
-          resize="none"
-          value={inputData}
-          onChange={(e) => setInputData(e.target.value)}
-        />
         {user ? (
-          <Chakra.Button
-            background="lightGreen"
-            width="5rem"
-            size="sm"
-            onClick={() => handleSubmit()}
-          >
-            Add
-          </Chakra.Button>
-        ) : null}
+          <>
+            <Chakra.Textarea
+              required
+              type="text"
+              name="description"
+              variant="filled"
+              placeholder="details"
+              resize="none"
+              value={inputData}
+              onChange={(e) => setInputData(e.target.value)}
+            />
+            <Chakra.Button
+              background="lightGreen"
+              width="5rem"
+              size="sm"
+              onClick={() => handleSubmit()}
+            >
+              Add
+            </Chakra.Button>
+          </>
+        ) : (
+          <>
+            <p>
+              <Link to="/signup" style={{ color: "red" }}>
+                {" "}
+                Signup{" "}
+              </Link>
+              or
+              <Link to="/login" style={{ color: "red" }}>
+                {" "}
+                Login{" "}
+              </Link>{" "}
+              to add comment
+            </p>
+          </>
+        )}
       </Chakra.Flex>
     </Chakra.Box>
   );
